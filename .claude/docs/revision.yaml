@@ -1,0 +1,43 @@
+# Rune-Jit — Pinned OSRS Revision
+# Produced by /setup-revision-lock-and-pin using REAL OpenRS2 archive data.
+# Source query: https://archive.openrs2.org/caches.json  (fetched 2026-06-23)
+#
+# NOTE: This pins metadata only. The cache binary (~163 MB), XTEA keys, and the
+# gamepack JAR are NOT committed — they are fetched at runtime by the user via
+# tools/cache-utils/download-cache.sh (legal/educational design constraint).
+
+revision: 238              # latest live OSRS build on OpenRS2 as of pin date
+
+cache:
+  source: "OpenRS2 Archive"
+  scope: "runescape"
+  game: "oldschool"
+  environment: "live"
+  language: "en"
+  cache_id: 2599           # OpenRS2 cache id selected for build 238
+  timestamp: "2026-06-17T13:45:05Z"
+  # Completeness as reported by OpenRS2 (real values):
+  valid_indexes: "25/25"
+  valid_groups: "114299/114299"
+  disk_store_valid: true
+  size_bytes: 171048960    # ~163 MiB
+  download_url: "https://archive.openrs2.org/caches/runescape/2599/disk.zip"
+
+xtea:
+  # OpenRS2 serves map XTEA keys separately from the cache disk store.
+  keys_url: "https://archive.openrs2.org/caches/runescape/2599/keys.json"
+  status: "not_yet_fetched"   # run download-cache.sh to populate cache/xtea/keys.json
+
+gamepack:
+  # Capturing the obfuscated client JAR + its hash is a separate step
+  # (/setup-revision-lock-and-pin Phase 2). Not fabricated here.
+  jar_sha256: null
+  status: "not_yet_captured"
+
+pinned_at: "2026-06-23"
+pinned_by: "setup-revision-lock-and-pin"
+notes: >
+  Build 238 is the most recent live OSRS cache in the OpenRS2 archive at pin time,
+  with a fully valid disk store (25/25 indexes, all 114299 groups valid). Candidate
+  caches id=2593/2565/2564 (builds also 238) are valid fallbacks if id=2599 fails a
+  checksum on download.
