@@ -1,0 +1,89 @@
+{
+  "statusLine": {
+    "command": "bash .claude/statusline.sh"
+  },
+  "permissions": {
+    "allow": [
+      "git status*",
+      "git diff*",
+      "git log*",
+      "git add*",
+      "git commit*",
+      "git push*",
+      "git fetch*",
+      "ls *",
+      "python3 *",
+      "gradle *",
+      "./gradlew *",
+      "mvn *",
+      "unzip *",
+      "curl -s https://archive.openrs2.org*",
+      "docker *",
+      "docker-compose *",
+      "java -jar *",
+      "bash .claude/hooks/*",
+      "bash .claude/statusline.sh",
+      "mkdir -p *",
+      "chmod +x *"
+    ],
+    "deny": [
+      "rm -rf *",
+      "git push --force*",
+      "git reset --hard*",
+      "sudo *",
+      "chmod 777*",
+      "wget *jagex*",
+      "curl *jagex*"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "command": "bash .claude/hooks/session-start.sh",
+        "timeout": 10000
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "command": "bash .claude/hooks/validate-commit.sh",
+        "timeout": 8000
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "command": "bash .claude/hooks/validate-cache-ref.sh",
+        "timeout": 5000
+      },
+      {
+        "matcher": "Edit",
+        "command": "bash .claude/hooks/validate-skill-change.sh",
+        "timeout": 5000
+      },
+      {
+        "matcher": "Write",
+        "command": "bash .claude/hooks/verify-parity.sh",
+        "timeout": 5000
+      }
+    ],
+    "Stop": [
+      {
+        "command": "bash .claude/hooks/session-stop.sh",
+        "timeout": 5000
+      }
+    ],
+    "SubagentStart": [
+      {
+        "command": "bash .claude/hooks/log-agent.sh",
+        "timeout": 3000
+      }
+    ],
+    "SubagentStop": [
+      {
+        "command": "bash .claude/hooks/log-agent-stop.sh",
+        "timeout": 3000
+      }
+    ]
+  }
+}
