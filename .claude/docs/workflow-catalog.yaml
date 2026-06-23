@@ -1,0 +1,336 @@
+# OSRS 1:1 Emulator Studio — Workflow Catalog
+# 8-phase pipeline for complete private OSRS emulator development.
+#
+# Artifact checks:
+#   glob: file glob pattern — complete if >=1 file matches
+#   pattern: text pattern that must appear in file
+#   min_count: minimum matching files required (default: 1)
+#   note: human-readable fallback when auto-detection not possible
+#
+# required: true  → blocks progression (shown as REQUIRED)
+# required: false → optional enhancement (shown as OPTIONAL)
+# repeatable: true → runs once per skill/system/content piece
+#
+# Phase gates are ADVISORY — the user always decides whether to advance.
+
+phases:
+  phase-0:
+    label: "Phase 0 — Environment & Tooling"
+    description: "Acquire cache, pin revision, validate dependencies, configure workspace"
+    next_phase: phase-1
+    steps:
+      - id: revision-pin
+        name: "Pin Target Revision"
+        command: /setup-revision-lock-and-pin
+        required: true
+        artifact:
+          glob: ".claude/docs/revision.yaml"
+          pattern: "revision:"
+        description: "Pin exact OSRS gamepack revision; record in revision.yaml; legal compliance check"
+
+      - id: env-validate
+        name: "Validate Dev Environment"
+        command: /setup-revision-lock-and-pin
+        required: true
+        artifact:
+          note: "Check that Java 17, Gradle, Python 3.10+, curl, jq are all installed"
+        description: "Verify all required tools; install missing dependencies"
+
+      - id: cache-download
+        name: "Download OSRS Cache"
+        command: /load-osrs-cache-full
+        required: true
+        artifact:
+          glob: "cache/CACHE-REPORT.md"
+        description: "Download full cache from OpenRS2; fetch XTEA keys; validate coverage"
+
+      - id: osrsbox-import
+        name: "Import osrsbox Data"
+        command: /import-osrsbox-complete
+        required: true
+        artifact:
+          glob: "data/osrsbox/items-complete.json"
+        description: "Populate items, NPCs, objects, prayers from osrsbox-db"
+
+  phase-1:
+    label: "Phase 1 — Research, GDD & System Design"
+    description: "Decompose all OSRS systems, write GDDs, design data schemas"
+    next_phase: phase-2
+    steps:
+      - id: systems-map
+        name: "OSRS Systems Map"
+        command: /gdd-osrs-specialized-framework
+        required: true
+        artifact:
+          glob: "design/gdd/systems-index.md"
+        description: "Decompose all OSRS systems into dependency graph; identify MVP vs deferred"
+
+      - id: skill-gdds
+        name: "Skill GDDs (per skill)"
+        command: /gdd-osrs-specialized-framework
+        required: true
+        repeatable: true
+        artifact:
+          glob: "design/gdd/skills/*.md"
+          min_count: 1
+        description: "Author per-skill GDD: XP formula, action table, tick rates, parity target"
+
+      - id: combat-gdd
+        name: "Combat GDD"
+        command: /gdd-osrs-specialized-framework
+        required: true
+        artifact:
+          glob: "design/gdd/combat-gdd.md"
+        description: "Document all combat formulas, prayer system, special attacks"
+
+      - id: quest-design
+        name: "Quest State Design"
+        command: /quest-and-diary-state-machine
+        required: false
+        artifact:
+          glob: "design/gdd/quest-state-*.md"
+          min_count: 1
+        description: "Model quest state machines, dialogue trees, variable flags"
+
+      - id: data-schema
+        name: "Data Schema Design"
+        command: /gdd-osrs-specialized-framework
+        required: true
+        artifact:
+          glob: "docs/architecture/data-schema.md"
+        description: "Design item/NPC/object/spell schemas; generate Kotlin types"
+
+      - id: adrs
+        name: "Architecture Decisions (ADRs)"
+        required: true
+        repeatable: true
+        artifact:
+          glob: "docs/architecture/adr-*.md"
+          min_count: 3
+        description: "Document key decisions: tick engine, persistence backend, protocol approach"
+
+  phase-2:
+    label: "Phase 2 — Server Core"
+    description: "Implement tick engine, skills, combat, networking, persistence"
+    next_phase: phase-3
+    steps:
+      - id: tick-engine
+        name: "Tick Engine"
+        command: /implement-tick-engine-core
+        required: true
+        artifact:
+          glob: "src/server/engine/TickLoop.kt"
+        description: "600ms tick loop with entity scheduling and desync prevention"
+
+      - id: skills
+        name: "Skill Implementations (per skill)"
+        command: /implement-skill-action-framework
+        required: true
+        repeatable: true
+        artifact:
+          glob: "src/server/skills/**/*.kt"
+          min_count: 1
+        description: "Implement each skill: all resources, tools, XP rates, level gates"
+
+      - id: combat
+        name: "Combat Engine"
+        command: /combat-engine-full
+        required: true
+        artifact:
+          glob: "src/server/combat/CombatEngine.kt"
+        description: "Full combat: accuracy, max hit, prayers, specials, multi-combat"
+
+      - id: pathfinding
+        name: "Pathfinding & Clipping"
+        command: /pathfinding-and-clipping-engine
+        required: true
+        artifact:
+          glob: "src/server/world/pathfinding/PathFinder.kt"
+        description: "Smart pathfinding using cache clip flags; door handling; instancing"
+
+      - id: persistence
+        name: "Persistence Layer"
+        required: true
+        artifact:
+          glob: "src/server/persistence/PlayerSaveService.kt"
+        description: "Player save/load with versioned schema and migration support"
+
+      - id: networking
+        name: "Protocol & Packet Engine"
+        command: /protocol-packet-engine
+        required: true
+        artifact:
+          glob: "src/server/net/PacketDecoder.kt"
+        description: "ISAAC cipher, JS5 cache server, all game packet handlers"
+
+  phase-3:
+    label: "Phase 3 — Client Frontend"
+    description: "Rendering pipeline, UI widgets, audio, private-server connection"
+    next_phase: phase-4
+    steps:
+      - id: rendering
+        name: "Rendering Pipeline"
+        command: /implement-client-rendering-pipeline
+        required: true
+        artifact:
+          glob: "src/client/render/RenderPipeline.java"
+        description: "OpenGL/LWJGL pipeline: models, sprites, HD toggle, draw distance"
+
+      - id: widgets
+        name: "Widget/Interface System"
+        command: /paoloka-interface-integrator
+        required: true
+        artifact:
+          glob: "src/client/ui/WidgetTree.java"
+        description: "Widget tree from cache; PaoloKa integration; interface scripts"
+
+      - id: audio
+        name: "Audio Integration"
+        required: false
+        artifact:
+          glob: "src/client/audio/AudioEngine.java"
+        description: "Sound effects (index 4) and music tracks (index 6) from cache"
+
+      - id: client-net
+        name: "Client Network Handler"
+        required: true
+        artifact:
+          glob: "src/client/net/GamePacketHandler.java"
+        description: "Client packet encode/decode; login sequence; reconnection"
+
+  phase-4:
+    label: "Phase 4 — Integration & Networking"
+    description: "End-to-end client-server handshake, protocol parity, multiplayer basics"
+    next_phase: phase-5
+    steps:
+      - id: integration-test
+        name: "Integration Testing"
+        command: /automated-parity-testing-suite
+        required: true
+        artifact:
+          glob: "tests/parity/IntegrationTest.kt"
+        description: "Login flow, world load, item pickup, NPC interaction end-to-end"
+
+      - id: protocol-validate
+        name: "Protocol Sync Validation"
+        required: true
+        artifact:
+          note: "Check src/shared/protocol-defs.yaml — all opcodes must be mapped"
+        description: "Validate all packet IDs/sizes against reference; fix unhandled opcodes"
+
+      - id: desync-check
+        name: "Desync Prevention Check"
+        required: true
+        artifact:
+          note: "Review tick ordering for all entity types; no server/client state divergence"
+        description: "Trace tick ordering; validate entity update cycle matches OSRS"
+
+  phase-5:
+    label: "Phase 5 — Content Population & Polish"
+    description: "Raids, diaries, economy, NPC drops, holiday events, plugins"
+    next_phase: phase-6
+    steps:
+      - id: drop-tables
+        name: "NPC Drop Tables"
+        command: /npc-drop-table-importer
+        required: true
+        artifact:
+          glob: "data/osrsbox/drop-tables-imported.json"
+        description: "Import all NPC drop tables from osrsbox; validate against wiki"
+
+      - id: economy
+        name: "Economy & Grand Exchange"
+        command: /economy-and-ge-simulator
+        required: false
+        artifact:
+          glob: "src/server/economy/GrandExchange.kt"
+        description: "GE price simulation; shops; alch profitability checks"
+
+      - id: raids
+        name: "Raids & Instanced Content"
+        command: /raids-and-instanced-content-generator
+        required: false
+        repeatable: true
+        artifact:
+          glob: "src/server/content/raids/**/*.kt"
+          min_count: 1
+        description: "CoX, ToB, ToA — instancing, party mechanics, unique drop tables"
+
+      - id: quests
+        name: "Quest Implementations"
+        command: /quest-and-diary-state-machine
+        required: false
+        repeatable: true
+        artifact:
+          glob: "src/server/quests/**/*.kt"
+          min_count: 1
+        description: "Implement quest scripts; diary tracking; reward unlocks"
+
+  phase-6:
+    label: "Phase 6 — Comprehensive Testing & Parity"
+    description: "Mechanical parity vs wiki, performance, load testing, edge cases"
+    next_phase: phase-7
+    steps:
+      - id: parity-tests
+        name: "Mechanic Parity Verification"
+        command: /verify-mechanic-parity-1to1
+        required: true
+        repeatable: true
+        artifact:
+          glob: "tests/parity/**/*ParityTest.kt"
+          min_count: 10
+        description: "Per-system parity tests vs wiki; target 95%+ score"
+
+      - id: parity-suite
+        name: "Full Automated Parity Suite"
+        command: /automated-parity-testing-suite
+        required: true
+        artifact:
+          glob: "production/session-state/parity-score.txt"
+        description: "Full regression run; generate parity score report"
+
+      - id: perf-profile
+        name: "Performance Profiling"
+        command: /performance-profiling-and-optimization
+        required: true
+        artifact:
+          note: "Tick loop must stay under 580ms with 2000 entities"
+        description: "Profile hot paths; JVM GC tuning; eliminate tick slippage"
+
+      - id: load-test
+        name: "Load Testing"
+        required: false
+        artifact:
+          note: "Simulate 200+ concurrent players without tick slippage"
+        description: "Concurrent player simulation; measure tick budget utilization"
+
+  phase-7:
+    label: "Phase 7 — Deployment, Maintenance & Revision Updates"
+    description: "Docker packaging, revision update handling, documentation"
+    next_phase: null
+    steps:
+      - id: docker
+        name: "Docker Deployment Package"
+        command: /docker-deployment-packager
+        required: true
+        artifact:
+          glob: "docker-compose.yml"
+        description: "Server + client containers; port mapping; health checks; restart policy"
+
+      - id: docs
+        name: "Auto-Generated Documentation"
+        command: /documentation-auto-generator
+        required: false
+        artifact:
+          glob: "docs/generated/**/*.md"
+          min_count: 1
+        description: "Generate ADRs, GDDs, API docs from code and commit history"
+
+      - id: revision-update
+        name: "Revision Update Handling"
+        command: /revision-update-adapter
+        required: false
+        repeatable: true
+        artifact:
+          note: "Triggered when a new OSRS revision is released by Jagex"
+        description: "Diff new gamepack; detect packet/cache changes; flag breaking changes"

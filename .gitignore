@@ -1,0 +1,55 @@
+# OSRS Cache — fetched locally by /load-osrs-cache-full, never committed
+cache/
+cache/**
+
+# Raw game data — populated by import scripts
+data/raw/
+data/osrsbox/
+gamepacks/
+
+# XTEA encryption keys — sensitive, never committed
+*.xtea
+cache/xtea/
+
+# Java/Kotlin build artifacts
+*.class
+*.jar
+target/
+build/
+out/
+.gradle/
+*.iml
+
+# Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
+
+# Maven
+*.war
+*.ear
+
+# Node (tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs
+.idea/
+.vscode/
+*.iws
+*.iws
+.DS_Store
+Thumbs.db
+
+# Claude Code logs (runtime only)
+.claude/logs/
+
+# OS
+*.swp
+*.swo
+*~
+
+# Revision-specific compiled assets
+*.ob3.compiled
+*.dat2
+*.idx
