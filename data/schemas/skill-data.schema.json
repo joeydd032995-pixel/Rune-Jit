@@ -1,0 +1,204 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/joeydd032995-pixel/Rune-Jit/blob/main/data/schemas/skill-data.schema.json",
+  "title": "Rune-Jit Skill Data",
+  "description": "JSON Schema for OSRS skill YAML data files in data/skills/. Validate with: python3 -c \"import jsonschema, yaml, json; jsonschema.validate(yaml.safe_load(open('data/skills/woodcutting.yaml')), json.load(open('data/schemas/skill-data.schema.json')))\"",
+  "type": "object",
+  "required": ["meta", "axes", "trees"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Skill-level metadata consumed by the plugin at startup.",
+      "required": ["skill", "ticks_per_attempt"],
+      "additionalProperties": true,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "description": "OSRS skill enum name (e.g. WOODCUTTING, MINING, FISHING)"
+        },
+        "ticks_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Game ticks per action attempt (1 tick = 0.6s)"
+        },
+        "base_chop_animation": {
+          "type": ["integer", "null"],
+          "description": "Default animation ID for the chopping action (verify from cache)"
+        },
+        "idle_animation": {
+          "type": ["integer", "null"],
+          "description": "Idle animation ID when action is interrupted"
+        }
+      }
+    },
+    "axes": {
+      "type": "array",
+      "description": "All valid tool types for this skill, ordered by tier.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "item_id", "wield_level", "woodcutting_bonus"],
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Constant name for the axe type (e.g. RUNE_AXE)"
+          },
+          "item_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "OSRS item ID (from osrsbox items-complete.json)"
+          },
+          "wield_level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Attack level required to wield"
+          },
+          "woodcutting_bonus": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Axe bonus used in the success rate formula"
+          },
+          "special_attack": {
+            "type": ["string", "null"],
+            "description": "Special attack identifier if the axe has one"
+          },
+          "burns_logs": {
+            "type": "boolean",
+            "description": "Whether the axe can burn logs (Infernal axe)"
+          },
+          "quest_required": {
+            "type": ["string", "null"],
+            "description": "Quest required to obtain or use this axe"
+          }
+        }
+      }
+    },
+    "trees": {
+      "type": "object",
+      "description": "All tree types keyed by constant name (e.g. YEW, MAGIC).",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["level_required", "xp", "drops_log", "respawn_ticks", "difficulty", "members", "wiki"],
+        "additionalProperties": true,
+        "properties": {
+          "level_required": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Woodcutting level required to chop this tree"
+          },
+          "xp": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "XP awarded per log received (exact wiki value)"
+          },
+          "log_item_id": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "description": "Item ID of the log dropped (null for trees with no log drop)"
+          },
+          "drops_log": {
+            "type": "boolean",
+            "description": "Whether the tree drops a log item (false for Blisterwood)"
+          },
+          "respawn_ticks": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "description": "Ticks until the tree respawns after being depleted (null = never depletes)"
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Tree difficulty constant used in the success rate formula"
+          },
+          "members": {
+            "type": "boolean",
+            "description": "Whether this tree requires a members account"
+          },
+          "chop_animation": {
+            "type": ["integer", "null"],
+            "description": "Override animation ID for this tree type (null = use meta.base_chop_animation)"
+          },
+          "stump_object_id": {
+            "type": ["integer", "null"],
+            "description": "Object ID of the stump spawned after the tree is felled"
+          },
+          "quest_required": {
+            "type": ["string", "null"],
+            "description": "Quest required to chop this tree"
+          },
+          "location": {
+            "type": ["string", "null"],
+            "description": "Specific location restriction (e.g. WOODCUTTING_GUILD)"
+          },
+          "wiki": {
+            "type": "string",
+            "pattern": "^https://oldschool\\.runescape\\.wiki/",
+            "description": "OSRS wiki URL for this tree type (required citation)"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Human-readable notes for edge cases or deviations"
+          }
+        }
+      }
+    },
+    "bird_nests": {
+      "type": "object",
+      "description": "Bird nest drop configuration.",
+      "additionalProperties": true,
+      "properties": {
+        "base_drop_chance": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1-in-N chance of a nest drop per log received"
+        },
+        "drop_table_ref": {
+          "type": "string",
+          "description": "Path to the nest loot table data file"
+        }
+      }
+    },
+    "pet": {
+      "type": "object",
+      "description": "Skilling pet drop configuration.",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "base_rate": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Base 1-in-N drop rate at level 99"
+        },
+        "scales_with_level": {
+          "type": "boolean"
+        },
+        "wiki": {
+          "type": "string",
+          "pattern": "^https://oldschool\\.runescape\\.wiki/"
+        }
+      }
+    },
+    "forestry_events": {
+      "type": "object",
+      "description": "Forestry world event configuration stub.",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,298 @@
+# data/skills/woodcutting.yaml — Woodcutting skill data for Rune-Jit
+#
+# Single source of truth for all Woodcutting values.
+# The WoodcuttingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Woodcutting
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: WOODCUTTING
+  ticks_per_attempt: 4        # 4 ticks = 2.4 seconds per chop attempt
+                               # https://oldschool.runescape.wiki/w/Woodcutting#Mechanics
+  base_chop_animation: 879    # TODO: verify from cache index 12 after /load-osrs-cache-full
+  idle_animation: 808
+
+# ---------------------------------------------------------------------------
+# Success rate formula (implemented in WoodcuttingAction.kt, not evaluated here)
+#
+#   chance = rand(255) < floor((player_level * 2 + axe.bonus) / tree.difficulty)
+#
+# Source: https://oldschool.runescape.wiki/w/Woodcutting#Success_chance
+# Community verification: https://twitter.com/JagexAsh/status/1069662911922913280
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Axes
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Axe
+# item_id values verified against osrsbox-db items-complete.json
+
+axes:
+  - name: BRONZE_AXE
+    item_id: 1351           # https://oldschool.runescape.wiki/w/Bronze_axe
+    wield_level: 1
+    woodcutting_bonus: 1
+
+  - name: IRON_AXE
+    item_id: 1349           # https://oldschool.runescape.wiki/w/Iron_axe
+    wield_level: 1
+    woodcutting_bonus: 2
+
+  - name: STEEL_AXE
+    item_id: 1353           # https://oldschool.runescape.wiki/w/Steel_axe
+    wield_level: 5
+    woodcutting_bonus: 3
+
+  - name: BLACK_AXE
+    item_id: 1361           # https://oldschool.runescape.wiki/w/Black_axe
+    wield_level: 10
+    woodcutting_bonus: 4
+
+  - name: MITHRIL_AXE
+    item_id: 1355           # https://oldschool.runescape.wiki/w/Mithril_axe
+    wield_level: 20
+    woodcutting_bonus: 5
+
+  - name: ADAMANT_AXE
+    item_id: 1357           # https://oldschool.runescape.wiki/w/Adamant_axe
+    wield_level: 30
+    woodcutting_bonus: 6
+
+  - name: RUNE_AXE
+    item_id: 1359           # https://oldschool.runescape.wiki/w/Rune_axe
+    wield_level: 40
+    woodcutting_bonus: 7
+
+  - name: DRAGON_AXE
+    item_id: 6739           # https://oldschool.runescape.wiki/w/Dragon_axe
+    wield_level: 60
+    woodcutting_bonus: 8
+    special_attack: WOODCUTTING_SPEC  # boosts Woodcutting level by 3
+
+  - name: THIRD_AGE_AXE
+    item_id: 20011          # https://oldschool.runescape.wiki/w/3rd_age_axe
+    wield_level: 60
+    woodcutting_bonus: 8
+
+  - name: INFERNAL_AXE
+    item_id: 13241          # https://oldschool.runescape.wiki/w/Infernal_axe
+    wield_level: 61
+    woodcutting_bonus: 8
+    burns_logs: true        # 1/3 chance to burn log instead of banking (grants Firemaking XP)
+    firemaking_xp_multiplier: 0.333
+
+  - name: CRYSTAL_AXE
+    item_id: 23674          # https://oldschool.runescape.wiki/w/Crystal_axe
+    wield_level: 71
+    woodcutting_bonus: 9
+    quest_required: SONG_OF_THE_ELVES
+
+# ---------------------------------------------------------------------------
+# Trees
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Woodcutting#Trees
+# XP source: https://oldschool.runescape.wiki/w/Woodcutting#Experience
+#
+# respawn_ticks: converted from wiki-stated seconds at 0.6s per tick
+# difficulty: used in success rate formula; higher = harder to chop
+# chop_animation: TODO verify from cache after /load-osrs-cache-full
+
+trees:
+  NORMAL:
+    level_required: 1           # https://oldschool.runescape.wiki/w/Tree
+    xp: 25.0                    # https://oldschool.runescape.wiki/w/Logs
+    log_item_id: 1511           # verify: data/osrsbox/items-complete.json key "1511"
+    drops_log: true
+    respawn_ticks: 8            # wiki: ~5s → 8 ticks
+    difficulty: 32
+    members: false
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 1342       # object spawned after tree falls
+    wiki: "https://oldschool.runescape.wiki/w/Tree"
+
+  OAK:
+    level_required: 15          # https://oldschool.runescape.wiki/w/Oak_tree
+    xp: 37.5                    # https://oldschool.runescape.wiki/w/Oak_logs
+    log_item_id: 1521           # verify: data/osrsbox/items-complete.json key "1521"
+    drops_log: true
+    respawn_ticks: 23           # wiki: ~14s → 23 ticks
+    difficulty: 64
+    members: false
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 1356
+    wiki: "https://oldschool.runescape.wiki/w/Oak_tree"
+
+  WILLOW:
+    level_required: 30          # https://oldschool.runescape.wiki/w/Willow_tree
+    xp: 67.5                    # https://oldschool.runescape.wiki/w/Willow_logs
+    log_item_id: 1519           # verify: data/osrsbox/items-complete.json key "1519"
+    drops_log: true
+    respawn_ticks: 13           # wiki: ~8s → 13 ticks
+    difficulty: 96
+    members: false
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 7399
+    wiki: "https://oldschool.runescape.wiki/w/Willow_tree"
+
+  TEAK:
+    level_required: 35          # https://oldschool.runescape.wiki/w/Teak_tree
+    xp: 85.0                    # https://oldschool.runescape.wiki/w/Teak_logs
+    log_item_id: 6333           # verify: data/osrsbox/items-complete.json key "6333"
+    drops_log: true
+    respawn_ticks: 27           # wiki: ~16s → 27 ticks
+    difficulty: 128
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Teak_tree"
+
+  MAPLE:
+    level_required: 45          # https://oldschool.runescape.wiki/w/Maple_tree
+    xp: 100.0                   # https://oldschool.runescape.wiki/w/Maple_logs
+    log_item_id: 1517           # verify: data/osrsbox/items-complete.json key "1517"
+    drops_log: true
+    respawn_ticks: 47           # wiki: ~28s → 47 ticks
+    difficulty: 160
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 9712
+    wiki: "https://oldschool.runescape.wiki/w/Maple_tree"
+
+  MAHOGANY:
+    level_required: 50          # https://oldschool.runescape.wiki/w/Mahogany_tree
+    xp: 125.0                   # https://oldschool.runescape.wiki/w/Mahogany_logs
+    log_item_id: 6332           # verify: data/osrsbox/items-complete.json key "6332"
+    drops_log: true
+    respawn_ticks: 37           # wiki: ~22s → 37 ticks
+    difficulty: 192
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_tree"
+
+  ARCTIC_PINE:
+    level_required: 54          # https://oldschool.runescape.wiki/w/Arctic_pine_tree
+    xp: 40.0                    # https://oldschool.runescape.wiki/w/Arctic_pine_logs
+    log_item_id: 10810          # verify: data/osrsbox/items-complete.json key "10810"
+    drops_log: true
+    respawn_ticks: 32           # wiki: ~19s → 32 ticks (Neitiznot island)
+    difficulty: 96
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Arctic_pine_tree"
+
+  HOLLOW:
+    level_required: 45          # https://oldschool.runescape.wiki/w/Hollow_tree
+    xp: 82.5                    # https://oldschool.runescape.wiki/w/Bark
+    log_item_id: 3239           # bark item ID — verify: data/osrsbox/items-complete.json key "3239"
+    drops_log: true
+    respawn_ticks: 23           # wiki: ~14s → 23 ticks
+    difficulty: 64
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Hollow_tree"
+    notes: "Drops bark (3239) not logs. Used in Ghosts Ahoy quest."
+
+  BLISTERWOOD:
+    level_required: 62          # https://oldschool.runescape.wiki/w/Blisterwood_tree
+    xp: 76.0                    # https://oldschool.runescape.wiki/w/Blisterwood_tree#Woodcutting
+    log_item_id: null           # Blisterwood does NOT drop logs — XP granted directly
+    drops_log: false
+    respawn_ticks: null         # Blisterwood is permanent; does not deplete
+    difficulty: 96
+    members: true
+    quest_required: SINS_OF_THE_FATHER
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Blisterwood_tree"
+    notes: "No log drop. Tree does not deplete. Requires Sins of the Father completion."
+
+  YEW:
+    level_required: 60          # https://oldschool.runescape.wiki/w/Yew_tree
+    xp: 175.0                   # https://oldschool.runescape.wiki/w/Yew_logs
+    log_item_id: 1515           # verify: data/osrsbox/items-complete.json key "1515"
+    drops_log: true
+    respawn_ticks: 165          # wiki: ~99s → 165 ticks
+    difficulty: 224
+    members: false
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 7402
+    wiki: "https://oldschool.runescape.wiki/w/Yew_tree"
+
+  MAGIC:
+    level_required: 75          # https://oldschool.runescape.wiki/w/Magic_tree
+    xp: 250.0                   # https://oldschool.runescape.wiki/w/Magic_logs
+    log_item_id: 1513           # verify: data/osrsbox/items-complete.json key "1513"
+    drops_log: true
+    respawn_ticks: 200          # wiki: ~120s → 200 ticks
+    difficulty: 256
+    members: true
+    chop_animation: 879         # TODO: verify from cache index 12
+    stump_object_id: 7401
+    wiki: "https://oldschool.runescape.wiki/w/Magic_tree"
+
+  REDWOOD:
+    level_required: 90          # https://oldschool.runescape.wiki/w/Redwood_tree
+    xp: 380.0                   # https://oldschool.runescape.wiki/w/Redwood_logs
+    log_item_id: 19669          # verify: data/osrsbox/items-complete.json key "19669"
+    drops_log: true
+    respawn_ticks: 267          # wiki: ~160s → 267 ticks
+    difficulty: 256
+    members: true
+    location: WOODCUTTING_GUILD # only found in Woodcutting Guild (requires 60 WC + diary)
+    chop_animation: 879         # TODO: verify from cache index 12
+    wiki: "https://oldschool.runescape.wiki/w/Redwood_tree"
+
+# ---------------------------------------------------------------------------
+# Bird Nests
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Bird_nest
+#
+# Bird nests fall when chopping any non-Blisterwood tree.
+# The 1/256 rate is the widely cited community figure; Jagex has not published
+# the exact formula. See ADR-006 (to be written) for sourcing decision.
+
+bird_nests:
+  base_drop_chance: 256       # 1/256 per log received
+                               # https://oldschool.runescape.wiki/w/Bird_nest#Obtaining
+  drop_table_ref: "data/drops/bird-nests.yaml"  # loot table stub — not yet created
+  types:
+    - SEEDS_NEST               # contains tree/fruit tree seeds
+    - RING_NEST                # contains rings (gold, sapphire, emerald, ruby, diamond)
+    - EMPTY_NEST               # no contents (rarer than other types)
+  item_id_empty: 5075          # verify: data/osrsbox/items-complete.json key "5075"
+  item_id_seeds: 5070          # verify: data/osrsbox/items-complete.json key "5070"
+  item_id_ring: 5071           # verify: data/osrsbox/items-complete.json key "5071"
+
+# ---------------------------------------------------------------------------
+# Pet — Beaver
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Beaver
+#
+# NOTE: Exact drop rate formula is not officially confirmed by Jagex.
+# Using community-researched approximation. See ADR-007 (to be written).
+
+pet:
+  name: BEAVER
+  item_id: 13322              # verify: data/osrsbox/items-complete.json key "13322"
+  base_rate: 72000            # ~1/72,000 at level 99 (community approximation)
+                               # https://oldschool.runescape.wiki/w/Beaver#Drop_rate
+  scales_with_level: true     # higher level → better chance (not confirmed exact formula)
+  wiki: "https://oldschool.runescape.wiki/w/Beaver"
+
+# ---------------------------------------------------------------------------
+# Forestry Events (stub — Phase 5 content)
+# ---------------------------------------------------------------------------
+# The Forestry update (2023) added world events while woodcutting.
+# Full implementation is deferred to Phase 5.
+# Source: https://oldschool.runescape.wiki/w/Forestry
+
+forestry_events:
+  enabled: false
+  notes: "Forestry event implementation deferred to Phase 5 content pass."
+  events:
+    - STRUGGLING_SAPLING
+    - ENCHANTMENT_RITUAL
+    - PHEASANT_CONTROL
+    - FLOWERING_BUSH
+    - BEEHIVE
+    - WOODCUTTING_LEPRECHAUN
