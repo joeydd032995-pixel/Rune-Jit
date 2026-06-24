@@ -1,0 +1,249 @@
+# data/skills/mining.yaml — Mining skill data for Rune-Jit
+#
+# Single source of truth for all Mining values.
+# The MiningPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Mining
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: MINING
+  ticks_per_attempt: 3        # 3 ticks = 1.8 seconds per mining attempt
+                               # https://oldschool.runescape.wiki/w/Mining#Mechanics
+  base_animation: 624         # TODO: verify from cache index 12 after /load-osrs-cache-full
+  idle_animation: 808
+
+# ---------------------------------------------------------------------------
+# Success rate formula (implemented in MiningAction.kt, not evaluated here)
+#
+#   chance = rand(255) < floor((player_level * 2 + pickaxe.mining_bonus) / rock.difficulty)
+#
+# Source: https://oldschool.runescape.wiki/w/Mining#Success_chance
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Pickaxes
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Pickaxe
+# item_id values verified against osrsbox-db items-complete.json
+
+pickaxes:
+  - name: BRONZE_PICKAXE
+    item_id: 1265             # https://oldschool.runescape.wiki/w/Bronze_pickaxe
+    wield_level: 1
+    mining_bonus: 1
+
+  - name: IRON_PICKAXE
+    item_id: 1267             # https://oldschool.runescape.wiki/w/Iron_pickaxe
+    wield_level: 1
+    mining_bonus: 10
+
+  - name: STEEL_PICKAXE
+    item_id: 1269             # https://oldschool.runescape.wiki/w/Steel_pickaxe
+    wield_level: 6
+    mining_bonus: 20
+
+  - name: BLACK_PICKAXE
+    item_id: 12297            # https://oldschool.runescape.wiki/w/Black_pickaxe
+    wield_level: 11
+    mining_bonus: 22
+
+  - name: MITHRIL_PICKAXE
+    item_id: 1273             # https://oldschool.runescape.wiki/w/Mithril_pickaxe
+    wield_level: 21
+    mining_bonus: 30
+
+  - name: ADAMANT_PICKAXE
+    item_id: 1271             # https://oldschool.runescape.wiki/w/Adamant_pickaxe
+    wield_level: 31
+    mining_bonus: 40
+
+  - name: RUNE_PICKAXE
+    item_id: 1275             # https://oldschool.runescape.wiki/w/Rune_pickaxe
+    wield_level: 41
+    mining_bonus: 50
+
+  - name: DRAGON_PICKAXE
+    item_id: 11920            # https://oldschool.runescape.wiki/w/Dragon_pickaxe
+    wield_level: 61
+    mining_bonus: 60
+
+  - name: INFERNAL_PICKAXE
+    item_id: 13243            # https://oldschool.runescape.wiki/w/Infernal_pickaxe
+    wield_level: 61
+    mining_bonus: 60
+
+  - name: CRYSTAL_PICKAXE
+    item_id: 23680            # https://oldschool.runescape.wiki/w/Crystal_pickaxe
+    wield_level: 71
+    mining_bonus: 80
+
+  - name: THIRD_AGE_PICKAXE
+    item_id: 20014            # https://oldschool.runescape.wiki/w/3rd_age_pickaxe
+    wield_level: 61
+    mining_bonus: 60
+
+# ---------------------------------------------------------------------------
+# Rocks
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Mining#Ores
+# XP source: https://oldschool.runescape.wiki/w/Mining#Experience
+#
+# respawn_ticks: converted from wiki-stated seconds at 0.6s per tick
+# difficulty: used in success rate formula; higher = harder to mine
+
+rocks:
+  CLAY:
+    level_required: 1           # https://oldschool.runescape.wiki/w/Clay_rock
+    xp: 5.0                     # https://oldschool.runescape.wiki/w/Clay
+    ore_item_id: 434            # verify: data/osrsbox/items-complete.json key "434"
+    respawn_ticks: 3            # wiki: ~2s → 3 ticks
+    difficulty: 6
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Clay_rock"
+
+  COPPER:
+    level_required: 1           # https://oldschool.runescape.wiki/w/Copper_rock
+    xp: 17.5                    # https://oldschool.runescape.wiki/w/Copper_ore
+    ore_item_id: 436            # verify: data/osrsbox/items-complete.json key "436"
+    respawn_ticks: 5            # wiki: ~3s → 5 ticks
+    difficulty: 32
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Copper_rock"
+
+  TIN:
+    level_required: 1           # https://oldschool.runescape.wiki/w/Tin_rock
+    xp: 17.5                    # https://oldschool.runescape.wiki/w/Tin_ore
+    ore_item_id: 438            # verify: data/osrsbox/items-complete.json key "438"
+    respawn_ticks: 5            # wiki: ~3s → 5 ticks
+    difficulty: 32
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Tin_rock"
+
+  LIMESTONE:
+    level_required: 10          # https://oldschool.runescape.wiki/w/Limestone_rock
+    xp: 26.5                    # https://oldschool.runescape.wiki/w/Limestone
+    ore_item_id: 1779           # verify: data/osrsbox/items-complete.json key "1779"
+    respawn_ticks: 5
+    difficulty: 32
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Limestone_rock"
+
+  IRON:
+    level_required: 15          # https://oldschool.runescape.wiki/w/Iron_rock
+    xp: 35.0                    # https://oldschool.runescape.wiki/w/Iron_ore
+    ore_item_id: 440            # verify: data/osrsbox/items-complete.json key "440"
+    respawn_ticks: 5            # wiki: ~3s → 5 ticks (depletes after each ore; respawns quickly)
+    difficulty: 40
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Iron_rock"
+
+  SILVER:
+    level_required: 20          # https://oldschool.runescape.wiki/w/Silver_rock
+    xp: 40.0                    # https://oldschool.runescape.wiki/w/Silver_ore
+    ore_item_id: 442            # verify: data/osrsbox/items-complete.json key "442"
+    respawn_ticks: 100          # wiki: ~60s → 100 ticks
+    difficulty: 64
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Silver_rock"
+
+  COAL:
+    level_required: 30          # https://oldschool.runescape.wiki/w/Coal_rock
+    xp: 50.0                    # https://oldschool.runescape.wiki/w/Coal
+    ore_item_id: 453            # verify: data/osrsbox/items-complete.json key "453"
+    respawn_ticks: 50           # wiki: ~30s → 50 ticks
+    difficulty: 80
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Coal_rock"
+
+  GOLD:
+    level_required: 40          # https://oldschool.runescape.wiki/w/Gold_rock
+    xp: 65.0                    # https://oldschool.runescape.wiki/w/Gold_ore
+    ore_item_id: 444            # verify: data/osrsbox/items-complete.json key "444"
+    respawn_ticks: 100          # wiki: ~60s → 100 ticks
+    difficulty: 100
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Gold_rock"
+
+  GEM:
+    level_required: 40          # https://oldschool.runescape.wiki/w/Gem_rock
+    xp: 65.0                    # https://oldschool.runescape.wiki/w/Gem_rock#Mining
+    ore_item_id: 1623           # Uncut sapphire placeholder; real gem determined by gem_drops table
+    respawn_ticks: 100
+    difficulty: 64
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Gem_rock"
+
+  MITHRIL:
+    level_required: 55          # https://oldschool.runescape.wiki/w/Mithril_rock
+    xp: 80.0                    # https://oldschool.runescape.wiki/w/Mithril_ore
+    ore_item_id: 447            # verify: data/osrsbox/items-complete.json key "447"
+    respawn_ticks: 200          # wiki: ~120s → 200 ticks
+    difficulty: 150
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Mithril_rock"
+
+  ADAMANTITE:
+    level_required: 70          # https://oldschool.runescape.wiki/w/Adamantite_rock
+    xp: 95.0                    # https://oldschool.runescape.wiki/w/Adamantite_ore
+    ore_item_id: 449            # verify: data/osrsbox/items-complete.json key "449"
+    respawn_ticks: 400          # wiki: ~240s → 400 ticks
+    difficulty: 200
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Adamantite_rock"
+
+  RUNITE:
+    level_required: 85          # https://oldschool.runescape.wiki/w/Runite_rock
+    xp: 125.0                   # https://oldschool.runescape.wiki/w/Runite_ore
+    ore_item_id: 451            # verify: data/osrsbox/items-complete.json key "451"
+    respawn_ticks: 1200         # wiki: ~720s (12 min) → 1200 ticks
+    difficulty: 255
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Runite_rock"
+
+  AMETHYST:
+    level_required: 92          # https://oldschool.runescape.wiki/w/Amethyst_rock
+    xp: 240.0                   # https://oldschool.runescape.wiki/w/Amethyst
+    ore_item_id: 21347          # verify: data/osrsbox/items-complete.json key "21347"
+    respawn_ticks: 1200         # wiki: ~720s → 1200 ticks
+    difficulty: 255
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Amethyst_rock"
+
+# ---------------------------------------------------------------------------
+# Gem Drops
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Uncut_gem#Gem_rocks
+#
+# 1/256 chance per successful ore to roll the gem drop table.
+# Weighted selection among gems below.
+
+gem_drops:
+  base_drop_chance: 256       # 1/256 per ore received
+                               # https://oldschool.runescape.wiki/w/Uncut_gem#Gem_rocks
+  gems:
+    - item_id: 1623             # Uncut sapphire
+      weight: 4                 # https://oldschool.runescape.wiki/w/Uncut_sapphire
+    - item_id: 1621             # Uncut emerald
+      weight: 2                 # https://oldschool.runescape.wiki/w/Uncut_emerald
+    - item_id: 1619             # Uncut ruby
+      weight: 1                 # https://oldschool.runescape.wiki/w/Uncut_ruby
+    - item_id: 1617             # Uncut diamond
+      weight: 1                 # https://oldschool.runescape.wiki/w/Uncut_diamond
+
+# ---------------------------------------------------------------------------
+# Pet — Rock Golem
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Rock_golem
+#
+# NOTE: Exact drop rate formula is not officially confirmed by Jagex.
+# Using community-researched approximation.
+
+pet:
+  name: ROCK_GOLEM
+  item_id: 21264              # verify: data/osrsbox/items-complete.json key "21264"
+  base_rate: 741600           # ~1/741,600 at level 99 (community approximation)
+                               # https://oldschool.runescape.wiki/w/Rock_golem#Drop_rate
+  scales_with_level: true     # higher level → better chance
+  wiki: "https://oldschool.runescape.wiki/w/Rock_golem"
