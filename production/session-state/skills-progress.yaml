@@ -1,0 +1,12 @@
+woodcutting:
+  status: IMPLEMENTED
+  parity_score: pending   # run /verify-mechanic-parity-1to1 woodcutting after tick engine is wired
+  implemented_at: 2026-06-24
+  pending_items:
+    - animation IDs (requires /load-osrs-cache-full then /cache-unpack-extract-assets)
+    - tree object IDs from cache (objectIds arrays are empty until cache extraction)
+    - WC Guild boundary detection (player.isInWoodcuttingGuild stub returns false; requires world-region-loader)
+    - Lumberjack outfit XP bonus (requires equipment piece lookup system)
+    - Infernal axe Firemaking XP grant (requires Firemaking skill implementation)
+    - Bird nest physical ground drop (requires world ground-item system)
+    - Netty HashedWheelTimer wiring (requires /implement-tick-engine-core)
