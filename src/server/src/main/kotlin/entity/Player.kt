@@ -16,6 +16,12 @@ class Player(
     var x: Int = 0
     var y: Int = 0
 
+    /** Plane / floor level (0..3). 0 = ground floor. */
+    var plane: Int = 0
+
+    /** Packed world coordinate (x, y, plane) as a [world.Coordinate] value. */
+    val coordinate: world.Coordinate get() = world.Coordinate(x, y, plane)
+
     /**
      * Whether the player is currently inside the Woodcutting Guild boundaries.
      * Stub returns false until world-region-loader implements boundary checks.
