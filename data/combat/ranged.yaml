@@ -1,0 +1,28 @@
+# Source: https://oldschool.runescape.wiki/w/Ranged#Attack_styles
+attack_styles:
+  ACCURATE:
+    style_bonus: 3
+    ticks_reduction: 0
+    xp_skill: RANGED
+  RAPID:
+    style_bonus: 0
+    ticks_reduction: 1
+    xp_skill: RANGED
+  LONGRANGE:
+    style_bonus: 0
+    ticks_reduction: 0
+    xp_skill: RANGED
+
+# Source: https://oldschool.runescape.wiki/w/Hitpoints#Experience
+xp_rates:
+  ranged_xp_per_damage: 4.0
+  hp_xp_per_damage: 1.33
+
+# Source: https://oldschool.runescape.wiki/w/Attack_speed
+weapon_ticks:
+  BOW_STANDARD: 4
+  SHORTBOW: 4
+  LONGBOW: 5
+  CROSSBOW: 5
+  BLOWPIPE: 2
+  CHINCHOMPA: 4
