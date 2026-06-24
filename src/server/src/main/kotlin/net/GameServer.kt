@@ -35,6 +35,7 @@ class GameServer(
      */
     fun start() {
         PacketRegistry.init()
+        world.World.init(cacheDir)
 
         val bootstrap = ServerBootstrap()
         bootstrap.group(bossGroup, workerGroup)

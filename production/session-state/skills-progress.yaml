@@ -59,3 +59,16 @@ protocol_engine:
     - Player update block serialisation (requires Phase 3 /implement-client-rendering-pipeline)
     - NPC update block serialisation (requires /npc-behavior-simulator)
     - RSA key storage hardening (currently plaintext stub; production: add RSA decrypt)
+
+pathfinding_engine:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Real region clip loading from cache index 5 (requires /load-osrs-cache-full; RegionLoader dormant until cache present)
+    - Landscape l{x}_{y} object/wall clipping + XTEA (requires ObjectDefinitions — none exist; terrain-only clipping means open ground correct but buildings/walls not yet blocked)
+    - Run movement: 2 tiles/tick + run-energy drain/regen (requires Agility/energy; ctrlKey parsed but ignored)
+    - NPC wander/follow-range/aggro/combat-follow re-eval (owned by /npc-behavior-simulator; coords + PathFinder(size) provided)
+    - Multi-plane stairs/ladders as teleport actions (single-plane BFS only)
+    - Door auto-close after 3 ticks + real door-object ID→tile/wall mapping (requires ObjectDefinitions + world object tick queue)
+    - Projectile (FLY_BLOCKED) and multi-combat zone flag maps (separate, non-movement)
+    - workflow-catalog.yaml pathfinding glob fix (src/server/world/pathfinding/PathFinder.kt → src/server/**/world/pathfinding/PathFinder.kt)
