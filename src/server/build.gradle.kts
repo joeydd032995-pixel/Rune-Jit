@@ -17,7 +17,7 @@ sourceSets {
 
 dependencies {
     implementation("org.yaml:snakeyaml:2.2")
-    implementation("io.netty:netty-common:4.1.111.Final")
+    implementation("io.netty:netty-all:4.1.111.Final")
     implementation("org.slf4j:slf4j-api:2.0.13")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.6")
 

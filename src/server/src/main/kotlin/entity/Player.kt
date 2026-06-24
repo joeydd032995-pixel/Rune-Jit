@@ -51,4 +51,10 @@ class Player(
         equipment.fold(EquipmentBonuses.ZERO) { acc, id ->
             if (id >= 0) acc + ItemBonusRegistry.getBonuses(id) else acc
         }
+
+    /**
+     * Active network session for this player. Set by LoginHandler after successful login.
+     * Null when the player is not connected (e.g. during unit tests or offline processing).
+     */
+    var session: net.GameSession? = null
 }
