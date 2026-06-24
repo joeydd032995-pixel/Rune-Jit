@@ -4,6 +4,8 @@ import combat.EquipmentBonuses
 import combat.ItemBonusRegistry
 import engine.TickQueue
 import movement.MovementQueue
+import prayer.PrayerDrainAction
+import prayer.PrayerSet
 
 /** Minimal player entity. Fields expanded as further skills and systems are implemented. */
 class Player(
@@ -64,6 +66,24 @@ class Player(
      * Null when the player is not connected (e.g. during unit tests or offline processing).
      */
     var session: net.GameSession? = null
+
+    // -------------------------------------------------------------------------
+    // Prayer — Source: https://oldschool.runescape.wiki/w/Prayer
+    // -------------------------------------------------------------------------
+
+    /**
+     * Prayer state for this player: active prayers, prayer points, and drain accumulator.
+     * The [PrayerDrainAction] recurring tick event drains prayer points each tick
+     * based on active prayers and equipment prayer bonus.
+     * Source: https://oldschool.runescape.wiki/w/Prayer#Drain_rate
+     */
+    val prayer: PrayerSet = PrayerSet { skills.getLevel(Skill.PRAYER) }
+
+    init {
+        // Schedule the per-tick prayer drain action. Reschedules itself each tick.
+        // Source: https://oldschool.runescape.wiki/w/Prayer#Drain_rate
+        tickQueue.schedule(1, PrayerDrainAction(this))
+    }
 
     // -------------------------------------------------------------------------
     // Movement — wired by pathfinding-engineer (Agent 2)

@@ -30,9 +30,12 @@ class RangedAction(
 
         val attackerBonuses = attacker.getEquipmentBonuses()
 
+        // Prayer multipliers wired from player's active prayer set.
+        // Source: https://oldschool.runescape.wiki/w/Prayer#Bonuses
         val atkRoll = CombatFormulas.maxRangedAttackRoll(
             rangedLevel        = attacker.skills.getBoostedLevel(Skill.RANGED),
             rangedAttackBonus  = attackerBonuses.attackRanged,
+            prayerMult         = attacker.prayer.rangedMult,
             styleBonus         = styleDef.styleBonus,
         )
         val defRoll = CombatFormulas.maxMeleeDefenceRoll(
@@ -42,9 +45,10 @@ class RangedAction(
 
         if (CombatFormulas.isAccurate(atkRoll, defRoll)) {
             val maxHit = CombatFormulas.maxRangedHit(
-                rangedLevel   = attacker.skills.getBoostedLevel(Skill.RANGED),
+                rangedLevel    = attacker.skills.getBoostedLevel(Skill.RANGED),
                 rangedStrBonus = attackerBonuses.rangedStrength,
-                styleBonus    = styleDef.styleBonus,
+                prayerMult     = attacker.prayer.rangedStrengthMult,
+                styleBonus     = styleDef.styleBonus,
             )
             val damage = CombatFormulas.rollDamage(maxHit)
             target.takeDamage(damage)

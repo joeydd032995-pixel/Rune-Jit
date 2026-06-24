@@ -29,9 +29,12 @@ class MagicAction(
 
         val attackerBonuses = attacker.getEquipmentBonuses()
 
+        // Prayer multipliers wired from player's active prayer set.
+        // Source: https://oldschool.runescape.wiki/w/Prayer#Bonuses
         val atkRoll = CombatFormulas.maxMagicAttackRoll(
             magicLevel       = attacker.skills.getBoostedLevel(Skill.MAGIC),
             magicAttackBonus = attackerBonuses.attackMagic,
+            prayerMult       = attacker.prayer.magicMult,
         )
         val defRoll = CombatFormulas.maxMeleeDefenceRoll(
             defenceLevel = target.defenceLevel,
