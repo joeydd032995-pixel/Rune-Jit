@@ -11,8 +11,7 @@ import kotlin.io.path.exists
  *  - [collision]    — sparse tile clip-flag store ([ArrayCollisionMap])
  *  - [regionStore]  — lazy region loader (no-ops when cache is absent)
  *  - [doors]        — dynamic door/gate clip toggler
- *
- * pathFinder wired by pathfinding-engineer (Agent 2)
+ *  - [pathFinder]   — BFS pathfinder wired by pathfinding-engineer (Agent 2)
  *
  * Pattern mirrors [combat.CombatDefs]: lateinit + isInitialized guard.
  */
@@ -26,6 +25,14 @@ object World {
         private set
 
     lateinit var doors: world.door.DoorHandler
+        private set
+
+    /**
+     * BFS pathfinder wired by pathfinding-engineer (Agent 2).
+     * Uses OSRS BFS algorithm — NOT A* (see CLAUDE.md critical rules).
+     * Source: rsmod community research — https://github.com/rsmod/rsmod
+     */
+    lateinit var pathFinder: world.pathfinding.PathFinder
         private set
 
     /**
@@ -48,6 +55,7 @@ object World {
         }
         regionStore = RegionStore(loader, collision)
         doors = world.door.ClipDoorHandler(collision)
+        pathFinder = world.pathfinding.BreadthFirstSearch(collision)
         log.info("World initialised (cache=${loader != null})")
     }
 
