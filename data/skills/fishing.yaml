@@ -1,0 +1,265 @@
+# data/skills/fishing.yaml — Fishing skill data for Rune-Jit
+#
+# Single source of truth for all Fishing values.
+# The FishingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Fishing
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: FISHING
+  ticks_per_attempt: 5            # 5 ticks = 3.0 seconds per fishing attempt
+                                   # https://oldschool.runescape.wiki/w/Fishing#Mechanics
+  # No success roll — fishing always yields a fish after ticksPerAttempt ticks
+  # (unlike Woodcutting/Mining which have a per-tick success chance).
+  # Source: https://oldschool.runescape.wiki/w/Fishing
+
+# ---------------------------------------------------------------------------
+# Fishing Spot Definitions
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Fishing#Fishing_spots
+# XP source: https://oldschool.runescape.wiki/w/Fishing#Experience_table
+#
+# method: fishing action used at this spot
+# tool_item_id: item that must be in inventory or equipped
+# bait_item_id: item consumed per catch; 0 = no bait required
+# object_ids: populated from cache after /load-osrs-cache-full
+
+spots:
+  SHRIMP:
+    level_required: 1             # https://oldschool.runescape.wiki/w/Raw_shrimps
+    xp: 10.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 317             # Raw shrimps — https://oldschool.runescape.wiki/w/Raw_shrimps
+    method: SMALL_NET
+    tool_item_id: 303             # Small fishing net — https://oldschool.runescape.wiki/w/Small_fishing_net
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []                # Populated from cache after /load-osrs-cache-full
+    wiki: "https://oldschool.runescape.wiki/w/Raw_shrimps"
+
+  SARDINE:
+    level_required: 5             # https://oldschool.runescape.wiki/w/Raw_sardine
+    xp: 20.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 327             # Raw sardine — https://oldschool.runescape.wiki/w/Raw_sardine
+    method: BAIT
+    tool_item_id: 307             # Fishing rod — https://oldschool.runescape.wiki/w/Fishing_rod
+    bait_item_id: 313             # Fishing bait — https://oldschool.runescape.wiki/w/Fishing_bait
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_sardine"
+
+  HERRING:
+    level_required: 10            # https://oldschool.runescape.wiki/w/Raw_herring
+    xp: 30.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 345             # Raw herring — https://oldschool.runescape.wiki/w/Raw_herring
+    method: BAIT
+    tool_item_id: 307             # Fishing rod — https://oldschool.runescape.wiki/w/Fishing_rod
+    bait_item_id: 313             # Fishing bait — https://oldschool.runescape.wiki/w/Fishing_bait
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_herring"
+
+  ANCHOVIES:
+    level_required: 15            # https://oldschool.runescape.wiki/w/Raw_anchovies
+    xp: 40.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 321             # Raw anchovies — https://oldschool.runescape.wiki/w/Raw_anchovies
+    method: SMALL_NET
+    tool_item_id: 303             # Small fishing net — https://oldschool.runescape.wiki/w/Small_fishing_net
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_anchovies"
+
+  MACKEREL:
+    level_required: 16            # https://oldschool.runescape.wiki/w/Raw_mackerel
+    xp: 20.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 353             # Raw mackerel — https://oldschool.runescape.wiki/w/Raw_mackerel
+    method: BIG_NET
+    tool_item_id: 305             # Big fishing net — https://oldschool.runescape.wiki/w/Big_fishing_net
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_mackerel"
+
+  TROUT:
+    level_required: 20            # https://oldschool.runescape.wiki/w/Raw_trout
+    xp: 50.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 335             # Raw trout — https://oldschool.runescape.wiki/w/Raw_trout
+    method: FLY_FISH
+    tool_item_id: 309             # Fly fishing rod — https://oldschool.runescape.wiki/w/Fly_fishing_rod
+    bait_item_id: 314             # Feather — https://oldschool.runescape.wiki/w/Feather
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_trout"
+
+  COD:
+    level_required: 23            # https://oldschool.runescape.wiki/w/Raw_cod
+    xp: 45.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 341             # Raw cod — https://oldschool.runescape.wiki/w/Raw_cod
+    method: BIG_NET
+    tool_item_id: 305             # Big fishing net — https://oldschool.runescape.wiki/w/Big_fishing_net
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_cod"
+
+  PIKE:
+    level_required: 25            # https://oldschool.runescape.wiki/w/Raw_pike
+    xp: 60.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 349             # Raw pike — https://oldschool.runescape.wiki/w/Raw_pike
+    method: BAIT
+    tool_item_id: 307             # Fishing rod — https://oldschool.runescape.wiki/w/Fishing_rod
+    bait_item_id: 313             # Fishing bait — https://oldschool.runescape.wiki/w/Fishing_bait
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_pike"
+
+  SALMON:
+    level_required: 30            # https://oldschool.runescape.wiki/w/Raw_salmon
+    xp: 70.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 331             # Raw salmon — https://oldschool.runescape.wiki/w/Raw_salmon
+    method: FLY_FISH
+    tool_item_id: 309             # Fly fishing rod — https://oldschool.runescape.wiki/w/Fly_fishing_rod
+    bait_item_id: 314             # Feather — https://oldschool.runescape.wiki/w/Feather
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_salmon"
+
+  TUNA:
+    level_required: 35            # https://oldschool.runescape.wiki/w/Raw_tuna
+    xp: 80.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 359             # Raw tuna — https://oldschool.runescape.wiki/w/Raw_tuna
+    method: HARPOON
+    tool_item_id: 311             # Harpoon — https://oldschool.runescape.wiki/w/Harpoon
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_tuna"
+
+  LOBSTER:
+    level_required: 40            # https://oldschool.runescape.wiki/w/Raw_lobster
+    xp: 90.0                      # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 377             # Raw lobster — https://oldschool.runescape.wiki/w/Raw_lobster
+    method: CAGE
+    tool_item_id: 301             # Lobster pot — https://oldschool.runescape.wiki/w/Lobster_pot
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_lobster"
+
+  BASS:
+    level_required: 46            # https://oldschool.runescape.wiki/w/Raw_bass
+    xp: 100.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 363             # Raw bass — https://oldschool.runescape.wiki/w/Raw_bass
+    method: BIG_NET
+    tool_item_id: 305             # Big fishing net — https://oldschool.runescape.wiki/w/Big_fishing_net
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_bass"
+
+  SWORDFISH:
+    level_required: 50            # https://oldschool.runescape.wiki/w/Raw_swordfish
+    xp: 100.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 371             # Raw swordfish — https://oldschool.runescape.wiki/w/Raw_swordfish
+    method: HARPOON
+    tool_item_id: 311             # Harpoon — https://oldschool.runescape.wiki/w/Harpoon
+    bait_item_id: 0               # No bait required
+    members: false
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_swordfish"
+
+  MONKFISH:
+    level_required: 62            # https://oldschool.runescape.wiki/w/Raw_monkfish
+    xp: 120.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 7944            # Raw monkfish — https://oldschool.runescape.wiki/w/Raw_monkfish
+    method: SMALL_NET
+    tool_item_id: 303             # Small fishing net — https://oldschool.runescape.wiki/w/Small_fishing_net
+    bait_item_id: 0               # No bait required
+    members: true
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_monkfish"
+    notes: "Only found in Piscatoris Fishing Colony. Requires Swan Song quest completion."
+
+  SHARK:
+    level_required: 76            # https://oldschool.runescape.wiki/w/Raw_shark
+    xp: 110.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 383             # Raw shark — https://oldschool.runescape.wiki/w/Raw_shark
+    method: HARPOON
+    tool_item_id: 311             # Harpoon — https://oldschool.runescape.wiki/w/Harpoon
+    bait_item_id: 0               # No bait required
+    members: true
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_shark"
+
+  ANGLERFISH:
+    level_required: 82            # https://oldschool.runescape.wiki/w/Raw_anglerfish
+    xp: 120.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 13439           # Raw anglerfish — https://oldschool.runescape.wiki/w/Raw_anglerfish
+    method: SANDWORMS
+    tool_item_id: 25129           # Fishing rod (sandworms) — https://oldschool.runescape.wiki/w/Sandworm_(fishing)
+    bait_item_id: 25195           # Sandworm — https://oldschool.runescape.wiki/w/Sandworm
+    members: true
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_anglerfish"
+    notes: "Only found in Piscarilius. Requires 100% Piscarilius favour."
+
+  DARK_CRAB:
+    level_required: 85            # https://oldschool.runescape.wiki/w/Raw_dark_crab
+    xp: 130.0                     # https://oldschool.runescape.wiki/w/Fishing#Experience_table
+    fish_item_id: 11934           # Raw dark crab — https://oldschool.runescape.wiki/w/Raw_dark_crab
+    method: LOBSTER_POT
+    tool_item_id: 301             # Lobster pot — https://oldschool.runescape.wiki/w/Lobster_pot
+    bait_item_id: 0               # Dark fishing bait consumed; stub as 0 — deferred
+    members: true
+    object_ids: []
+    wiki: "https://oldschool.runescape.wiki/w/Raw_dark_crab"
+    notes: "Wilderness only. Requires dark fishing bait (11948) — deferred until Wilderness world-state is implemented."
+
+# ---------------------------------------------------------------------------
+# Tools
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Fishing#Fishing_equipment
+
+tools:
+  - name: SMALL_NET
+    item_id: 303                  # https://oldschool.runescape.wiki/w/Small_fishing_net
+
+  - name: BIG_NET
+    item_id: 305                  # https://oldschool.runescape.wiki/w/Big_fishing_net
+
+  - name: BAIT_ROD
+    item_id: 307                  # https://oldschool.runescape.wiki/w/Fishing_rod
+
+  - name: FLY_ROD
+    item_id: 309                  # https://oldschool.runescape.wiki/w/Fly_fishing_rod
+
+  - name: HARPOON
+    item_id: 311                  # https://oldschool.runescape.wiki/w/Harpoon
+
+  - name: LOBSTER_POT
+    item_id: 301                  # https://oldschool.runescape.wiki/w/Lobster_pot
+
+  - name: BARBARIAN_ROD
+    item_id: 11323                # https://oldschool.runescape.wiki/w/Barbarian_rod
+
+  - name: CRYSTAL_HARPOON
+    item_id: 23855                # https://oldschool.runescape.wiki/w/Crystal_harpoon
+
+# ---------------------------------------------------------------------------
+# Pet — Heron
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Heron
+#
+# Base rate: 1/257,803 — derived from wiki drop rate table (level 1 base).
+# Rate does NOT scale with fishing level (unlike Beaver/Rock Golem).
+# Source: https://oldschool.runescape.wiki/w/Heron#Drop_rate
+
+pet:
+  name: HERON
+  item_id: 13320                  # https://oldschool.runescape.wiki/w/Heron
+  base_rate: 257803               # 1/257,803 base rate at level 1
+                                   # https://oldschool.runescape.wiki/w/Heron#Drop_rate
+  scales_with_level: false        # Heron rate does not scale with Fishing level
+  wiki: "https://oldschool.runescape.wiki/w/Heron"
