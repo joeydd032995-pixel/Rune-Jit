@@ -118,3 +118,16 @@ fishing:
     - "Minnows fishing (Fishing Guild, stackable fish) — deferred to Phase 5"
     - "Fishing Guild +7% XP bonus (requires world-region-loader boundary check) — deferred"
     - "Angler's outfit XP bonus +2.5% — deferred until equipment piece lookup is wired"
+
+npc_behavior:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  description: "NPC wander (5-tile radius), aggro detection (5-tile Chebyshev), melee combat, protection prayer = 100% block"
+  pending_items:
+    - "NPC respawn timers (requires world object tick queue)"
+    - "Ranged/magic NPC attacks (deferred)"
+    - "Multi-combat zone targeting"
+    - "Boss phase transitions (deferred)"
+    - "NPC death XP reward to player"
+    - "Retreat behavior"
+    - "Full NPC definition loading from osrsbox"
