@@ -43,11 +43,16 @@ class MeleeAction(
             else    -> target.defenceSlash
         }
 
+        // Prayer multipliers wired from player's active prayer set.
+        // Source: https://oldschool.runescape.wiki/w/Prayer#Bonuses
         val atkRoll = CombatFormulas.maxMeleeAttackRoll(
             attackLevel  = attacker.skills.getBoostedLevel(Skill.ATTACK),
             attackBonus  = attackBonus,
+            prayerMult   = attacker.prayer.attackMult,
             styleBonus   = styleDef.attackStyleBonus,
         )
+        // Target defence roll: target prayer multipliers not yet wired
+        // (deferred until NPC behavior implements defensive prayers).
         val defRoll = CombatFormulas.maxMeleeDefenceRoll(
             defenceLevel = target.defenceLevel,
             defenceBonus = defenceBonus,
@@ -57,6 +62,7 @@ class MeleeAction(
             val maxHit = CombatFormulas.maxMeleeHit(
                 strengthLevel = attacker.skills.getBoostedLevel(Skill.STRENGTH),
                 strengthBonus = attackerBonuses.meleeStrength,
+                prayerMult    = attacker.prayer.strengthMult,
                 styleBonus    = styleDef.strengthStyleBonus,
             )
             val damage = CombatFormulas.rollDamage(maxHit)

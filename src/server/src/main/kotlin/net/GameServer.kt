@@ -7,6 +7,7 @@ import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.slf4j.LoggerFactory
+import prayer.PrayerDefs
 import java.nio.file.Path
 
 /**
@@ -35,6 +36,9 @@ class GameServer(
      */
     fun start() {
         PacketRegistry.init()
+        // Load prayer definitions before tick engine starts scheduling drain actions.
+        // Source: https://oldschool.runescape.wiki/w/Prayer#Standard_prayers
+        PrayerDefs.init()
         world.World.init(cacheDir)
 
         val bootstrap = ServerBootstrap()

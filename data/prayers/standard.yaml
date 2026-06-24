@@ -1,0 +1,197 @@
+# data/prayers/standard.yaml — Standard prayer book data for Rune-Jit
+#
+# Single source of truth for all standard prayer values.
+# PrayerDefs.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Prayer#Standard_prayers
+# License: CC BY-NC-SA 3.0 (wiki content)
+#
+# Drain formula: drain accumulator increments by drain_effect every tick.
+# Threshold = 600 * (1 + floor(prayerBonus / 30))
+# When accumulator >= threshold, lose 1 prayer point and subtract threshold.
+# Source: https://oldschool.runescape.wiki/w/Prayer#Drain_rate
+
+meta:
+  book: STANDARD
+
+prayers:
+  THICK_SKIN:
+    level_required: 1
+    drain_effect: 3
+    defence_mult: 1.05
+    wiki: "https://oldschool.runescape.wiki/w/Thick_Skin"
+
+  BURST_OF_STRENGTH:
+    level_required: 4
+    drain_effect: 3
+    strength_mult: 1.05
+    wiki: "https://oldschool.runescape.wiki/w/Burst_of_Strength"
+
+  CLARITY_OF_THOUGHT:
+    level_required: 7
+    drain_effect: 3
+    attack_mult: 1.05
+    wiki: "https://oldschool.runescape.wiki/w/Clarity_of_Thought"
+
+  ROCK_SKIN:
+    level_required: 10
+    drain_effect: 6
+    defence_mult: 1.10
+    wiki: "https://oldschool.runescape.wiki/w/Rock_Skin"
+
+  SUPERHUMAN_STRENGTH:
+    level_required: 13
+    drain_effect: 6
+    strength_mult: 1.10
+    wiki: "https://oldschool.runescape.wiki/w/Superhuman_Strength"
+
+  IMPROVED_REFLEXES:
+    level_required: 16
+    drain_effect: 6
+    attack_mult: 1.10
+    wiki: "https://oldschool.runescape.wiki/w/Improved_Reflexes"
+
+  RAPID_RESTORE:
+    level_required: 19
+    drain_effect: 2
+    wiki: "https://oldschool.runescape.wiki/w/Rapid_Restore"
+
+  RAPID_HEAL:
+    level_required: 22
+    drain_effect: 3
+    wiki: "https://oldschool.runescape.wiki/w/Rapid_Heal"
+
+  PROTECT_ITEM:
+    level_required: 25
+    drain_effect: 3
+    wiki: "https://oldschool.runescape.wiki/w/Protect_Item"
+
+  HAWK_EYE:
+    level_required: 26
+    drain_effect: 6
+    ranged_mult: 1.05
+    wiki: "https://oldschool.runescape.wiki/w/Hawk_Eye"
+
+  MYSTIC_WILL:
+    level_required: 27
+    drain_effect: 6
+    magic_mult: 1.05
+    wiki: "https://oldschool.runescape.wiki/w/Mystic_Will"
+
+  STEEL_SKIN:
+    level_required: 28
+    drain_effect: 12
+    defence_mult: 1.15
+    wiki: "https://oldschool.runescape.wiki/w/Steel_Skin"
+
+  ULTIMATE_STRENGTH:
+    level_required: 31
+    drain_effect: 12
+    strength_mult: 1.15
+    wiki: "https://oldschool.runescape.wiki/w/Ultimate_Strength"
+
+  INCREDIBLE_REFLEXES:
+    level_required: 34
+    drain_effect: 12
+    attack_mult: 1.15
+    wiki: "https://oldschool.runescape.wiki/w/Incredible_Reflexes"
+
+  PROTECT_FROM_SUMMONING:
+    level_required: 35
+    drain_effect: 12
+    overhead_protection: MELEE
+    wiki: "https://oldschool.runescape.wiki/w/Protect_from_Summoning"
+
+  PROTECT_FROM_MAGIC:
+    level_required: 37
+    drain_effect: 12
+    overhead_protection: MAGIC
+    wiki: "https://oldschool.runescape.wiki/w/Protect_from_Magic"
+
+  PROTECT_FROM_RANGED:
+    level_required: 40
+    drain_effect: 12
+    overhead_protection: RANGED
+    wiki: "https://oldschool.runescape.wiki/w/Protect_from_Ranged"
+
+  PROTECT_FROM_MELEE:
+    level_required: 43
+    drain_effect: 12
+    overhead_protection: MELEE
+    wiki: "https://oldschool.runescape.wiki/w/Protect_from_Melee"
+
+  EAGLE_EYE:
+    level_required: 44
+    drain_effect: 12
+    ranged_mult: 1.10
+    wiki: "https://oldschool.runescape.wiki/w/Eagle_Eye"
+
+  MYSTIC_LORE:
+    level_required: 45
+    drain_effect: 12
+    magic_mult: 1.10
+    wiki: "https://oldschool.runescape.wiki/w/Mystic_Lore"
+
+  RETRIBUTION:
+    level_required: 46
+    drain_effect: 3
+    wiki: "https://oldschool.runescape.wiki/w/Retribution"
+
+  REDEMPTION:
+    level_required: 49
+    drain_effect: 6
+    wiki: "https://oldschool.runescape.wiki/w/Redemption"
+
+  SMITE:
+    level_required: 52
+    drain_effect: 18
+    wiki: "https://oldschool.runescape.wiki/w/Smite"
+
+  PRESERVE:
+    level_required: 55
+    drain_effect: 6
+    wiki: "https://oldschool.runescape.wiki/w/Preserve"
+
+  CHIVALRY:
+    level_required: 60
+    drain_effect: 24
+    attack_mult: 1.15
+    strength_mult: 1.18
+    defence_mult: 1.20
+    wiki: "https://oldschool.runescape.wiki/w/Chivalry"
+
+  MYSTIC_MIGHT:
+    level_required: 45
+    drain_effect: 18
+    magic_mult: 1.15
+    wiki: "https://oldschool.runescape.wiki/w/Mystic_Might"
+
+  WRATH:
+    level_required: 59
+    drain_effect: 3
+    wiki: "https://oldschool.runescape.wiki/w/Wrath"
+
+  PIETY:
+    level_required: 70
+    drain_effect: 24
+    attack_mult: 1.20
+    strength_mult: 1.23
+    defence_mult: 1.25
+    wiki: "https://oldschool.runescape.wiki/w/Piety"
+
+  RIGOUR:
+    level_required: 74
+    drain_effect: 24
+    ranged_mult: 1.20
+    ranged_strength_mult: 1.23
+    defence_mult: 1.25
+    wiki: "https://oldschool.runescape.wiki/w/Rigour"
+
+  AUGURY:
+    level_required: 77
+    drain_effect: 24
+    magic_mult: 1.25
+    magic_defence_mult: 1.25
+    defence_mult: 1.25
+    wiki: "https://oldschool.runescape.wiki/w/Augury"

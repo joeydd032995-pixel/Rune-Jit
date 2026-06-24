@@ -3,7 +3,7 @@ combat_melee:
   implemented_at: 2026-06-24
   pending_items:
     - Special attacks (DDS, Dragon Claws, etc.) — deferred
-    - Prayer multipliers (requires /prayer-effect-simulator)
+    - Prayer multipliers wired (attackMult + strengthMult from PrayerSet)
     - Poison/venom damage — deferred
     - NPC onNpcInteract wiring (requires PluginContext extension in /protocol-packet-engine)
     - Equipment bonus lookup (requires /import-osrsbox-complete)
@@ -72,3 +72,17 @@ pathfinding_engine:
     - Door auto-close after 3 ticks + real door-object ID→tile/wall mapping (requires ObjectDefinitions + world object tick queue)
     - Projectile (FLY_BLOCKED) and multi-combat zone flag maps (separate, non-movement)
     - workflow-catalog.yaml pathfinding glob fix (src/server/world/pathfinding/PathFinder.kt → src/server/**/world/pathfinding/PathFinder.kt)
+
+prayer_system:
+  status: IMPLEMENTED
+  date: 2026-06-24
+  description: "Standard prayer book (30 prayers), tick-based drain, equipment bonus modifier, combat multipliers wired"
+  pending_items:
+    - "Ancient Curses (Turmoil, Torment, Anguish) — deferred, post-Desert Treasure II"
+    - "Necromancy prayer book"
+    - "Widget activation handlers (requires prayer tab interface IDs in protocol-defs.yaml)"
+    - "Quick prayer presets"
+    - "Smite/Retribution/Redemption on-kill effects (wired when NPC death handling implemented)"
+    - "Preserve boost-timer extension (wired when stat boost timers implemented)"
+    - "Rapid Restore stat restoration (wired when stat boost timers implemented)"
+    - "Equipment prayer bonus > 0 (requires /import-osrsbox-complete)"
