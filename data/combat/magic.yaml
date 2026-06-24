@@ -1,0 +1,165 @@
+# Source: https://oldschool.runescape.wiki/w/Standard_spellbook
+standard_book:
+  # Source: https://oldschool.runescape.wiki/w/Attack_speed
+  combat_cycle_ticks: 5
+  # Source: https://oldschool.runescape.wiki/w/Hitpoints#Experience
+  hp_xp_per_damage: 1.33
+  # Source: https://oldschool.runescape.wiki/w/Magic#Magic_experience
+  magic_xp_per_damage: 2.0
+  spells:
+    # Strikes — Source: https://oldschool.runescape.wiki/w/Wind_Strike et al.
+    WIND_STRIKE:
+      level_required: 1
+      max_hit: 2
+      base_xp: 5.5
+    WATER_STRIKE:
+      level_required: 5
+      max_hit: 4
+      base_xp: 7.5
+    EARTH_STRIKE:
+      level_required: 9
+      max_hit: 6
+      base_xp: 9.5
+    FIRE_STRIKE:
+      level_required: 13
+      max_hit: 8
+      base_xp: 11.5
+    # Bolts — Source: https://oldschool.runescape.wiki/w/Wind_Bolt et al.
+    WIND_BOLT:
+      level_required: 17
+      max_hit: 9
+      base_xp: 13.5
+    WATER_BOLT:
+      level_required: 23
+      max_hit: 10
+      base_xp: 16.5
+    EARTH_BOLT:
+      level_required: 29
+      max_hit: 11
+      base_xp: 19.5
+    FIRE_BOLT:
+      level_required: 35
+      max_hit: 12
+      base_xp: 22.5
+    # Blasts — Source: https://oldschool.runescape.wiki/w/Wind_Blast et al.
+    WIND_BLAST:
+      level_required: 41
+      max_hit: 13
+      base_xp: 25.5
+    WATER_BLAST:
+      level_required: 47
+      max_hit: 14
+      base_xp: 28.5
+    EARTH_BLAST:
+      level_required: 53
+      max_hit: 15
+      base_xp: 31.5
+    FIRE_BLAST:
+      level_required: 59
+      max_hit: 16
+      base_xp: 34.5
+    # Waves — Source: https://oldschool.runescape.wiki/w/Wind_Wave et al.
+    WIND_WAVE:
+      level_required: 62
+      max_hit: 17
+      base_xp: 36.0
+    WATER_WAVE:
+      level_required: 65
+      max_hit: 18
+      base_xp: 37.5
+    EARTH_WAVE:
+      level_required: 70
+      max_hit: 19
+      base_xp: 40.0
+    FIRE_WAVE:
+      level_required: 75
+      max_hit: 20
+      base_xp: 42.5
+    # Surges — Source: https://oldschool.runescape.wiki/w/Wind_Surge et al.
+    WIND_SURGE:
+      level_required: 81
+      max_hit: 21
+      base_xp: 36.0
+    WATER_SURGE:
+      level_required: 85
+      max_hit: 22
+      base_xp: 40.0
+    EARTH_SURGE:
+      level_required: 90
+      max_hit: 23
+      base_xp: 43.0
+    FIRE_SURGE:
+      level_required: 95
+      max_hit: 24
+      base_xp: 46.5
+    # Ancient Magicks combat spells included here for data completeness
+    # Source: https://oldschool.runescape.wiki/w/Ancient_Magicks
+    SMOKE_RUSH:
+      level_required: 50
+      max_hit: 13
+      base_xp: 30.0
+    SHADOW_RUSH:
+      level_required: 52
+      max_hit: 14
+      base_xp: 31.0
+    BLOOD_RUSH:
+      level_required: 56
+      max_hit: 15
+      base_xp: 33.0
+    ICE_RUSH:
+      level_required: 58
+      max_hit: 16
+      base_xp: 34.0
+      freeze_ticks: 8
+    SMOKE_BURST:
+      level_required: 62
+      max_hit: 17
+      base_xp: 36.0
+    SHADOW_BURST:
+      level_required: 64
+      max_hit: 18
+      base_xp: 37.0
+    BLOOD_BURST:
+      level_required: 68
+      max_hit: 21
+      base_xp: 39.0
+    ICE_BURST:
+      level_required: 70
+      max_hit: 22
+      base_xp: 40.0
+      freeze_ticks: 16
+    SMOKE_BLITZ:
+      level_required: 74
+      max_hit: 23
+      base_xp: 42.0
+    SHADOW_BLITZ:
+      level_required: 76
+      max_hit: 24
+      base_xp: 43.0
+    BLOOD_BLITZ:
+      level_required: 80
+      max_hit: 25
+      base_xp: 45.0
+    ICE_BLITZ:
+      level_required: 82
+      max_hit: 26
+      base_xp: 46.0
+      freeze_ticks: 24
+    SMOKE_BARRAGE:
+      level_required: 86
+      max_hit: 27
+      base_xp: 48.0
+    SHADOW_BARRAGE:
+      level_required: 88
+      max_hit: 28
+      base_xp: 49.0
+    BLOOD_BARRAGE:
+      level_required: 92
+      max_hit: 29
+      base_xp: 51.0
+    # Source: https://oldschool.runescape.wiki/w/Ice_Barrage
+    ICE_BARRAGE:
+      level_required: 94
+      max_hit: 30
+      base_xp: 52.0
+      freeze_ticks: 32

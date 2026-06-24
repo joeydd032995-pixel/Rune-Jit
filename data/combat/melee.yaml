@@ -1,0 +1,38 @@
+# Source: https://oldschool.runescape.wiki/w/Attack_style
+attack_styles:
+  ACCURATE:
+    attack_style_bonus: 3
+    strength_style_bonus: 0
+    defence_style_bonus: 0
+    xp_skill: ATTACK
+  AGGRESSIVE:
+    attack_style_bonus: 0
+    strength_style_bonus: 3
+    defence_style_bonus: 0
+    xp_skill: STRENGTH
+  DEFENSIVE:
+    attack_style_bonus: 0
+    strength_style_bonus: 0
+    defence_style_bonus: 3
+    xp_skill: DEFENCE
+  CONTROLLED:
+    attack_style_bonus: 1
+    strength_style_bonus: 1
+    defence_style_bonus: 1
+    xp_skill: CONTROLLED
+
+# Source: https://oldschool.runescape.wiki/w/Hitpoints#Experience
+xp_rates:
+  combat_xp_per_damage: 4.0
+  hp_xp_per_damage: 1.33
+
+# Source: https://oldschool.runescape.wiki/w/Attack_speed
+weapon_ticks:
+  DEFAULT_1H: 4
+  DEFAULT_2H: 6
+  DAGGER: 4
+  SCIMITAR: 4
+  WHIP: 4
+  HALBERD: 7
+  GODSWORD: 6
+  CLAWS: 4

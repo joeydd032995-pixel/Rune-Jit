@@ -1,3 +1,32 @@
+combat_melee:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Special attacks (DDS, Dragon Claws, etc.) — deferred
+    - Prayer multipliers (requires /prayer-effect-simulator)
+    - Poison/venom damage — deferred
+    - NPC onNpcInteract wiring (requires PluginContext extension in /protocol-packet-engine)
+    - Equipment bonus lookup (requires /import-osrsbox-complete)
+
+combat_magic:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Full Ancient Magicks spellbook (partial data only)
+    - Lunar/Arceuus spellbooks — deferred
+    - Freeze/bind duration enforcement (requires world state)
+    - Autocast selection wiring (requires /protocol-packet-engine)
+    - Staff magic bonus lookup (requires /import-osrsbox-complete)
+
+combat_ranged:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Ammo consumption tracking (requires item system)
+    - Longrange style Defence XP split — deferred
+    - Special ammo effects (bolt enchantments) — deferred
+    - Equipment bonus lookup (requires /import-osrsbox-complete)
+
 tick_engine:
   status: IMPLEMENTED
   implemented_at: 2026-06-24
