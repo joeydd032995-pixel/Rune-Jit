@@ -49,3 +49,13 @@ woodcutting:
     - Infernal axe Firemaking XP grant (requires Firemaking skill implementation)
     - Bird nest physical ground drop (requires world ground-item system)
     - Netty HashedWheelTimer wiring (requires /implement-tick-engine-core)
+
+protocol_engine:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Exact packet opcodes (requires gamepack analysis via /setup-revision-lock-and-pin)
+    - Full JS5 file serving (requires cache download via /load-osrs-cache-full)
+    - Player update block serialisation (requires Phase 3 /implement-client-rendering-pipeline)
+    - NPC update block serialisation (requires /npc-behavior-simulator)
+    - RSA key storage hardening (currently plaintext stub; production: add RSA decrypt)

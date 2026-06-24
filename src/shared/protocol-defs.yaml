@@ -1,0 +1,63 @@
+# OSRS protocol packet definitions
+# Source: community-documented OSRS protocol (RuneStar/OpenRS2 ecosystem)
+# Opcodes marked null require gamepack confirmation (run /setup-revision-lock-and-pin phase 2)
+revision: 238
+client_to_server:
+  - name: WALK
+    opcode: null
+    size: 5
+    fields:
+      - { name: destX,   type: SHORT }
+      - { name: destY,   type: SHORT }
+      - { name: ctrlKey, type: BYTE }
+  - name: NPC_INTERACT_1
+    opcode: null
+    size: 2
+    fields:
+      - { name: npcIndex, type: SHORT }
+  - name: OBJECT_INTERACT_1
+    opcode: null
+    size: 6
+    fields:
+      - { name: objectId, type: SHORT }
+      - { name: x,        type: SHORT }
+      - { name: y,        type: SHORT }
+  - name: WIDGET_ACTION
+    opcode: null
+    size: -1
+    fields:
+      - { name: widgetId, type: INT }
+      - { name: itemId,   type: SHORT }
+      - { name: slot,     type: SHORT }
+  - name: GROUND_ITEM_TAKE
+    opcode: null
+    size: 6
+    fields:
+      - { name: itemId, type: SHORT }
+      - { name: x,      type: SHORT }
+      - { name: y,      type: SHORT }
+  - name: CHAT_MESSAGE
+    opcode: null
+    size: -1
+    fields:
+      - { name: effects, type: BYTE }
+      - { name: text,    type: STRING }
+server_to_client:
+  - name: UPDATE_PLAYERS
+    opcode: null
+    size: -2
+  - name: UPDATE_NPCS
+    opcode: null
+    size: -2
+  - name: MAP_REGION
+    opcode: null
+    size: 4
+  - name: XP_DROP
+    opcode: null
+    size: 6
+  - name: IF_SET_TEXT
+    opcode: null
+    size: -2
+  - name: CHAT_SERVER
+    opcode: null
+    size: -1
