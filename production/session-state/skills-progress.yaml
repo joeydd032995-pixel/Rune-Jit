@@ -131,3 +131,15 @@ npc_behavior:
     - "NPC death XP reward to player"
     - "Retreat behavior"
     - "Full NPC definition loading from osrsbox"
+
+persistence:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  description: "Player save/load: position, all 23 skill XPs, prayer points, inventory (28 slots by index), equipment (14 slots). Atomic writes via temp+rename (ATOMIC_MOVE). Schema version 1 with migration interface in place."
+  pending_items:
+    - "Auto-save every 200 ticks (requires TickEngine player registry)"
+    - "Bank save (requires bank system)"
+    - "Quest state persistence"
+    - "Backup rotation (last 5 saves)"
+    - "SQLite backend option"
+    - "Schema migrations beyond v1"
