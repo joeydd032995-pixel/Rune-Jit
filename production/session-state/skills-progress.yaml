@@ -1,3 +1,13 @@
+tick_engine:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  pending_items:
+    - Player login/logout wiring (requires /protocol-packet-engine)
+    - NPC processing bucket (requires /npc-behavior-simulator)
+    - Ground item processing bucket (requires world ground-item system)
+    - Shop restock bucket (requires /economy-and-ge-simulator)
+    - Integration test with real HashedWheelTimer (deferred; TickQueueImpl tested directly)
+
 woodcutting:
   status: IMPLEMENTED
   parity_score: pending   # run /verify-mechanic-parity-1to1 woodcutting after tick engine is wired
