@@ -20,6 +20,26 @@ class Inventory {
         return true
     }
 
+    /**
+     * Places an item into a specific slot by index, overwriting any existing occupant.
+     * Used by the persistence layer to restore inventory state exactly as saved.
+     * Slot index must be in 0..27.
+     */
+    fun setSlot(index: Int, itemId: Int, quantity: Int) {
+        require(index in 0 until 28) { "Slot index out of range: $index" }
+        slots[index] = Slot(itemId, quantity)
+    }
+
+    /**
+     * Returns the [Slot] at [index], or null if the slot is empty.
+     * Used by the persistence layer to snapshot inventory state.
+     * Slot index must be in 0..27.
+     */
+    fun getSlot(index: Int): Slot? {
+        require(index in 0 until 28) { "Slot index out of range: $index" }
+        return slots[index]
+    }
+
     fun remove(itemId: Int, quantity: Int = 1): Boolean {
         val slot = slots.firstOrNull { it?.itemId == itemId } ?: return false
         if (slot.quantity < quantity) return false

@@ -7,6 +7,9 @@ data/raw/
 data/osrsbox/
 gamepacks/
 
+# Player save files — runtime data, never committed (per server-persistence.md)
+data/players/
+
 # XTEA encryption keys — sensitive, never committed
 *.xtea
 cache/xtea/

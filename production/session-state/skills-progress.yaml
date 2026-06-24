@@ -86,3 +86,60 @@ prayer_system:
     - "Preserve boost-timer extension (wired when stat boost timers implemented)"
     - "Rapid Restore stat restoration (wired when stat boost timers implemented)"
     - "Equipment prayer bonus > 0 (requires /import-osrsbox-complete)"
+
+mining:
+  status: IMPLEMENTED
+  date: 2026-06-24
+  description: "Mining skill: 13 rock types, 11 pickaxes, gem drops, rock golem pet, success formula"
+  pending_items:
+    - "3-tick mining method (tick manipulation)"
+    - "Motherlode Mine"
+    - "Volcanic Mine"
+    - "Rockfall mechanics"
+    - "Ore box support"
+    - "Infernal pickaxe Smithing XP on ore"
+    - "Animation IDs (stubs until cache extraction)"
+    - "Real object IDs (empty arrays until /load-osrs-cache-full)"
+    - "Concentrated coal/gold deposits"
+    - "Blast mine"
+
+fishing:
+  status: IMPLEMENTED
+  date: 2026-06-24
+  description: "Fishing skill: 17 spot types, 5 ticks/attempt, guaranteed catch (no success roll), bait consumption, heron pet"
+  pending_items:
+    - "Animation IDs (stubs until cache extraction)"
+    - "Real object IDs (empty arrays until /load-osrs-cache-full)"
+    - "Barbarian Fishing (leaping fish, Agility/Strength XP grants) — deferred to Phase 5"
+    - "Infernal Eel smashing mechanic (Tokkul/lava scales/onyx bolts) — deferred to Phase 5"
+    - "Aerial Fishing via Cormorant (Molch Island) — deferred to Phase 5"
+    - "Dark Crab bait consumption (dark fishing bait item 11948, Wilderness only) — deferred"
+    - "3-tick fishing tick manipulation — must not be blocked; engine supports it by design"
+    - "Minnows fishing (Fishing Guild, stackable fish) — deferred to Phase 5"
+    - "Fishing Guild +7% XP bonus (requires world-region-loader boundary check) — deferred"
+    - "Angler's outfit XP bonus +2.5% — deferred until equipment piece lookup is wired"
+
+npc_behavior:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  description: "NPC wander (5-tile radius), aggro detection (5-tile Chebyshev), melee combat, protection prayer = 100% block"
+  pending_items:
+    - "NPC respawn timers (requires world object tick queue)"
+    - "Ranged/magic NPC attacks (deferred)"
+    - "Multi-combat zone targeting"
+    - "Boss phase transitions (deferred)"
+    - "NPC death XP reward to player"
+    - "Retreat behavior"
+    - "Full NPC definition loading from osrsbox"
+
+persistence:
+  status: IMPLEMENTED
+  implemented_at: 2026-06-24
+  description: "Player save/load: position, all 23 skill XPs, prayer points, inventory (28 slots by index), equipment (14 slots). Atomic writes via temp+rename (ATOMIC_MOVE). Schema version 1 with migration interface in place."
+  pending_items:
+    - "Auto-save every 200 ticks (requires TickEngine player registry)"
+    - "Bank save (requires bank system)"
+    - "Quest state persistence"
+    - "Backup rotation (last 5 saves)"
+    - "SQLite backend option"
+    - "Schema migrations beyond v1"
