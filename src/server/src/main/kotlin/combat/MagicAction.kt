@@ -1,7 +1,6 @@
 package combat
 
 import engine.OsrsRandom
-import engine.TickEvent
 import entity.Npc
 import entity.Player
 import entity.Skill
@@ -17,7 +16,7 @@ class MagicAction(
     private val target: Npc,
     private val spellKey: String,
     private val config: CombatConfig,
-) : TickEvent {
+) : CombatAction {
 
     private var active = true
 
@@ -58,5 +57,5 @@ class MagicAction(
         return true
     }
 
-    fun cancel() { active = false }
+    override fun cancel() { active = false }
 }

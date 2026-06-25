@@ -150,3 +150,15 @@ osrsbox_import:
   npcs_count: 3000
   implemented_at: "2026-06-25"
   notes: "Items and NPC definitions loaded; ItemBonusRegistry wired to real data"
+
+combat_engine:
+  status: IMPLEMENTED
+  implemented_at: "2026-06-25"
+  description: "Full combat dispatch: weapon detection via WeaponDefs, melee/ranged/magic routing in CombatPlugin, player respawn at Lumbridge, CombatAction interface unifying all three action types"
+  pending_items:
+    - "Special attacks (DDS, Dragon Claws, etc.) — deferred"
+    - "Poison/venom damage — deferred"
+    - "PvP combat (player vs player) — deferred"
+    - "Autocast selection wiring (requires protocol-packet-engine; combatStyle defaults to MELEE_AGGRESSIVE)"
+    - "Ammo consumption tracking (requires item system)"
+    - "NPC death XP reward to player (wired when NPC death handling added)"

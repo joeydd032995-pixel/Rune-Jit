@@ -1,6 +1,5 @@
 package combat
 
-import engine.TickEvent
 import entity.Npc
 import entity.Player
 import entity.Skill
@@ -17,7 +16,7 @@ class MeleeAction(
     private val attackType: String,  // "STAB", "SLASH", or "CRUSH"
     private val weaponType: String = "DEFAULT_1H",
     private val config: CombatConfig,
-) : TickEvent {
+) : CombatAction {
 
     private var active = true
 
@@ -82,5 +81,5 @@ class MeleeAction(
         return true
     }
 
-    fun cancel() { active = false }
+    override fun cancel() { active = false }
 }

@@ -1,6 +1,5 @@
 package combat
 
-import engine.TickEvent
 import entity.Npc
 import entity.Player
 import entity.Skill
@@ -17,7 +16,7 @@ class RangedAction(
     private val style: CombatStyle,
     private val weaponType: String = "BOW_STANDARD",
     private val config: CombatConfig,
-) : TickEvent {
+) : CombatAction {
 
     private var active = true
 
@@ -66,5 +65,5 @@ class RangedAction(
         return true
     }
 
-    fun cancel() { active = false }
+    override fun cancel() { active = false }
 }

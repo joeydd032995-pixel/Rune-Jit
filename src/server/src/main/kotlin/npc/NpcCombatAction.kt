@@ -73,6 +73,9 @@ class NpcCombatAction(
 
         val hit = CombatFormulas.rollDamage(maxHit)
         target.takeDamage(hit)
+        // Respawn the player at Lumbridge if this hit kills them.
+        // Source: https://oldschool.runescape.wiki/w/Lumbridge#Respawn_point
+        if (target.isDead) target.respawn()
     }
 
     private fun moveToward(target: Player) {
