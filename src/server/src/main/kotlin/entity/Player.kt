@@ -1,5 +1,7 @@
 package entity
 
+import combat.CombatAction
+import combat.CombatStyle
 import combat.EquipmentBonuses
 import combat.ItemBonusRegistry
 import engine.TickQueue
@@ -51,6 +53,41 @@ class Player(
     fun heal(amount: Int) {
         currentHp = (currentHp + amount).coerceAtMost(skills.getLevel(Skill.HITPOINTS))
     }
+
+    /**
+     * Resets the player to full HP and teleports them to the Lumbridge respawn point.
+     * Cancels any in-progress combat action.
+     * Source: https://oldschool.runescape.wiki/w/Lumbridge#Respawn_point
+     */
+    fun respawn() {
+        currentHp = skills.getLevel(Skill.HITPOINTS)
+        x = 3222
+        y = 3218
+        plane = 0
+        activeCombatAction?.cancel()
+        activeCombatAction = null
+    }
+
+    // -------------------------------------------------------------------------
+    // Combat state — set by CombatPlugin when the player initiates an attack.
+    // Source: https://oldschool.runescape.wiki/w/Combat
+    // -------------------------------------------------------------------------
+
+    /** Current combat style (melee/ranged/magic + sub-style). Defaults to melee aggressive. */
+    var combatStyle: CombatStyle = CombatStyle.MELEE_AGGRESSIVE
+
+    /** Attack type used for bonus lookup: "STAB", "SLASH", "CRUSH", or "RANGED". */
+    var attackType: String = "CRUSH"
+
+    /** Weapon type key for weapon_ticks lookup (e.g. "WHIP", "SCIMITAR", "SHORTBOW"). */
+    var weaponType: String = "DEFAULT_1H"
+
+    /** Autocast spell key when magic style is active; null means no autocast selected. */
+    var selectedSpell: String? = null
+
+    /** The currently executing combat tick event, or null when not in combat. */
+    @Volatile
+    var activeCombatAction: CombatAction? = null
 
     /**
      * Sums equipment bonuses across all 14 equipment slots via [ItemBonusRegistry].

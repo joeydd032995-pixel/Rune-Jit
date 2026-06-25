@@ -1,0 +1,255 @@
+# Weapon item ID → weaponType and defaultAttackType mapping.
+# weaponType must match a key in data/combat/melee.yaml or data/combat/ranged.yaml weapon_ticks.
+# Source: https://oldschool.runescape.wiki/w/Weapons
+weapons:
+  # --- MELEE: DAGGERS (stab) ---
+  # Source: https://oldschool.runescape.wiki/w/Dagger
+  1205:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1215:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1217:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1219:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1221:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1223:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1225:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  1231:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  5680:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+  5698:
+    weapon_type: DAGGER
+    default_attack_type: STAB
+
+  # --- MELEE: SCIMITARS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Scimitar
+  1321:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1323:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1325:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1327:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1329:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1331:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  1333:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+  4587:
+    weapon_type: SCIMITAR
+    default_attack_type: SLASH
+
+  # --- MELEE: WHIP (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Abyssal_whip
+  4151:
+    weapon_type: WHIP
+    default_attack_type: SLASH
+  12006:
+    weapon_type: WHIP
+    default_attack_type: SLASH
+
+  # --- MELEE: GODSWORDS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Godsword
+  11802:
+    weapon_type: GODSWORD
+    default_attack_type: SLASH
+  11804:
+    weapon_type: GODSWORD
+    default_attack_type: SLASH
+  11806:
+    weapon_type: GODSWORD
+    default_attack_type: SLASH
+  11808:
+    weapon_type: GODSWORD
+    default_attack_type: SLASH
+  20372:
+    weapon_type: GODSWORD
+    default_attack_type: SLASH
+
+  # --- MELEE: HALBERDS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Halberd
+  3190:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  3192:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  3194:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  3196:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  3198:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  3200:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+  13073:
+    weapon_type: HALBERD
+    default_attack_type: SLASH
+
+  # --- MELEE: CLAWS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Dragon_claws
+  13652:
+    weapon_type: CLAWS
+    default_attack_type: SLASH
+  13654:
+    weapon_type: CLAWS
+    default_attack_type: SLASH
+
+  # --- MELEE: TWO-HANDED SWORDS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Two-handed_sword
+  1307:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1309:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1311:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1313:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1315:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1317:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+  1319:
+    weapon_type: DEFAULT_2H
+    default_attack_type: SLASH
+
+  # --- MELEE: DEFAULT 1H SWORDS (slash) ---
+  # Source: https://oldschool.runescape.wiki/w/Sword
+  1277:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1279:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1281:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1283:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1285:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1287:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+  1289:
+    weapon_type: DEFAULT_1H
+    default_attack_type: SLASH
+
+  # --- RANGED: SHORTBOWS ---
+  # Source: https://oldschool.runescape.wiki/w/Shortbow
+  841:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  843:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  845:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  847:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  849:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  851:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  853:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  855:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  857:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  859:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  861:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+  863:
+    weapon_type: LONGBOW
+    default_attack_type: RANGED
+  11235:
+    weapon_type: SHORTBOW
+    default_attack_type: RANGED
+
+  # --- RANGED: CROSSBOWS ---
+  # Source: https://oldschool.runescape.wiki/w/Crossbow
+  9174:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  9176:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  9177:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  9178:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  9179:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  10156:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+  11785:
+    weapon_type: CROSSBOW
+    default_attack_type: RANGED
+
+  # --- RANGED: BLOWPIPE ---
+  # Source: https://oldschool.runescape.wiki/w/Toxic_blowpipe
+  12926:
+    weapon_type: BLOWPIPE
+    default_attack_type: RANGED
+
+  # --- RANGED: CHINCHOMPAS ---
+  # Source: https://oldschool.runescape.wiki/w/Chinchompa
+  10033:
+    weapon_type: CHINCHOMPA
+    default_attack_type: RANGED
+  10034:
+    weapon_type: CHINCHOMPA
+    default_attack_type: RANGED
+  11959:
+    weapon_type: CHINCHOMPA
+    default_attack_type: RANGED
