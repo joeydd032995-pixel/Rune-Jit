@@ -143,3 +143,10 @@ persistence:
     - "Backup rotation (last 5 saves)"
     - "SQLite backend option"
     - "Schema migrations beyond v1"
+
+osrsbox_import:
+  status: IMPLEMENTED
+  items_count: 24735
+  npcs_count: 3000
+  implemented_at: "2026-06-25"
+  notes: "Items and NPC definitions loaded; ItemBonusRegistry wired to real data"

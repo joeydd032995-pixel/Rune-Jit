@@ -6,6 +6,8 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import item.ItemDefinitions
+import npc.NpcDefinitions
 import org.slf4j.LoggerFactory
 import prayer.PrayerDefs
 import java.nio.file.Path
@@ -39,6 +41,11 @@ class GameServer(
         // Load prayer definitions before tick engine starts scheduling drain actions.
         // Source: https://oldschool.runescape.wiki/w/Prayer#Standard_prayers
         PrayerDefs.init()
+        // Load item and NPC definitions from osrsbox-db.
+        // Graceful-absent: if data/osrsbox/ files are missing, lookups return EMPTY.
+        // Source: https://github.com/osrsbox/osrsbox-db
+        ItemDefinitions.init()
+        NpcDefinitions.init()
         world.World.init(cacheDir)
 
         val bootstrap = ServerBootstrap()
