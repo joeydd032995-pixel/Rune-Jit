@@ -18,6 +18,7 @@ class Npc(
     val defenceMagic: Int = 0,
     val defenceRanged: Int = 0,
     val maxHp: Int,
+    val npcId: Int = -1,
     x: Int = 0,
     y: Int = 0,
 ) {

@@ -151,6 +151,17 @@ osrsbox_import:
   implemented_at: "2026-06-25"
   notes: "Items and NPC definitions loaded; ItemBonusRegistry wired to real data"
 
+npc_drop_tables:
+  status: IMPLEMENTED
+  implemented_at: "2026-06-25"
+  description: "NPC drop tables loaded from osrsbox; rarity-based RNG roll; quantity ranges parsed; drops granted to player inventory on kill"
+  pending_items:
+    - "Noted item handling (unnoted ID → noted ID conversion)"
+    - "Ground item drop when inventory full (requires world ground-item system)"
+    - "Rare drop table (RDT) support — deferred"
+    - "NPC-specific npcId wiring in NpcBehaviorPlugin spawns"
+    - "Drop rate display in examine (requires interface wiring)"
+
 combat_engine:
   status: IMPLEMENTED
   implemented_at: "2026-06-25"
