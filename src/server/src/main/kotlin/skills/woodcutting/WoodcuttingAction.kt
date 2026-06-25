@@ -5,6 +5,7 @@ import engine.TickEvent
 import engine.TickQueue
 import entity.Player
 import entity.Skill
+import skills.firemaking.FiremakingDefs
 
 /**
  * One woodcutting cycle: rolls success, awards XP/log, checks depletion.
@@ -72,9 +73,10 @@ class WoodcuttingAction(
         // Infernal axe: ~1/3 chance to burn the log instead of banking it.
         // Source: https://oldschool.runescape.wiki/w/Infernal_axe
         if (axe.burnsLogs && OsrsRandom.nextInt(3) == 0) {
-            // Grant 50% of the log's Firemaking XP (stub: 0.0 until Firemaking implemented)
-            val fmXp = 0.0
-            if (fmXp > 0) player.skills.addXp(Skill.FIREMAKING, fmXp)
+            if (FiremakingDefs.isInitialized) {
+                val fmXp = (FiremakingDefs.config.byItemId[logId]?.xp ?: 0.0) * axe.firemakingXpMultiplier
+                if (fmXp > 0.0) player.skills.addXp(Skill.FIREMAKING, fmXp)
+            }
             return
         }
 

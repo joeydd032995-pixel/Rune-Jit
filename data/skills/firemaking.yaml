@@ -1,0 +1,95 @@
+# data/skills/firemaking.yaml — Firemaking skill data for Rune-Jit
+#
+# Single source of truth for all Firemaking values.
+# FiremakingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Firemaking
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: FIREMAKING
+  ticks_per_attempt: 3         # 3 ticks = 1.8 seconds per fire attempt
+                                # https://oldschool.runescape.wiki/w/Firemaking#Mechanics
+  tinderbox_item_id: 590       # https://oldschool.runescape.wiki/w/Tinderbox
+  base_light_animation: 733    # TODO: verify from cache index 12 after /load-osrs-cache-full
+
+# ---------------------------------------------------------------------------
+# Logs
+# Source: https://oldschool.runescape.wiki/w/Firemaking#Logs
+# All XP values are exact as listed on the OSRS wiki.
+# Success rate: 100% — Firemaking has no failure roll.
+# ---------------------------------------------------------------------------
+
+logs:
+  NORMAL:
+    level_required: 1
+    xp: 40.0
+    item_id: 1511
+    wiki: "https://oldschool.runescape.wiki/w/Logs"
+
+  ACHEY:
+    level_required: 1
+    xp: 40.0
+    item_id: 2862
+    wiki: "https://oldschool.runescape.wiki/w/Achey_tree_logs"
+
+  OAK:
+    level_required: 15
+    xp: 60.0
+    item_id: 1521
+    wiki: "https://oldschool.runescape.wiki/w/Oak_logs"
+
+  WILLOW:
+    level_required: 30
+    xp: 90.0
+    item_id: 1519
+    wiki: "https://oldschool.runescape.wiki/w/Willow_logs"
+
+  TEAK:
+    level_required: 35
+    xp: 105.0
+    item_id: 6333
+    wiki: "https://oldschool.runescape.wiki/w/Teak_logs"
+
+  ARCTIC_PINE:
+    level_required: 42
+    xp: 125.0
+    item_id: 10810
+    wiki: "https://oldschool.runescape.wiki/w/Arctic_pine_logs"
+
+  MAPLE:
+    level_required: 45
+    xp: 135.0
+    item_id: 1517
+    wiki: "https://oldschool.runescape.wiki/w/Maple_logs"
+
+  MAHOGANY:
+    level_required: 50
+    xp: 157.5
+    item_id: 6332
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_logs"
+
+  YEW:
+    level_required: 60
+    xp: 202.5
+    item_id: 1515
+    wiki: "https://oldschool.runescape.wiki/w/Yew_logs"
+
+  BLISTERWOOD:
+    level_required: 62
+    xp: 96.0
+    item_id: 24136              # TODO: verify against cache when /load-osrs-cache-full is run
+    wiki: "https://oldschool.runescape.wiki/w/Blisterwood_logs"
+
+  MAGIC:
+    level_required: 75
+    xp: 303.8
+    item_id: 1513
+    wiki: "https://oldschool.runescape.wiki/w/Magic_logs"
+
+  REDWOOD:
+    level_required: 90
+    xp: 350.0
+    item_id: 19669
+    wiki: "https://oldschool.runescape.wiki/w/Redwood_logs"
