@@ -73,9 +73,22 @@ class NpcCombatAction(
 
         val hit = CombatFormulas.rollDamage(maxHit)
         target.takeDamage(hit)
-        // Respawn the player at Lumbridge if this hit kills them.
-        // Source: https://oldschool.runescape.wiki/w/Lumbridge#Respawn_point
-        if (target.isDead) target.respawn()
+        if (target.isDead) {
+            // Roll NPC drop table and grant items to the player who landed the kill.
+            // Ground items deferred (inventory full = items lost for now).
+            // Source: https://oldschool.runescape.wiki/w/Drop_rate
+            if (npc.npcId >= 0) {
+                val def = NpcDefinitions.get(npc.npcId)
+                if (def != null) {
+                    for ((itemId, qty) in DropTableRoller.roll(def.drops)) {
+                        target.inventory.addItem(itemId, qty)
+                    }
+                }
+            }
+            // Respawn the player at Lumbridge.
+            // Source: https://oldschool.runescape.wiki/w/Lumbridge#Respawn_point
+            target.respawn()
+        }
     }
 
     private fun moveToward(target: Player) {

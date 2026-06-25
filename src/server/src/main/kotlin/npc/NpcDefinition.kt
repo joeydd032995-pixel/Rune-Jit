@@ -13,6 +13,7 @@ data class NpcDefinition(
     val aggressive: Boolean = false,
     val members: Boolean = false,
     val examine: String = "",
+    val drops: List<DropEntry> = emptyList(),
 ) {
     companion object {
         val EMPTY = NpcDefinition(id = -1, name = "")

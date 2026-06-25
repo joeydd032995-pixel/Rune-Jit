@@ -28,6 +28,28 @@ object NpcDefinitions {
             for ((_, element) in root.entrySet()) {
                 val obj = element.asJsonObject
                 val id = obj.get("id").asInt
+                val dropsArray = obj.get("drops")?.nonNull?.asJsonArray
+                val drops: List<DropEntry> = if (dropsArray != null) {
+                    dropsArray.mapNotNull { elem ->
+                        try {
+                            val d = elem.asJsonObject
+                            val rarity = d.get("rarity")?.nonNull?.asDouble ?: 0.0
+                            if (rarity <= 0.0) return@mapNotNull null
+                            val quantityStr = d.get("quantity")?.nonNull?.asString ?: "1"
+                            val parts = quantityStr.split("-")
+                            val minQty = parts[0].trim().toIntOrNull() ?: 1
+                            val maxQty = if (parts.size > 1) parts[1].trim().toIntOrNull() ?: minQty else minQty
+                            DropEntry(
+                                itemId = d.get("id")?.nonNull?.asInt ?: return@mapNotNull null,
+                                minQty = minQty,
+                                maxQty = maxQty,
+                                rarity = rarity,
+                                noted  = d.get("noted")?.nonNull?.asBoolean ?: false,
+                                rolls  = d.get("rolls")?.nonNull?.asInt ?: 1,
+                            )
+                        } catch (_: Exception) { null }
+                    }
+                } else emptyList()
                 definitions[id] = NpcDefinition(
                     id = id,
                     name = obj.get("name")?.nonNull?.asString ?: "",
@@ -41,6 +63,7 @@ object NpcDefinitions {
                     aggressive = obj.get("aggressive")?.nonNull?.asBoolean ?: false,
                     members = obj.get("members")?.nonNull?.asBoolean ?: false,
                     examine = obj.get("examine")?.nonNull?.asString ?: "",
+                    drops = drops,
                 )
             }
             log.info("Loaded {} NPC definitions from {}", definitions.size, file)
