@@ -61,3 +61,4 @@ __pycache__/
 *.ob3.compiled
 *.dat2
 *.idx
+src/server/data/

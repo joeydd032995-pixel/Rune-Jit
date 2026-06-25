@@ -43,9 +43,31 @@ data class EquipmentBonuses(
 }
 
 /**
- * Returns ZERO bonuses for all items until the item DB is loaded
- * by /import-osrsbox-complete.
+ * Looks up real equipment bonuses from [item.ItemDefinitions].
+ * Returns [EquipmentBonuses.ZERO] for any item not found (including when the
+ * osrsbox data file is absent — graceful-absent pattern).
+ *
+ * Note: [EquipmentBonuses.magicStrength] maps to [item.ItemDefinition.magicDamage]
+ * (different field names, same semantic value).
  */
 object ItemBonusRegistry {
-    fun getBonuses(itemId: Int): EquipmentBonuses = EquipmentBonuses.ZERO
+    fun getBonuses(itemId: Int): EquipmentBonuses {
+        val def = item.ItemDefinitions.getOrEmpty(itemId)
+        return EquipmentBonuses(
+            attackStab = def.attackStab,
+            attackSlash = def.attackSlash,
+            attackCrush = def.attackCrush,
+            attackMagic = def.attackMagic,
+            attackRanged = def.attackRanged,
+            meleeStrength = def.meleeStrength,
+            rangedStrength = def.rangedStrength,
+            magicStrength = def.magicDamage,
+            defenceStab = def.defenceStab,
+            defenceSlash = def.defenceSlash,
+            defenceCrush = def.defenceCrush,
+            defenceMagic = def.defenceMagic,
+            defenceRanged = def.defenceRanged,
+            prayerBonus = def.prayer,
+        )
+    }
 }
