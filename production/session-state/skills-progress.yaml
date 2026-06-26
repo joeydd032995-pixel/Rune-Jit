@@ -46,9 +46,20 @@ woodcutting:
     - tree object IDs from cache (objectIds arrays are empty until cache extraction)
     - WC Guild boundary detection (player.isInWoodcuttingGuild stub returns false; requires world-region-loader)
     - Lumberjack outfit XP bonus (requires equipment piece lookup system)
-    - Infernal axe Firemaking XP grant (requires Firemaking skill implementation)
     - Bird nest physical ground drop (requires world ground-item system)
     - Netty HashedWheelTimer wiring (requires /implement-tick-engine-core)
+
+firemaking:
+  status: IMPLEMENTED
+  implemented_at: "2026-06-25"
+  description: "Firemaking skill: 12 log types (Normal through Redwood), 100% success rate, 3 ticks/attempt, tinderbox required, Infernal axe FM XP grant wired"
+  pending_items:
+    - "Ash ground drop (requires world ground-item system)"
+    - "Fire ground object placement (requires world object system)"
+    - "Pyre logs at Shades of Mort'ton — deferred Phase 5"
+    - "Blisterwood log ID 24136 (verify against cache when /load-osrs-cache-full is run)"
+    - "Animation IDs (stubs until /cache-unpack-extract-assets)"
+    - "Diary XP bonuses (Asgarnia diary +2.5%) — deferred"
 
 protocol_engine:
   status: IMPLEMENTED
