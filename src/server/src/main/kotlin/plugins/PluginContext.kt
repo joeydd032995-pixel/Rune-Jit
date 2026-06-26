@@ -27,6 +27,18 @@ interface PluginContext {
     fun onItemInteract(option: String, itemIds: IntArray, handler: (Player, Int) -> Unit)
 
     /**
+     * Binds an item-use-on-item handler. Fires when the player uses any item in
+     * [primaryItemIds] on any item in [targetItemIds] (or vice versa — order is
+     * normalised by the dispatcher). [handler] receives the player, the matched
+     * primary item ID, and the matched target item ID.
+     */
+    fun onItemUseOnItem(
+        primaryItemIds: IntArray,
+        targetItemIds: IntArray,
+        handler: (Player, Int, Int) -> Unit,
+    )
+
+    /**
      * Binds a widget-action handler to a specific interface/component pair.
      * [handler] receives the interacting player.
      */

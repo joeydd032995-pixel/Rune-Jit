@@ -1,0 +1,312 @@
+# data/skills/herblore.yaml — Herblore skill data for Rune-Jit
+#
+# Single source of truth for all Herblore values.
+# HerblorePlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Herblore
+# License: CC BY-NC-SA 3.0 (wiki content)
+#
+# IMPORTANT PARITY NOTE: freshly-made potions in OSRS are 3-dose, NOT 4-dose.
+# All output_item_id values below are the (3) dose variants.
+# Source: https://oldschool.runescape.wiki/w/Herblore#Potions
+
+meta:
+  skill: HERBLORE
+  vial_of_water_item_id: 227   # https://oldschool.runescape.wiki/w/Vial_of_water
+
+# ---------------------------------------------------------------------------
+# Herbs — cleaning grimy → clean grants XP; clean + vial → unfinished potion (no XP).
+# Source: https://oldschool.runescape.wiki/w/Herblore#Cleaning_herbs
+# ---------------------------------------------------------------------------
+
+herbs:
+  GUAM:
+    clean_level: 1
+    clean_xp: 2.5
+    grimy_item_id: 199
+    clean_item_id: 249
+    unf_potion_item_id: 91
+    wiki: "https://oldschool.runescape.wiki/w/Guam_leaf"
+
+  MARRENTILL:
+    clean_level: 5
+    clean_xp: 3.8
+    grimy_item_id: 201
+    clean_item_id: 251
+    unf_potion_item_id: 93
+    wiki: "https://oldschool.runescape.wiki/w/Marrentill"
+
+  TARROMIN:
+    clean_level: 11
+    clean_xp: 5.0
+    grimy_item_id: 203
+    clean_item_id: 253
+    unf_potion_item_id: 95
+    wiki: "https://oldschool.runescape.wiki/w/Tarromin"
+
+  HARRALANDER:
+    clean_level: 20
+    clean_xp: 6.3
+    grimy_item_id: 205
+    clean_item_id: 255
+    unf_potion_item_id: 97
+    wiki: "https://oldschool.runescape.wiki/w/Harralander"
+
+  RANARR_WEED:
+    clean_level: 25
+    clean_xp: 7.5
+    grimy_item_id: 207
+    clean_item_id: 257
+    unf_potion_item_id: 99
+    wiki: "https://oldschool.runescape.wiki/w/Ranarr_weed"
+
+  TOADFLAX:
+    clean_level: 30
+    clean_xp: 8.0
+    grimy_item_id: 3049
+    clean_item_id: 2998
+    unf_potion_item_id: 3002
+    wiki: "https://oldschool.runescape.wiki/w/Toadflax"
+
+  IRIT_LEAF:
+    clean_level: 40
+    clean_xp: 8.8
+    grimy_item_id: 209
+    clean_item_id: 259
+    unf_potion_item_id: 101
+    wiki: "https://oldschool.runescape.wiki/w/Irit_leaf"
+
+  AVANTOE:
+    clean_level: 48
+    clean_xp: 10.0
+    grimy_item_id: 211
+    clean_item_id: 261
+    unf_potion_item_id: 103
+    wiki: "https://oldschool.runescape.wiki/w/Avantoe"
+
+  KWUARM:
+    clean_level: 54
+    clean_xp: 11.3
+    grimy_item_id: 213
+    clean_item_id: 263
+    unf_potion_item_id: 105
+    wiki: "https://oldschool.runescape.wiki/w/Kwuarm"
+
+  SNAPDRAGON:
+    clean_level: 59
+    clean_xp: 11.8
+    grimy_item_id: 3051
+    clean_item_id: 3000
+    unf_potion_item_id: 3004
+    wiki: "https://oldschool.runescape.wiki/w/Snapdragon"
+
+  CADANTINE:
+    clean_level: 65
+    clean_xp: 12.5
+    grimy_item_id: 215
+    clean_item_id: 265
+    unf_potion_item_id: 107
+    wiki: "https://oldschool.runescape.wiki/w/Cadantine"
+
+  LANTADYME:
+    clean_level: 67
+    clean_xp: 13.1
+    grimy_item_id: 2485
+    clean_item_id: 2481
+    unf_potion_item_id: 2483
+    wiki: "https://oldschool.runescape.wiki/w/Lantadyme"
+
+  DWARF_WEED:
+    clean_level: 70
+    clean_xp: 13.8
+    grimy_item_id: 217
+    clean_item_id: 267
+    unf_potion_item_id: 109
+    wiki: "https://oldschool.runescape.wiki/w/Dwarf_weed"
+
+  TORSTOL:
+    clean_level: 75
+    clean_xp: 15.0
+    grimy_item_id: 219
+    clean_item_id: 269
+    unf_potion_item_id: 111
+    wiki: "https://oldschool.runescape.wiki/w/Torstol"
+
+# ---------------------------------------------------------------------------
+# Potions — unfinished potion + secondary → finished (3) dose potion + XP.
+# Source: https://oldschool.runescape.wiki/w/Herblore#Potions
+# output_item_id is always the (3) dose variant (freshly-made = 3 doses).
+# ---------------------------------------------------------------------------
+
+potions:
+  ATTACK_POTION:
+    level_required: 3
+    xp: 25.0
+    primary_item_id: 249      # clean guam
+    secondary_item_id: 221    # eye of newt
+    unfinished_item_id: 91
+    output_item_id: 121       # attack potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Attack_potion"
+
+  ANTIPOISON:
+    level_required: 5
+    xp: 37.5
+    primary_item_id: 251      # clean marrentill
+    secondary_item_id: 235    # unicorn horn dust
+    unfinished_item_id: 93
+    output_item_id: 175       # antipoison (3)
+    wiki: "https://oldschool.runescape.wiki/w/Antipoison"
+
+  STRENGTH_POTION:
+    level_required: 12
+    xp: 50.0
+    primary_item_id: 253      # clean tarromin
+    secondary_item_id: 225    # limpwurt root
+    unfinished_item_id: 95
+    output_item_id: 115       # strength potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Strength_potion"
+
+  RESTORE_POTION:
+    level_required: 22
+    xp: 62.5
+    primary_item_id: 255      # clean harralander
+    secondary_item_id: 223    # red spiders' eggs
+    unfinished_item_id: 97
+    output_item_id: 127       # restore potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Restore_potion"
+
+  ENERGY_POTION:
+    level_required: 26
+    xp: 67.5
+    primary_item_id: 255      # clean harralander
+    secondary_item_id: 1975   # chocolate dust
+    unfinished_item_id: 97
+    output_item_id: 3010      # energy potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Energy_potion"
+
+  DEFENCE_POTION:
+    level_required: 30
+    xp: 75.0
+    primary_item_id: 257      # clean ranarr weed
+    secondary_item_id: 239    # white berries
+    unfinished_item_id: 99
+    output_item_id: 133       # defence potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Defence_potion"
+
+  AGILITY_POTION:
+    level_required: 34
+    xp: 80.0
+    primary_item_id: 2998     # clean toadflax
+    secondary_item_id: 2152   # toad's legs
+    unfinished_item_id: 3002
+    output_item_id: 3034      # agility potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Agility_potion"
+
+  PRAYER_POTION:
+    level_required: 38
+    xp: 87.5
+    primary_item_id: 257      # clean ranarr weed
+    secondary_item_id: 231    # snape grass
+    unfinished_item_id: 99
+    output_item_id: 139       # prayer potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Prayer_potion"
+
+  SUPER_ATTACK:
+    level_required: 45
+    xp: 100.0
+    primary_item_id: 259      # clean irit leaf
+    secondary_item_id: 221    # eye of newt
+    unfinished_item_id: 101
+    output_item_id: 145       # super attack (3)
+    wiki: "https://oldschool.runescape.wiki/w/Super_attack"
+
+  SUPERANTIPOISON:
+    level_required: 48
+    xp: 106.3
+    primary_item_id: 259      # clean irit leaf
+    secondary_item_id: 235    # unicorn horn dust
+    unfinished_item_id: 101
+    output_item_id: 181       # superantipoison (3)
+    wiki: "https://oldschool.runescape.wiki/w/Superantipoison"
+
+  FISHING_POTION:
+    level_required: 50
+    xp: 112.5
+    primary_item_id: 261      # clean avantoe
+    secondary_item_id: 231    # snape grass
+    unfinished_item_id: 103
+    output_item_id: 151       # fishing potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Fishing_potion"
+
+  SUPER_STRENGTH:
+    level_required: 55
+    xp: 125.0
+    primary_item_id: 263      # clean kwuarm
+    secondary_item_id: 225    # limpwurt root
+    unfinished_item_id: 105
+    output_item_id: 157       # super strength (3)
+    wiki: "https://oldschool.runescape.wiki/w/Super_strength"
+
+  SUPER_RESTORE:
+    level_required: 63
+    xp: 142.5
+    primary_item_id: 3000     # clean snapdragon
+    secondary_item_id: 223    # red spiders' eggs
+    unfinished_item_id: 3004
+    output_item_id: 3026      # super restore (3)
+    wiki: "https://oldschool.runescape.wiki/w/Super_restore"
+
+  SUPER_DEFENCE:
+    level_required: 66
+    xp: 150.0
+    primary_item_id: 265      # clean cadantine
+    secondary_item_id: 239    # white berries
+    unfinished_item_id: 107
+    output_item_id: 163       # super defence (3)
+    wiki: "https://oldschool.runescape.wiki/w/Super_defence"
+
+  ANTIFIRE_POTION:
+    level_required: 69
+    xp: 157.5
+    primary_item_id: 2481     # clean lantadyme
+    secondary_item_id: 241    # dragon scale dust
+    unfinished_item_id: 2483
+    output_item_id: 2454      # antifire potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Antifire_potion"
+
+  RANGING_POTION:
+    level_required: 72
+    xp: 162.5
+    primary_item_id: 267      # clean dwarf weed
+    secondary_item_id: 245    # wine of zamorak
+    unfinished_item_id: 109
+    output_item_id: 169       # ranging potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Ranging_potion"
+
+  MAGIC_POTION:
+    level_required: 76
+    xp: 172.5
+    primary_item_id: 2481     # clean lantadyme
+    secondary_item_id: 3138   # potato cactus
+    unfinished_item_id: 2483
+    output_item_id: 3042      # magic potion (3)
+    wiki: "https://oldschool.runescape.wiki/w/Magic_potion"
+
+  ZAMORAK_BREW:
+    level_required: 78
+    xp: 175.0
+    primary_item_id: 269      # clean torstol
+    secondary_item_id: 247    # jangerberries
+    unfinished_item_id: 111
+    output_item_id: 189       # zamorak brew (3)
+    wiki: "https://oldschool.runescape.wiki/w/Zamorak_brew"
+
+  SARADOMIN_BREW:
+    level_required: 81
+    xp: 180.0
+    primary_item_id: 2998     # clean toadflax
+    secondary_item_id: 6693   # crushed nest
+    unfinished_item_id: 3002
+    output_item_id: 6687      # saradomin brew (3)
+    wiki: "https://oldschool.runescape.wiki/w/Saradomin_brew"
