@@ -61,6 +61,21 @@ firemaking:
     - "Animation IDs (stubs until /cache-unpack-extract-assets)"
     - "Diary XP bonuses (Asgarnia diary +2.5%) — deferred"
 
+herblore:
+  status: IMPLEMENTED
+  implemented_at: "2026-06-26"
+  description: "Herblore skill: 14 herbs (cleaning), 18 potion recipes, vial-of-water combining. Added onItemUseOnItem to PluginContext. Outputs are 3-dose potions (OSRS parity). All actions immediate (no tick loop)."
+  pending_items:
+    - "Make-X batch interface (client-driven repeat; single mix per interaction for now)"
+    - "Super combat potion (4-ingredient recipe) — deferred"
+    - "Antidote+/++ (special ingredients) — deferred"
+    - "Combination potions (Zulrah's scales etc.) — deferred Phase 5"
+    - "Tars (herb + swamp tar) — deferred"
+    - "Barbarian herblore (Otto's first aid) — deferred"
+    - "Potion decanting via Bob Barter / GE — deferred (requires NPC dialogue)"
+    - "onItemUseOnItem runtime dispatch wiring (interface defined; rsmod wires at /implement-tick-engine-core)"
+    - "Animation IDs + 'You need level X' player messages (stubs until cache + protocol wiring)"
+
 protocol_engine:
   status: IMPLEMENTED
   implemented_at: 2026-06-24
