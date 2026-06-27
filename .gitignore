@@ -62,3 +62,6 @@ __pycache__/
 *.dat2
 *.idx
 src/server/data/
+
+# Git worktrees created by background agents (never commit)
+.claude/worktrees/
