@@ -1,0 +1,241 @@
+# data/skills/cooking.yaml — Cooking skill data for Rune-Jit
+#
+# Single source of truth for all Cooking values.
+# CookingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Cooking
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: COOKING
+  ticks_per_attempt: 4         # 4 ticks = 2.4 seconds per item cooked
+                                # https://oldschool.runescape.wiki/w/Cooking#Mechanics
+  cooking_gauntlets_item_id: 775   # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+  cook_animation: 897           # TODO: verify from cache index 12 after /load-osrs-cache-full
+
+# ---------------------------------------------------------------------------
+# Burn-chance mechanic (implemented in CookingAction.kt, not evaluated here)
+#
+# Each food has a level at which the player stops burning it ("stop_burn_level").
+# Burn chance scales linearly from the level the food can first be cooked down to
+# (almost) zero at stop_burn_level. Cooking on a range burns less than on a fire,
+# so range stop-burn levels are lower than fire stop-burn levels.
+#
+# We model the per-food burn stop with two thresholds:
+#   stop_burn_level_range : level at/above which you never burn this food on a range
+#   stop_burn_level_fire  : level at/above which you never burn this food on a fire
+#
+# Cooking gauntlets (item 775) lower the effective stop-burn level for lobster,
+# swordfish, and shark (see uses_gauntlets / gauntlets_stop_burn_level_range).
+#
+# Source: https://oldschool.runescape.wiki/w/Cooking#Burn_level
+# Community burn data: https://oldschool.runescape.wiki/w/Cooking#Cooking_food
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Fire & range objects
+# ---------------------------------------------------------------------------
+# Object IDs come from cache after /cache-unpack-extract-assets. Until then the
+# plugin skips registration (mirrors FishingPlugin's empty-id guard). The lists
+# stay empty here so no fabricated object IDs leak into the data file.
+# fire objects: https://oldschool.runescape.wiki/w/Fire
+# range objects: https://oldschool.runescape.wiki/w/Cooking_range
+fire_object_ids: []            # populated post-cache-extraction
+range_object_ids: []           # populated post-cache-extraction
+
+# ---------------------------------------------------------------------------
+# Food
+# ---------------------------------------------------------------------------
+# Source (XP + level): https://oldschool.runescape.wiki/w/Cooking#Cooking_food
+# raw/cooked/burnt item IDs verified against osrsbox-db items-complete.json
+#
+# stop_burn_level_range / stop_burn_level_fire are the widely cited community
+# "stop-burn" levels for cooking on a range vs a fire.
+
+food:
+  SHRIMPS:
+    level_required: 1            # https://oldschool.runescape.wiki/w/Shrimps
+    xp: 30.0                     # https://oldschool.runescape.wiki/w/Shrimps
+    raw_item_id: 317             # https://oldschool.runescape.wiki/w/Raw_shrimps
+    cooked_item_id: 315          # https://oldschool.runescape.wiki/w/Shrimps
+    burnt_item_id: 7954          # https://oldschool.runescape.wiki/w/Burnt_shrimp
+    stop_burn_level_range: 34    # https://oldschool.runescape.wiki/w/Shrimps
+    stop_burn_level_fire: 43     # https://oldschool.runescape.wiki/w/Shrimps
+    wiki: "https://oldschool.runescape.wiki/w/Shrimps"
+
+  SARDINE:
+    level_required: 1            # https://oldschool.runescape.wiki/w/Sardine
+    xp: 40.0                     # https://oldschool.runescape.wiki/w/Sardine
+    raw_item_id: 327             # https://oldschool.runescape.wiki/w/Raw_sardine
+    cooked_item_id: 325          # https://oldschool.runescape.wiki/w/Sardine
+    burnt_item_id: 369           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 38    # https://oldschool.runescape.wiki/w/Sardine
+    stop_burn_level_fire: 48     # https://oldschool.runescape.wiki/w/Sardine
+    wiki: "https://oldschool.runescape.wiki/w/Sardine"
+
+  ANCHOVIES:
+    level_required: 1            # https://oldschool.runescape.wiki/w/Anchovies
+    xp: 30.0                     # https://oldschool.runescape.wiki/w/Anchovies
+    raw_item_id: 321             # https://oldschool.runescape.wiki/w/Raw_anchovies
+    cooked_item_id: 319          # https://oldschool.runescape.wiki/w/Anchovies
+    burnt_item_id: 323           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 34    # https://oldschool.runescape.wiki/w/Anchovies
+    stop_burn_level_fire: 43     # https://oldschool.runescape.wiki/w/Anchovies
+    wiki: "https://oldschool.runescape.wiki/w/Anchovies"
+
+  HERRING:
+    level_required: 5            # https://oldschool.runescape.wiki/w/Herring
+    xp: 50.0                     # https://oldschool.runescape.wiki/w/Herring
+    raw_item_id: 345             # https://oldschool.runescape.wiki/w/Raw_herring
+    cooked_item_id: 347          # https://oldschool.runescape.wiki/w/Herring
+    burnt_item_id: 357           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 41    # https://oldschool.runescape.wiki/w/Herring
+    stop_burn_level_fire: 51     # https://oldschool.runescape.wiki/w/Herring
+    wiki: "https://oldschool.runescape.wiki/w/Herring"
+
+  MACKEREL:
+    level_required: 10           # https://oldschool.runescape.wiki/w/Mackerel
+    xp: 60.0                     # https://oldschool.runescape.wiki/w/Mackerel
+    raw_item_id: 353             # https://oldschool.runescape.wiki/w/Raw_mackerel
+    cooked_item_id: 355          # https://oldschool.runescape.wiki/w/Mackerel
+    burnt_item_id: 357           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 45    # https://oldschool.runescape.wiki/w/Mackerel
+    stop_burn_level_fire: 55     # https://oldschool.runescape.wiki/w/Mackerel
+    wiki: "https://oldschool.runescape.wiki/w/Mackerel"
+
+  TROUT:
+    level_required: 15           # https://oldschool.runescape.wiki/w/Trout
+    xp: 70.0                     # https://oldschool.runescape.wiki/w/Trout
+    raw_item_id: 335             # https://oldschool.runescape.wiki/w/Raw_trout
+    cooked_item_id: 333          # https://oldschool.runescape.wiki/w/Trout
+    burnt_item_id: 343           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 49    # https://oldschool.runescape.wiki/w/Trout
+    stop_burn_level_fire: 59     # https://oldschool.runescape.wiki/w/Trout
+    wiki: "https://oldschool.runescape.wiki/w/Trout"
+
+  COD:
+    level_required: 18           # https://oldschool.runescape.wiki/w/Cod
+    xp: 75.0                     # https://oldschool.runescape.wiki/w/Cod
+    raw_item_id: 341             # https://oldschool.runescape.wiki/w/Raw_cod
+    cooked_item_id: 339          # https://oldschool.runescape.wiki/w/Cod
+    burnt_item_id: 343           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 52    # https://oldschool.runescape.wiki/w/Cod
+    stop_burn_level_fire: 62     # https://oldschool.runescape.wiki/w/Cod
+    wiki: "https://oldschool.runescape.wiki/w/Cod"
+
+  PIKE:
+    level_required: 20           # https://oldschool.runescape.wiki/w/Pike
+    xp: 80.0                     # https://oldschool.runescape.wiki/w/Pike
+    raw_item_id: 349             # https://oldschool.runescape.wiki/w/Raw_pike
+    cooked_item_id: 351          # https://oldschool.runescape.wiki/w/Pike
+    burnt_item_id: 343           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 53    # https://oldschool.runescape.wiki/w/Pike
+    stop_burn_level_fire: 64     # https://oldschool.runescape.wiki/w/Pike
+    wiki: "https://oldschool.runescape.wiki/w/Pike"
+
+  SALMON:
+    level_required: 25           # https://oldschool.runescape.wiki/w/Salmon
+    xp: 90.0                     # https://oldschool.runescape.wiki/w/Salmon
+    raw_item_id: 331             # https://oldschool.runescape.wiki/w/Raw_salmon
+    cooked_item_id: 329          # https://oldschool.runescape.wiki/w/Salmon
+    burnt_item_id: 343           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 58    # https://oldschool.runescape.wiki/w/Salmon
+    stop_burn_level_fire: 68     # https://oldschool.runescape.wiki/w/Salmon
+    wiki: "https://oldschool.runescape.wiki/w/Salmon"
+
+  TUNA:
+    level_required: 30           # https://oldschool.runescape.wiki/w/Tuna
+    xp: 100.0                    # https://oldschool.runescape.wiki/w/Tuna
+    raw_item_id: 359             # https://oldschool.runescape.wiki/w/Raw_tuna
+    cooked_item_id: 361          # https://oldschool.runescape.wiki/w/Tuna
+    burnt_item_id: 367           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 63    # https://oldschool.runescape.wiki/w/Tuna
+    stop_burn_level_fire: 64     # https://oldschool.runescape.wiki/w/Tuna
+    wiki: "https://oldschool.runescape.wiki/w/Tuna"
+
+  BASS:
+    level_required: 43           # https://oldschool.runescape.wiki/w/Bass
+    xp: 130.0                    # https://oldschool.runescape.wiki/w/Bass
+    raw_item_id: 363             # https://oldschool.runescape.wiki/w/Raw_bass
+    cooked_item_id: 365          # https://oldschool.runescape.wiki/w/Bass
+    burnt_item_id: 367           # https://oldschool.runescape.wiki/w/Burnt_fish
+    stop_burn_level_range: 80    # https://oldschool.runescape.wiki/w/Bass
+    stop_burn_level_fire: 90     # https://oldschool.runescape.wiki/w/Bass
+    wiki: "https://oldschool.runescape.wiki/w/Bass"
+
+  LOBSTER:
+    level_required: 40           # https://oldschool.runescape.wiki/w/Lobster
+    xp: 120.0                    # https://oldschool.runescape.wiki/w/Lobster
+    raw_item_id: 377             # https://oldschool.runescape.wiki/w/Raw_lobster
+    cooked_item_id: 379          # https://oldschool.runescape.wiki/w/Lobster
+    burnt_item_id: 381           # https://oldschool.runescape.wiki/w/Burnt_lobster
+    stop_burn_level_range: 74    # https://oldschool.runescape.wiki/w/Lobster
+    stop_burn_level_fire: 74     # https://oldschool.runescape.wiki/w/Lobster
+    uses_gauntlets: true         # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    gauntlets_stop_burn_level: 64  # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    wiki: "https://oldschool.runescape.wiki/w/Lobster"
+
+  SWORDFISH:
+    level_required: 45           # https://oldschool.runescape.wiki/w/Swordfish
+    xp: 140.0                    # https://oldschool.runescape.wiki/w/Swordfish
+    raw_item_id: 371             # https://oldschool.runescape.wiki/w/Raw_swordfish
+    cooked_item_id: 373          # https://oldschool.runescape.wiki/w/Swordfish
+    burnt_item_id: 375           # https://oldschool.runescape.wiki/w/Burnt_swordfish
+    stop_burn_level_range: 86    # https://oldschool.runescape.wiki/w/Swordfish
+    stop_burn_level_fire: 86     # https://oldschool.runescape.wiki/w/Swordfish
+    uses_gauntlets: true         # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    gauntlets_stop_burn_level: 81  # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    wiki: "https://oldschool.runescape.wiki/w/Swordfish"
+
+  MONKFISH:
+    level_required: 62           # https://oldschool.runescape.wiki/w/Monkfish
+    xp: 150.0                    # https://oldschool.runescape.wiki/w/Monkfish
+    raw_item_id: 7944            # https://oldschool.runescape.wiki/w/Raw_monkfish
+    cooked_item_id: 7946         # https://oldschool.runescape.wiki/w/Monkfish
+    burnt_item_id: 7948          # https://oldschool.runescape.wiki/w/Burnt_monkfish
+    stop_burn_level_range: 90    # https://oldschool.runescape.wiki/w/Monkfish
+    stop_burn_level_fire: 92     # https://oldschool.runescape.wiki/w/Monkfish
+    wiki: "https://oldschool.runescape.wiki/w/Monkfish"
+
+  KARAMBWAN:
+    level_required: 30           # https://oldschool.runescape.wiki/w/Cooked_karambwan
+    xp: 190.0                    # https://oldschool.runescape.wiki/w/Cooked_karambwan
+    raw_item_id: 3142            # https://oldschool.runescape.wiki/w/Raw_karambwan
+    cooked_item_id: 3144         # https://oldschool.runescape.wiki/w/Cooked_karambwan
+    burnt_item_id: 3148          # https://oldschool.runescape.wiki/w/Burnt_karambwan
+    stop_burn_level_range: 99    # https://oldschool.runescape.wiki/w/Cooked_karambwan
+    stop_burn_level_fire: 99     # https://oldschool.runescape.wiki/w/Cooked_karambwan
+    wiki: "https://oldschool.runescape.wiki/w/Cooked_karambwan"
+
+  SHARK:
+    level_required: 80           # https://oldschool.runescape.wiki/w/Shark
+    xp: 210.0                    # https://oldschool.runescape.wiki/w/Shark
+    raw_item_id: 383             # https://oldschool.runescape.wiki/w/Raw_shark
+    cooked_item_id: 385          # https://oldschool.runescape.wiki/w/Shark
+    burnt_item_id: 387           # https://oldschool.runescape.wiki/w/Burnt_shark
+    stop_burn_level_range: 99    # https://oldschool.runescape.wiki/w/Shark
+    stop_burn_level_fire: 99     # https://oldschool.runescape.wiki/w/Shark
+    uses_gauntlets: true         # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    gauntlets_stop_burn_level: 94  # https://oldschool.runescape.wiki/w/Cooking_gauntlets
+    wiki: "https://oldschool.runescape.wiki/w/Shark"
+
+  MANTA_RAY:
+    level_required: 91           # https://oldschool.runescape.wiki/w/Manta_ray
+    xp: 216.3                    # https://oldschool.runescape.wiki/w/Manta_ray
+    raw_item_id: 389             # https://oldschool.runescape.wiki/w/Raw_manta_ray
+    cooked_item_id: 391          # https://oldschool.runescape.wiki/w/Manta_ray
+    burnt_item_id: 393           # https://oldschool.runescape.wiki/w/Burnt_manta_ray
+    stop_burn_level_range: 99    # https://oldschool.runescape.wiki/w/Manta_ray
+    stop_burn_level_fire: 99     # https://oldschool.runescape.wiki/w/Manta_ray
+    wiki: "https://oldschool.runescape.wiki/w/Manta_ray"
+
+  SEA_TURTLE:
+    level_required: 82           # https://oldschool.runescape.wiki/w/Sea_turtle
+    xp: 211.3                    # https://oldschool.runescape.wiki/w/Sea_turtle
+    raw_item_id: 395             # https://oldschool.runescape.wiki/w/Raw_sea_turtle
+    cooked_item_id: 397          # https://oldschool.runescape.wiki/w/Sea_turtle
+    burnt_item_id: 399           # https://oldschool.runescape.wiki/w/Burnt_sea_turtle
+    stop_burn_level_range: 99    # https://oldschool.runescape.wiki/w/Sea_turtle
+    stop_burn_level_fire: 99     # https://oldschool.runescape.wiki/w/Sea_turtle
+    wiki: "https://oldschool.runescape.wiki/w/Sea_turtle"

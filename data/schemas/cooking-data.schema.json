@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/joeydd032995-pixel/Rune-Jit/blob/main/data/schemas/cooking-data.schema.json",
+  "title": "Rune-Jit Cooking Skill Data",
+  "description": "JSON Schema for data/skills/cooking.yaml. Cooking diverges from the gathering schema (raw->cooked/burnt food map instead of trees/axes), so it has its own schema per the data-schemas.md independence rule. Validate with: python3 -c \"import jsonschema, yaml, json; jsonschema.validate(yaml.safe_load(open('data/skills/cooking.yaml')), json.load(open('data/schemas/cooking-data.schema.json')))\"",
+  "type": "object",
+  "required": ["meta", "food"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Skill-level metadata consumed by the plugin at startup.",
+      "required": ["skill", "ticks_per_attempt", "cooking_gauntlets_item_id"],
+      "additionalProperties": true,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "const": "COOKING",
+          "description": "OSRS skill enum name — must be COOKING for this file."
+        },
+        "ticks_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Game ticks per item cooked (1 tick = 0.6s). Cooking = 4."
+        },
+        "cooking_gauntlets_item_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Item ID of Cooking gauntlets (775)."
+        },
+        "cook_animation": {
+          "type": ["integer", "null"],
+          "description": "Animation ID for the cooking action (verify from cache)."
+        }
+      }
+    },
+    "fire_object_ids": {
+      "type": "array",
+      "description": "Object IDs that trigger raw-food-on-fire cooking. Populated post cache extraction.",
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "range_object_ids": {
+      "type": "array",
+      "description": "Range object IDs offering the 'Cook' option. Populated post cache extraction.",
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "food": {
+      "type": "object",
+      "description": "Map of food name -> cooking definition.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "level_required",
+          "xp",
+          "raw_item_id",
+          "cooked_item_id",
+          "burnt_item_id",
+          "stop_burn_level_range",
+          "stop_burn_level_fire",
+          "wiki"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "level_required": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Minimum Cooking level to cook this food."
+          },
+          "xp": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Cooking XP awarded per successfully cooked item."
+          },
+          "raw_item_id": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Raw food item ID."
+          },
+          "cooked_item_id": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Successfully cooked food item ID."
+          },
+          "burnt_item_id": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Burnt food item ID."
+          },
+          "stop_burn_level_range": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Cooking level at/above which this food no longer burns on a range."
+          },
+          "stop_burn_level_fire": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Cooking level at/above which this food no longer burns on a fire."
+          },
+          "uses_gauntlets": {
+            "type": "boolean",
+            "description": "Whether Cooking gauntlets reduce burn for this food (lobster/swordfish/shark)."
+          },
+          "gauntlets_stop_burn_level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Stop-burn level when wearing Cooking gauntlets (applies to uses_gauntlets foods)."
+          },
+          "wiki": {
+            "type": "string",
+            "format": "uri",
+            "description": "Primary OSRS wiki page for this food."
+          }
+        }
+      }
+    }
+  }
+}
