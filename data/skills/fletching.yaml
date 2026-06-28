@@ -1,0 +1,305 @@
+meta:
+  skill: FLETCHING
+  ticks_per_action: 4    # https://oldschool.runescape.wiki/w/Fletching
+
+# Key item IDs referenced below:
+#   Knife: 946
+#   Bowstring: 1777
+#   Normal logs: 1511, Oak logs: 1521, Willow logs: 1519, Maple logs: 1517
+#   Yew logs: 1513, Magic logs: 1513 (placeholder — same id in old data; magic=1513)
+#   Arrow shaft: 52, Feather: 314, Headless arrow: 53
+
+recipes:
+  # -----------------------------------------------------------------------
+  # Bows: Knife (946) on log → unstrung bow
+  # Source: https://oldschool.runescape.wiki/w/Fletching#Bows
+  # -----------------------------------------------------------------------
+  bows:
+    SHORTBOW:
+      level_required: 5       # https://oldschool.runescape.wiki/w/Shortbow
+      xp: 5.0                 # https://oldschool.runescape.wiki/w/Shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1511    # Normal logs
+      output_item_id: 50      # Shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Shortbow"
+    LONGBOW:
+      level_required: 10      # https://oldschool.runescape.wiki/w/Longbow
+      xp: 10.0                # https://oldschool.runescape.wiki/w/Longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1511    # Normal logs
+      output_item_id: 48      # Longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Longbow"
+    OAK_SHORTBOW:
+      level_required: 20      # https://oldschool.runescape.wiki/w/Oak_shortbow
+      xp: 16.5               # https://oldschool.runescape.wiki/w/Oak_shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1521    # Oak logs
+      output_item_id: 54      # Oak shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Oak_shortbow"
+    OAK_LONGBOW:
+      level_required: 25      # https://oldschool.runescape.wiki/w/Oak_longbow
+      xp: 25.0               # https://oldschool.runescape.wiki/w/Oak_longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1521    # Oak logs
+      output_item_id: 56      # Oak longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Oak_longbow"
+    WILLOW_SHORTBOW:
+      level_required: 35      # https://oldschool.runescape.wiki/w/Willow_shortbow
+      xp: 33.25              # https://oldschool.runescape.wiki/w/Willow_shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1519    # Willow logs
+      output_item_id: 58      # Willow shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Willow_shortbow"
+    WILLOW_LONGBOW:
+      level_required: 40      # https://oldschool.runescape.wiki/w/Willow_longbow
+      xp: 41.5               # https://oldschool.runescape.wiki/w/Willow_longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1519    # Willow logs
+      output_item_id: 60      # Willow longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Willow_longbow"
+    MAPLE_SHORTBOW:
+      level_required: 50      # https://oldschool.runescape.wiki/w/Maple_shortbow
+      xp: 50.0               # https://oldschool.runescape.wiki/w/Maple_shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1517    # Maple logs
+      output_item_id: 62      # Maple shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Maple_shortbow"
+    MAPLE_LONGBOW:
+      level_required: 55      # https://oldschool.runescape.wiki/w/Maple_longbow
+      xp: 58.25              # https://oldschool.runescape.wiki/w/Maple_longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1517    # Maple logs
+      output_item_id: 64      # Maple longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Maple_longbow"
+    YEW_SHORTBOW:
+      level_required: 65      # https://oldschool.runescape.wiki/w/Yew_shortbow
+      xp: 67.5               # https://oldschool.runescape.wiki/w/Yew_shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1513    # Yew logs
+      output_item_id: 66      # Yew shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Yew_shortbow"
+    YEW_LONGBOW:
+      level_required: 70      # https://oldschool.runescape.wiki/w/Yew_longbow
+      xp: 75.0               # https://oldschool.runescape.wiki/w/Yew_longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1513    # Yew logs
+      output_item_id: 68      # Yew longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Yew_longbow"
+    MAGIC_SHORTBOW:
+      level_required: 80      # https://oldschool.runescape.wiki/w/Magic_shortbow
+      xp: 83.25              # https://oldschool.runescape.wiki/w/Magic_shortbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1513    # Magic logs (placeholder — same id as yew in old data)
+      output_item_id: 70      # Magic shortbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Magic_shortbow"
+    MAGIC_LONGBOW:
+      level_required: 85      # https://oldschool.runescape.wiki/w/Magic_longbow
+      xp: 91.5               # https://oldschool.runescape.wiki/w/Magic_longbow
+      primary_item_id: 946    # Knife
+      target_item_id: 1513    # Magic logs placeholder
+      output_item_id: 72      # Magic longbow (u)
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Magic_longbow"
+
+  # -----------------------------------------------------------------------
+  # Stringing: Bowstring (1777) on unstrung bow → strung bow
+  # Source: https://oldschool.runescape.wiki/w/Fletching#Bows
+  # -----------------------------------------------------------------------
+  stringing:
+    SHORTBOW_STRING:
+      level_required: 5       # https://oldschool.runescape.wiki/w/Shortbow
+      xp: 5.0                 # https://oldschool.runescape.wiki/w/Shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 50      # Shortbow (u)
+      output_item_id: 841     # Shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Shortbow"
+    LONGBOW_STRING:
+      level_required: 10      # https://oldschool.runescape.wiki/w/Longbow
+      xp: 10.0               # https://oldschool.runescape.wiki/w/Longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 48      # Longbow (u)
+      output_item_id: 839     # Longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Longbow"
+    OAK_SHORTBOW_STRING:
+      level_required: 20      # https://oldschool.runescape.wiki/w/Oak_shortbow
+      xp: 16.5               # https://oldschool.runescape.wiki/w/Oak_shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 54      # Oak shortbow (u)
+      output_item_id: 843     # Oak shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Oak_shortbow"
+    OAK_LONGBOW_STRING:
+      level_required: 25      # https://oldschool.runescape.wiki/w/Oak_longbow
+      xp: 25.0               # https://oldschool.runescape.wiki/w/Oak_longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 56      # Oak longbow (u)
+      output_item_id: 845     # Oak longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Oak_longbow"
+    WILLOW_SHORTBOW_STRING:
+      level_required: 35      # https://oldschool.runescape.wiki/w/Willow_shortbow
+      xp: 33.25              # https://oldschool.runescape.wiki/w/Willow_shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 58      # Willow shortbow (u)
+      output_item_id: 847     # Willow shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Willow_shortbow"
+    WILLOW_LONGBOW_STRING:
+      level_required: 40      # https://oldschool.runescape.wiki/w/Willow_longbow
+      xp: 41.5               # https://oldschool.runescape.wiki/w/Willow_longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 60      # Willow longbow (u)
+      output_item_id: 849     # Willow longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Willow_longbow"
+    MAPLE_SHORTBOW_STRING:
+      level_required: 50      # https://oldschool.runescape.wiki/w/Maple_shortbow
+      xp: 50.0               # https://oldschool.runescape.wiki/w/Maple_shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 62      # Maple shortbow (u)
+      output_item_id: 851     # Maple shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Maple_shortbow"
+    MAPLE_LONGBOW_STRING:
+      level_required: 55      # https://oldschool.runescape.wiki/w/Maple_longbow
+      xp: 58.25              # https://oldschool.runescape.wiki/w/Maple_longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 64      # Maple longbow (u)
+      output_item_id: 853     # Maple longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Maple_longbow"
+    YEW_SHORTBOW_STRING:
+      level_required: 65      # https://oldschool.runescape.wiki/w/Yew_shortbow
+      xp: 67.5               # https://oldschool.runescape.wiki/w/Yew_shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 66      # Yew shortbow (u)
+      output_item_id: 855     # Yew shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Yew_shortbow"
+    YEW_LONGBOW_STRING:
+      level_required: 70      # https://oldschool.runescape.wiki/w/Yew_longbow
+      xp: 75.0               # https://oldschool.runescape.wiki/w/Yew_longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 68      # Yew longbow (u)
+      output_item_id: 857     # Yew longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Yew_longbow"
+    MAGIC_SHORTBOW_STRING:
+      level_required: 80      # https://oldschool.runescape.wiki/w/Magic_shortbow
+      xp: 83.25              # https://oldschool.runescape.wiki/w/Magic_shortbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 70      # Magic shortbow (u)
+      output_item_id: 859     # Magic shortbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Magic_shortbow"
+    MAGIC_LONGBOW_STRING:
+      level_required: 85      # https://oldschool.runescape.wiki/w/Magic_longbow
+      xp: 91.5               # https://oldschool.runescape.wiki/w/Magic_longbow
+      primary_item_id: 1777   # Bowstring
+      target_item_id: 72      # Magic longbow (u)
+      output_item_id: 861     # Magic longbow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Magic_longbow"
+
+  # -----------------------------------------------------------------------
+  # Arrow shafts: Knife (946) on logs → 15+ shafts per log
+  # Source: https://oldschool.runescape.wiki/w/Arrow_shaft
+  # -----------------------------------------------------------------------
+  arrow_shafts:
+    ARROW_SHAFT:
+      level_required: 1       # https://oldschool.runescape.wiki/w/Arrow_shaft
+      xp: 5.0                 # per 15 shafts https://oldschool.runescape.wiki/w/Arrow_shaft
+      primary_item_id: 946    # Knife
+      target_item_id: 1511    # Normal logs
+      output_item_id: 52      # Arrow shaft
+      output_qty: 15
+      wiki: "https://oldschool.runescape.wiki/w/Arrow_shaft"
+    OAK_ARROW_SHAFT:
+      level_required: 15      # https://oldschool.runescape.wiki/w/Arrow_shaft
+      xp: 10.0               # per 30 shafts https://oldschool.runescape.wiki/w/Arrow_shaft
+      primary_item_id: 946    # Knife
+      target_item_id: 1521    # Oak logs
+      output_item_id: 52      # Arrow shaft
+      output_qty: 30
+      wiki: "https://oldschool.runescape.wiki/w/Arrow_shaft"
+
+  # -----------------------------------------------------------------------
+  # Headless arrows: Arrow shaft (52) + Feather (314) → headless arrow (53)
+  # Source: https://oldschool.runescape.wiki/w/Headless_arrow
+  # -----------------------------------------------------------------------
+  headless_arrows:
+    HEADLESS_ARROW:
+      level_required: 1       # https://oldschool.runescape.wiki/w/Headless_arrow
+      xp: 1.0                 # per headless arrow https://oldschool.runescape.wiki/w/Headless_arrow
+      primary_item_id: 52     # Arrow shaft
+      target_item_id: 314     # Feather
+      output_item_id: 53      # Headless arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Headless_arrow"
+
+  # -----------------------------------------------------------------------
+  # Arrows: Arrowhead + headless arrow (53) → tipped arrow
+  # Source: https://oldschool.runescape.wiki/w/Fletching#Arrows
+  # -----------------------------------------------------------------------
+  arrows:
+    BRONZE_ARROW:
+      level_required: 1       # https://oldschool.runescape.wiki/w/Bronze_arrow
+      xp: 1.3                 # https://oldschool.runescape.wiki/w/Bronze_arrow
+      primary_item_id: 880    # Bronze arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 882     # Bronze arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Bronze_arrow"
+    IRON_ARROW:
+      level_required: 15      # https://oldschool.runescape.wiki/w/Iron_arrow
+      xp: 2.5                 # https://oldschool.runescape.wiki/w/Iron_arrow
+      primary_item_id: 884    # Iron arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 886     # Iron arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Iron_arrow"
+    STEEL_ARROW:
+      level_required: 30      # https://oldschool.runescape.wiki/w/Steel_arrow
+      xp: 5.0                 # https://oldschool.runescape.wiki/w/Steel_arrow
+      primary_item_id: 888    # Steel arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 890     # Steel arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Steel_arrow"
+    MITHRIL_ARROW:
+      level_required: 45      # https://oldschool.runescape.wiki/w/Mithril_arrow
+      xp: 7.5                 # https://oldschool.runescape.wiki/w/Mithril_arrow
+      primary_item_id: 892    # Mithril arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 894     # Mithril arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Mithril_arrow"
+    ADAMANT_ARROW:
+      level_required: 60      # https://oldschool.runescape.wiki/w/Adamant_arrow
+      xp: 10.0               # https://oldschool.runescape.wiki/w/Adamant_arrow
+      primary_item_id: 5765   # Adamant arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 892     # Adamant arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Adamant_arrow"
+    RUNE_ARROW:
+      level_required: 75      # https://oldschool.runescape.wiki/w/Rune_arrow
+      xp: 12.5               # https://oldschool.runescape.wiki/w/Rune_arrow
+      primary_item_id: 9241   # Rune arrowhead
+      target_item_id: 53      # Headless arrow
+      output_item_id: 9242    # Rune arrow
+      output_qty: 1
+      wiki: "https://oldschool.runescape.wiki/w/Rune_arrow"
