@@ -1,0 +1,215 @@
+# data/skills/runecraft.yaml — Runecraft skill data for Rune-Jit
+#
+# Single source of truth for all Runecraft values.
+# RunecraftPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Mechanic: the player uses Rune/Pure essence on (or interacts with) an altar.
+# All essence in the inventory is consumed at once; each essence yields one or more
+# runes depending on the player's Runecraft level (the "multiple runes" thresholds).
+# XP is awarded per essence crafted (a flat xp_per_essence per altar), NOT per rune.
+#
+# Source: https://oldschool.runescape.wiki/w/Runecraft
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: RUNECRAFT
+  ticks_per_attempt: 1          # Crafting at the altar resolves in a single action.
+                                # https://oldschool.runescape.wiki/w/Runecraft#Mechanics
+  rune_essence_item_id: 1436    # https://oldschool.runescape.wiki/w/Rune_essence
+  pure_essence_item_id: 7936    # https://oldschool.runescape.wiki/w/Pure_essence
+
+# ---------------------------------------------------------------------------
+# Altars
+# Source: https://oldschool.runescape.wiki/w/Runecraft#Runes
+#
+# For each rune:
+#   level_required    — Runecraft level to craft this rune.
+#   xp_per_essence    — base XP granted per essence (one essence = one craft).
+#   rune_item_id      — the rune produced.
+#   essence_item_id   — rune essence (low runes) or pure essence (members runes).
+#   altar_object_id   — the altar object (TODO: verify from cache via /load-osrs-cache-full).
+#   talisman_item_id  — talisman to enter the ruin (null where no item-id constant exists).
+#   multiple_thresholds — level→runes_per_essence rule. The highest threshold whose
+#                         level is <= the player's Runecraft level applies. A base
+#                         entry at level 1 with runes_per_essence 1 is always present.
+#
+# Multiple-rune levels are exact wiki values:
+# https://oldschool.runescape.wiki/w/Runecraft#Multiple_runes_per_essence
+# ---------------------------------------------------------------------------
+
+altars:
+  AIR:
+    level_required: 1
+    xp_per_essence: 5.0          # https://oldschool.runescape.wiki/w/Air_rune
+    rune_item_id: 556            # https://oldschool.runescape.wiki/w/Air_rune
+    essence_item_id: 1436        # rune essence — https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34760       # https://oldschool.runescape.wiki/w/Air_Altar
+    talisman_item_id: 1438       # https://oldschool.runescape.wiki/w/Air_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Air_rune#Crafting
+      - { level: 1,  runes_per_essence: 1 }
+      - { level: 11, runes_per_essence: 2 }
+      - { level: 22, runes_per_essence: 3 }
+      - { level: 33, runes_per_essence: 4 }
+      - { level: 44, runes_per_essence: 5 }
+      - { level: 55, runes_per_essence: 6 }
+      - { level: 66, runes_per_essence: 7 }
+      - { level: 77, runes_per_essence: 8 }
+      - { level: 88, runes_per_essence: 9 }
+      - { level: 99, runes_per_essence: 10 }
+    wiki: "https://oldschool.runescape.wiki/w/Air_rune"
+
+  MIND:
+    level_required: 2
+    xp_per_essence: 5.5          # https://oldschool.runescape.wiki/w/Mind_rune
+    rune_item_id: 558            # https://oldschool.runescape.wiki/w/Mind_rune
+    essence_item_id: 1436        # https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34761       # https://oldschool.runescape.wiki/w/Mind_Altar
+    talisman_item_id: 1448       # https://oldschool.runescape.wiki/w/Mind_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Mind_rune#Crafting
+      - { level: 2,  runes_per_essence: 1 }
+      - { level: 14, runes_per_essence: 2 }
+      - { level: 28, runes_per_essence: 3 }
+      - { level: 42, runes_per_essence: 4 }
+      - { level: 56, runes_per_essence: 5 }
+      - { level: 70, runes_per_essence: 6 }
+      - { level: 84, runes_per_essence: 7 }
+      - { level: 98, runes_per_essence: 8 }
+    wiki: "https://oldschool.runescape.wiki/w/Mind_rune"
+
+  WATER:
+    level_required: 5
+    xp_per_essence: 6.0          # https://oldschool.runescape.wiki/w/Water_rune
+    rune_item_id: 555            # https://oldschool.runescape.wiki/w/Water_rune
+    essence_item_id: 1436        # https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34762       # https://oldschool.runescape.wiki/w/Water_Altar
+    talisman_item_id: 1444       # https://oldschool.runescape.wiki/w/Water_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Water_rune#Crafting
+      - { level: 5,  runes_per_essence: 1 }
+      - { level: 19, runes_per_essence: 2 }
+      - { level: 38, runes_per_essence: 3 }
+      - { level: 57, runes_per_essence: 4 }
+      - { level: 76, runes_per_essence: 5 }
+      - { level: 95, runes_per_essence: 6 }
+    wiki: "https://oldschool.runescape.wiki/w/Water_rune"
+
+  EARTH:
+    level_required: 9
+    xp_per_essence: 6.5          # https://oldschool.runescape.wiki/w/Earth_rune
+    rune_item_id: 557            # https://oldschool.runescape.wiki/w/Earth_rune
+    essence_item_id: 1436        # https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34763       # https://oldschool.runescape.wiki/w/Earth_Altar
+    talisman_item_id: 1440       # https://oldschool.runescape.wiki/w/Earth_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Earth_rune#Crafting
+      - { level: 9,  runes_per_essence: 1 }
+      - { level: 26, runes_per_essence: 2 }
+      - { level: 52, runes_per_essence: 3 }
+      - { level: 78, runes_per_essence: 4 }
+    wiki: "https://oldschool.runescape.wiki/w/Earth_rune"
+
+  FIRE:
+    level_required: 14
+    xp_per_essence: 7.0          # https://oldschool.runescape.wiki/w/Fire_rune
+    rune_item_id: 554            # https://oldschool.runescape.wiki/w/Fire_rune
+    essence_item_id: 1436        # https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34764       # https://oldschool.runescape.wiki/w/Fire_Altar
+    talisman_item_id: 1442       # https://oldschool.runescape.wiki/w/Fire_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Fire_rune#Crafting
+      - { level: 14, runes_per_essence: 1 }
+      - { level: 35, runes_per_essence: 2 }
+      - { level: 70, runes_per_essence: 3 }
+    wiki: "https://oldschool.runescape.wiki/w/Fire_rune"
+
+  BODY:
+    level_required: 20
+    xp_per_essence: 7.5          # https://oldschool.runescape.wiki/w/Body_rune
+    rune_item_id: 559            # https://oldschool.runescape.wiki/w/Body_rune
+    essence_item_id: 1436        # https://oldschool.runescape.wiki/w/Rune_essence
+    altar_object_id: 34765       # https://oldschool.runescape.wiki/w/Body_Altar
+    talisman_item_id: 1446       # https://oldschool.runescape.wiki/w/Body_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Body_rune#Crafting
+      - { level: 20, runes_per_essence: 1 }
+      - { level: 46, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Body_rune"
+
+  COSMIC:
+    level_required: 27
+    xp_per_essence: 8.0          # https://oldschool.runescape.wiki/w/Cosmic_rune
+    rune_item_id: 564            # https://oldschool.runescape.wiki/w/Cosmic_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 34767       # https://oldschool.runescape.wiki/w/Cosmic_Altar
+    talisman_item_id: 1454       # https://oldschool.runescape.wiki/w/Cosmic_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Cosmic_rune#Crafting
+      - { level: 27, runes_per_essence: 1 }
+      - { level: 59, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Cosmic_rune"
+
+  CHAOS:
+    level_required: 35
+    xp_per_essence: 8.5          # https://oldschool.runescape.wiki/w/Chaos_rune
+    rune_item_id: 562            # https://oldschool.runescape.wiki/w/Chaos_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 34766       # https://oldschool.runescape.wiki/w/Chaos_Altar
+    talisman_item_id: 1452       # https://oldschool.runescape.wiki/w/Chaos_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Chaos_rune#Crafting
+      - { level: 35, runes_per_essence: 1 }
+      - { level: 74, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Chaos_rune"
+
+  NATURE:
+    level_required: 44
+    xp_per_essence: 9.0          # https://oldschool.runescape.wiki/w/Nature_rune
+    rune_item_id: 561            # https://oldschool.runescape.wiki/w/Nature_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 34768       # https://oldschool.runescape.wiki/w/Nature_Altar
+    talisman_item_id: 1462       # https://oldschool.runescape.wiki/w/Nature_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Nature_rune#Crafting
+      - { level: 44, runes_per_essence: 1 }
+      - { level: 91, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Nature_rune"
+
+  LAW:
+    level_required: 54
+    xp_per_essence: 9.5          # https://oldschool.runescape.wiki/w/Law_rune
+    rune_item_id: 563            # https://oldschool.runescape.wiki/w/Law_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 34769       # https://oldschool.runescape.wiki/w/Law_Altar
+    talisman_item_id: 1458       # https://oldschool.runescape.wiki/w/Law_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Law_rune#Crafting
+      - { level: 54, runes_per_essence: 1 }
+      - { level: 95, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Law_rune"
+
+  DEATH:
+    level_required: 65
+    xp_per_essence: 10.0         # https://oldschool.runescape.wiki/w/Death_rune
+    rune_item_id: 560            # https://oldschool.runescape.wiki/w/Death_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 34770       # https://oldschool.runescape.wiki/w/Death_Altar
+    talisman_item_id: 1456       # https://oldschool.runescape.wiki/w/Death_talisman
+    multiple_thresholds:         # https://oldschool.runescape.wiki/w/Death_rune#Crafting
+      - { level: 65, runes_per_essence: 1 }
+      - { level: 99, runes_per_essence: 2 }
+    wiki: "https://oldschool.runescape.wiki/w/Death_rune"
+
+  BLOOD:
+    level_required: 77
+    xp_per_essence: 23.8         # https://oldschool.runescape.wiki/w/Blood_rune
+    rune_item_id: 565            # https://oldschool.runescape.wiki/w/Blood_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 43479       # https://oldschool.runescape.wiki/w/Blood_Altar
+    talisman_item_id: null       # no Blood talisman item-id constant in ItemIds.kt
+    multiple_thresholds:         # Blood runes never yield multiples (always 1).
+      - { level: 77, runes_per_essence: 1 }   # https://oldschool.runescape.wiki/w/Blood_rune#Crafting
+    wiki: "https://oldschool.runescape.wiki/w/Blood_rune"
+
+  SOUL:
+    level_required: 90
+    xp_per_essence: 29.7         # https://oldschool.runescape.wiki/w/Soul_rune
+    rune_item_id: 566            # https://oldschool.runescape.wiki/w/Soul_rune
+    essence_item_id: 7936        # pure essence — https://oldschool.runescape.wiki/w/Pure_essence
+    altar_object_id: 43480       # https://oldschool.runescape.wiki/w/Soul_Altar
+    talisman_item_id: null       # no Soul talisman item-id constant in ItemIds.kt
+    multiple_thresholds:         # Soul runes never yield multiples (always 1).
+      - { level: 90, runes_per_essence: 1 }   # https://oldschool.runescape.wiki/w/Soul_rune#Crafting
+    wiki: "https://oldschool.runescape.wiki/w/Soul_rune"
