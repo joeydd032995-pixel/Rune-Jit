@@ -1,0 +1,215 @@
+# data/skills/thieving.yaml — Thieving skill data for Rune-Jit
+#
+# Single source of truth for all Thieving values.
+# The ThievingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Thieving
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: THIEVING
+  ticks_per_attempt: 4            # Pickpocket attempt cycle — 4 ticks (2.4s) per attempt
+                                   # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+  # Pickpocketing uses an interpolated level-based success curve (success_low at
+  # the action's level_required, success_high at level 99). On failure the player
+  # is stunned for stun_ticks ticks and takes stun_damage. Stalls always succeed
+  # (no stun) and deplete with a respawn timer.
+  # Source: https://oldschool.runescape.wiki/w/Thieving#Mechanics
+
+# ---------------------------------------------------------------------------
+# Pickpocket targets (NPCs)
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+# XP source: https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+#
+# success_low  : success chance (0..255 scale) at level_required
+# success_high : success chance (0..255 scale) at level 99
+# stun_ticks   : ticks the player is stunned on a failed pickpocket
+# stun_damage  : damage dealt on a failed pickpocket
+# npc_ids      : NPC definition IDs — populated from cache after /load-osrs-cache-full
+# loot         : weighted loot table; one entry rolled on success by weight
+
+pickpockets:
+  MAN:
+    level_required: 1             # https://oldschool.runescape.wiki/w/Man
+    xp: 8.0                       # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []                   # Populated from cache after /load-osrs-cache-full
+    success_low: 168              # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 240             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 4                 # 4-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 1                # https://oldschool.runescape.wiki/w/Man
+    loot:
+      - item_id: 995              # Coins (3) — https://oldschool.runescape.wiki/w/Coins
+        qty: 3
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Man"
+
+  FARMER:
+    level_required: 10            # https://oldschool.runescape.wiki/w/Farmer
+    xp: 14.5                      # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 165              # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 240             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 4                 # https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 1                # https://oldschool.runescape.wiki/w/Farmer
+    loot:
+      - item_id: 995              # Coins (9) — https://oldschool.runescape.wiki/w/Coins
+        qty: 9
+        weight: 3
+      - item_id: 5318             # Potato seed — https://oldschool.runescape.wiki/w/Potato_seed
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Farmer"
+
+  MASTER_FARMER:
+    level_required: 38            # https://oldschool.runescape.wiki/w/Master_Farmer
+    xp: 43.0                      # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 110              # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 190             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 5                 # 5-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 3                # https://oldschool.runescape.wiki/w/Master_Farmer
+    loot:
+      - item_id: 5318             # Potato seed — https://oldschool.runescape.wiki/w/Potato_seed
+        qty: 1
+        weight: 6
+      - item_id: 5323             # Tomato seed — https://oldschool.runescape.wiki/w/Tomato_seed
+        qty: 1
+        weight: 3
+      - item_id: 5305             # Ranarr seed — https://oldschool.runescape.wiki/w/Ranarr_seed
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Master_Farmer"
+
+  GUARD:
+    level_required: 40            # https://oldschool.runescape.wiki/w/Guard
+    xp: 46.8                      # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 108              # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 190             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 5                 # 5-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 2                # https://oldschool.runescape.wiki/w/Guard
+    loot:
+      - item_id: 995              # Coins (30) — https://oldschool.runescape.wiki/w/Coins
+        qty: 30
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Guard"
+
+  KNIGHT_OF_ARDOUGNE:
+    level_required: 55            # https://oldschool.runescape.wiki/w/Knight_of_Ardougne
+    xp: 84.3                      # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 95               # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 180             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 5                 # 5-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 3                # https://oldschool.runescape.wiki/w/Knight_of_Ardougne
+    loot:
+      - item_id: 995              # Coins (50) — https://oldschool.runescape.wiki/w/Coins
+        qty: 50
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Knight_of_Ardougne"
+
+  PALADIN:
+    level_required: 70            # https://oldschool.runescape.wiki/w/Paladin
+    xp: 151.75                    # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 80               # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 170             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 5                 # 5-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 3                # https://oldschool.runescape.wiki/w/Paladin
+    loot:
+      - item_id: 995              # Coins (80) — https://oldschool.runescape.wiki/w/Coins
+        qty: 80
+        weight: 4
+      - item_id: 562              # Chaos rune (2) — https://oldschool.runescape.wiki/w/Chaos_rune
+        qty: 2
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Paladin"
+
+  HERO:
+    level_required: 80            # https://oldschool.runescape.wiki/w/Hero
+    xp: 275.0                     # https://oldschool.runescape.wiki/w/Thieving#Pickpocketing
+    npc_ids: []
+    success_low: 70               # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    success_high: 160             # https://oldschool.runescape.wiki/w/Thieving#Success_rate
+    stun_ticks: 5                 # 5-tick stun on failure — https://oldschool.runescape.wiki/w/Stun
+    stun_damage: 4                # https://oldschool.runescape.wiki/w/Hero
+    loot:
+      - item_id: 995              # Coins (200) — https://oldschool.runescape.wiki/w/Coins
+        qty: 200
+        weight: 6
+      - item_id: 565              # Blood rune — https://oldschool.runescape.wiki/w/Blood_rune
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Hero"
+
+# ---------------------------------------------------------------------------
+# Stalls (objects)
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Thieving#Stalls
+# XP source: https://oldschool.runescape.wiki/w/Thieving#Stalls
+#
+# Stalls always succeed (no stun). They deplete on a successful steal and
+# respawn after respawn_ticks ticks.
+# object_id: object definition ID — populated from cache after /load-osrs-cache-full
+
+stalls:
+  CAKE_STALL:
+    level_required: 5             # https://oldschool.runescape.wiki/w/Cake_stall
+    xp: 16.0                      # https://oldschool.runescape.wiki/w/Cake_stall
+    object_id: 0                  # Populated from cache after /load-osrs-cache-full
+    respawn_ticks: 13             # ~8 seconds — https://oldschool.runescape.wiki/w/Cake_stall
+    loot:
+      - item_id: 1891             # Cake — https://oldschool.runescape.wiki/w/Cake
+        qty: 1
+        weight: 3
+      - item_id: 2309             # Bread — https://oldschool.runescape.wiki/w/Bread
+        qty: 1
+        weight: 2
+      - item_id: 1901             # Chocolate slice — https://oldschool.runescape.wiki/w/Chocolate_slice
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Cake_stall"
+
+  SILK_STALL:
+    level_required: 20            # https://oldschool.runescape.wiki/w/Silk_stall
+    xp: 24.0                      # https://oldschool.runescape.wiki/w/Silk_stall
+    object_id: 0                  # Populated from cache after /load-osrs-cache-full
+    respawn_ticks: 17             # ~10 seconds — https://oldschool.runescape.wiki/w/Silk_stall
+    loot:
+      - item_id: 950              # Silk — https://oldschool.runescape.wiki/w/Silk
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Silk_stall"
+
+  FUR_STALL:
+    level_required: 35            # https://oldschool.runescape.wiki/w/Fur_stall
+    xp: 36.0                      # https://oldschool.runescape.wiki/w/Fur_stall
+    object_id: 0                  # Populated from cache after /load-osrs-cache-full
+    respawn_ticks: 17             # ~10 seconds — https://oldschool.runescape.wiki/w/Fur_stall
+    loot:
+      - item_id: 6814             # Fur — https://oldschool.runescape.wiki/w/Fur
+        qty: 1
+        weight: 1
+    wiki: "https://oldschool.runescape.wiki/w/Fur_stall"
+
+  GEM_STALL:
+    level_required: 75            # https://oldschool.runescape.wiki/w/Gem_stall
+    xp: 160.0                     # https://oldschool.runescape.wiki/w/Gem_stall
+    object_id: 0                  # Populated from cache after /load-osrs-cache-full
+    respawn_ticks: 167            # ~100 seconds — https://oldschool.runescape.wiki/w/Gem_stall
+    loot:
+      - item_id: 1623             # Uncut sapphire — https://oldschool.runescape.wiki/w/Uncut_sapphire
+        qty: 1
+        weight: 32
+      - item_id: 1621             # Uncut emerald — https://oldschool.runescape.wiki/w/Uncut_emerald
+        qty: 1
+        weight: 16
+      - item_id: 1619             # Uncut ruby — https://oldschool.runescape.wiki/w/Uncut_ruby
+        qty: 1
+        weight: 8
+      - item_id: 1617             # Uncut diamond — https://oldschool.runescape.wiki/w/Uncut_diamond
+        qty: 1
+        weight: 4
+    wiki: "https://oldschool.runescape.wiki/w/Gem_stall"
