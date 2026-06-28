@@ -49,8 +49,9 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Claude Code logs (runtime only)
+# Claude Code logs and agent worktrees (runtime only)
 .claude/logs/
+.claude/worktrees/
 
 # OS
 *.swp
