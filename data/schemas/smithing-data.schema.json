@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/joeydd032995-pixel/Rune-Jit/blob/main/data/schemas/smithing-data.schema.json",
+  "title": "Rune-Jit Smithing Data",
+  "description": "JSON Schema for data/skills/smithing.yaml. Validate with: python3 -c \"import jsonschema, yaml, json; jsonschema.validate(yaml.safe_load(open('data/skills/smithing.yaml')), json.load(open('data/schemas/smithing-data.schema.json')))\"",
+  "type": "object",
+  "required": ["meta", "bars", "smithing"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Skill-level metadata consumed by the plugin at startup.",
+      "required": ["skill", "ticks_per_attempt", "hammer_item_id"],
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "const": "SMITHING",
+          "description": "OSRS skill enum name"
+        },
+        "ticks_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Game ticks per smelt/smith action (1 tick = 0.6s)"
+        },
+        "hammer_item_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Item ID of the hammer required to smith at an anvil"
+        },
+        "furnace_object_ids": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "description": "Object IDs of furnaces (populated from cache extraction)"
+        },
+        "anvil_object_ids": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "description": "Object IDs of anvils (populated from cache extraction)"
+        }
+      }
+    },
+    "bars": {
+      "type": "object",
+      "description": "All smeltable bars keyed by constant name (e.g. BRONZE, RUNE).",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["level_required", "smelt_xp", "bar_item_id", "ingredients", "wiki"],
+        "additionalProperties": false,
+        "properties": {
+          "level_required": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Smithing level required to smelt this bar"
+          },
+          "smelt_xp": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Smithing XP awarded per bar smelted (exact wiki value)"
+          },
+          "bar_item_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Item ID of the resulting bar"
+          },
+          "ingredients": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Ores consumed to smelt this bar.",
+            "items": {
+              "type": "object",
+              "required": ["ore_item_id", "qty"],
+              "additionalProperties": false,
+              "properties": {
+                "ore_item_id": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Item ID of the ore consumed"
+                },
+                "qty": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Quantity of this ore consumed per bar"
+                }
+              }
+            }
+          },
+          "wiki": {
+            "type": "string",
+            "pattern": "^https://oldschool\\.runescape\\.wiki/",
+            "description": "OSRS wiki URL for this bar (required citation)"
+          }
+        }
+      }
+    },
+    "smithing": {
+      "type": "object",
+      "description": "All smithable anvil items keyed by constant name (e.g. RUNE_SCIMITAR).",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["level_required", "smith_xp", "bar_type", "bars_required", "output_item_id", "output_qty", "wiki"],
+        "additionalProperties": false,
+        "properties": {
+          "level_required": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Smithing level required to smith this item"
+          },
+          "smith_xp": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Smithing XP awarded per item smithed (exact wiki value)"
+          },
+          "bar_type": {
+            "type": "string",
+            "description": "Key into the bars map identifying the bar consumed"
+          },
+          "bars_required": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of bars consumed to smith this item"
+          },
+          "output_item_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Item ID produced"
+          },
+          "output_qty": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantity of the output item produced (e.g. 15 for cannonballs)"
+          },
+          "wiki": {
+            "type": "string",
+            "pattern": "^https://oldschool\\.runescape\\.wiki/",
+            "description": "OSRS wiki URL for this item (required citation)"
+          }
+        }
+      }
+    }
+  }
+}
