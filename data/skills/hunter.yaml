@@ -1,0 +1,202 @@
+# data/skills/hunter.yaml — Hunter skill data for Rune-Jit
+#
+# Single source of truth for all trap-based Hunter values.
+# The HunterPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Hunter
+# License: CC BY-NC-SA 3.0 (wiki content)
+#
+# Scope: trap-based Hunter only (bird snaring, box trapping). Tracking, falconry,
+# net trapping, and deadfall trapping are deferred to a later content pass.
+
+meta:
+  skill: HUNTER
+  # check_ticks below is per-creature (varies by trap type), so meta carries the
+  # baseline trap-check interval used when a creature omits its own check_ticks.
+  # A trap is rolled for a catch every check_ticks game ticks.
+  default_check_ticks: 1          # trap state is evaluated each tick the action runs
+                                  # https://oldschool.runescape.wiki/w/Hunter#Trapping
+
+# ---------------------------------------------------------------------------
+# Catch-rate formula (implemented in HunterAction.kt, not evaluated here)
+#
+#   Per trap-check tick, the catch probability is linearly interpolated between
+#   catch_rate_low (at the creature's level_required) and catch_rate_high
+#   (at Hunter level 99), then a roll succeeds when:
+#
+#     rand(catch_rate_resolution) < floor(p * catch_rate_resolution)
+#
+#   where p is the interpolated probability for the player's current Hunter level.
+#
+# Exact Jagex catch-rate curves are not published; catch_rate_low/high are
+# community-researched approximations. See ADR-008 (to be written) for sourcing.
+# Source: https://oldschool.runescape.wiki/w/Hunter#Trapping
+# ---------------------------------------------------------------------------
+
+config:
+  catch_rate_resolution: 1000     # probabilities are rolled out of 1000 for integer arithmetic
+                                  # https://oldschool.runescape.wiki/w/Hunter#Trapping
+  # Max simultaneous traps scale with Hunter level (1 base, +1 per 20 levels).
+  # Source: https://oldschool.runescape.wiki/w/Hunter#Multiple_traps
+  base_max_traps: 1
+  traps_per_levels: 20
+
+# ---------------------------------------------------------------------------
+# Pet — Baby chinchompa (grey variant default)
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Baby_chinchompa
+# NOTE: exact rate not officially confirmed; community approximation.
+
+pet:
+  name: BABY_CHINCHOMPA
+  item_id: 13323                  # Baby chinchompa (Grey) — https://oldschool.runescape.wiki/w/Baby_chinchompa
+  base_rate: 65536                # community-approximated 1-in-N at the creature's level
+                                  # https://oldschool.runescape.wiki/w/Baby_chinchompa
+  scales_with_level: true
+  wiki: "https://oldschool.runescape.wiki/w/Baby_chinchompa"
+
+# ---------------------------------------------------------------------------
+# Huntable Creatures
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Hunter#Creatures
+# XP source: https://oldschool.runescape.wiki/w/Hunter#Experience
+#
+# trap_type:     BIRD_SNARE / BOX_TRAP (the trap item laid for this creature)
+# trap_item_id:  item consumed/laid when setting the trap
+# catch_rate_low / catch_rate_high: catch probability at level_required and at 99
+# check_ticks:   ticks between trap-check rolls
+# loot:          weighted loot table rolled on a successful catch
+# npc_id:        creature NPC id (from osrsbox npcs-complete.json) — for spawn/AI wiring
+
+creatures:
+  CRIMSON_SWIFT:
+    level_required: 1             # https://oldschool.runescape.wiki/w/Crimson_Swift
+    xp: 34.0                      # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BIRD_SNARE
+    trap_item_id: 10006           # Bird snare — https://oldschool.runescape.wiki/w/Bird_snare
+    catch_rate_low: 0.35          # community approximation at level 1
+    catch_rate_high: 0.80         # community approximation at level 99
+    check_ticks: 1
+    members: true
+    npc_id: 5073                  # https://oldschool.runescape.wiki/w/Crimson_Swift
+    loot:
+      - { item_id: 9978, qty: 1, weight: 1 }   # Raw bird meat — https://oldschool.runescape.wiki/w/Raw_bird_meat
+      - { item_id: 9965, qty: 1, weight: 1 }   # Crimson swift (item) — https://oldschool.runescape.wiki/w/Crimson_swift
+    wiki: "https://oldschool.runescape.wiki/w/Crimson_Swift"
+
+  GOLDEN_WARBLER:
+    level_required: 5             # https://oldschool.runescape.wiki/w/Golden_Warbler
+    xp: 47.5                      # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BIRD_SNARE
+    trap_item_id: 10006           # Bird snare — https://oldschool.runescape.wiki/w/Bird_snare
+    catch_rate_low: 0.32
+    catch_rate_high: 0.80
+    check_ticks: 1
+    members: true
+    npc_id: 5072                  # https://oldschool.runescape.wiki/w/Golden_Warbler
+    loot:
+      - { item_id: 9978, qty: 1, weight: 1 }   # Raw bird meat — https://oldschool.runescape.wiki/w/Raw_bird_meat
+      - { item_id: 9967, qty: 1, weight: 1 }   # Golden warbler (item) — https://oldschool.runescape.wiki/w/Golden_warbler
+    wiki: "https://oldschool.runescape.wiki/w/Golden_Warbler"
+
+  COPPER_LONGTAIL:
+    level_required: 9             # https://oldschool.runescape.wiki/w/Copper_Longtail
+    xp: 61.0                      # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BIRD_SNARE
+    trap_item_id: 10006           # Bird snare — https://oldschool.runescape.wiki/w/Bird_snare
+    catch_rate_low: 0.30
+    catch_rate_high: 0.78
+    check_ticks: 1
+    members: true
+    npc_id: 5074                  # https://oldschool.runescape.wiki/w/Copper_Longtail
+    loot:
+      - { item_id: 9978, qty: 1, weight: 1 }   # Raw bird meat — https://oldschool.runescape.wiki/w/Raw_bird_meat
+      - { item_id: 9966, qty: 1, weight: 1 }   # Copper longtail (item) — https://oldschool.runescape.wiki/w/Copper_longtail
+    wiki: "https://oldschool.runescape.wiki/w/Copper_Longtail"
+
+  CERULEAN_TWITCH:
+    level_required: 11            # https://oldschool.runescape.wiki/w/Cerulean_Twitch
+    xp: 64.5                      # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BIRD_SNARE
+    trap_item_id: 10006           # Bird snare — https://oldschool.runescape.wiki/w/Bird_snare
+    catch_rate_low: 0.29
+    catch_rate_high: 0.78
+    check_ticks: 1
+    members: true
+    npc_id: 5076                  # https://oldschool.runescape.wiki/w/Cerulean_Twitch
+    loot:
+      - { item_id: 9978, qty: 1, weight: 1 }   # Raw bird meat — https://oldschool.runescape.wiki/w/Raw_bird_meat
+      - { item_id: 9968, qty: 1, weight: 1 }   # Cerulean twitch (item) — https://oldschool.runescape.wiki/w/Cerulean_twitch
+    wiki: "https://oldschool.runescape.wiki/w/Cerulean_Twitch"
+
+  TROPICAL_WAGTAIL:
+    level_required: 19            # https://oldschool.runescape.wiki/w/Tropical_Wagtail
+    xp: 95.8                      # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BIRD_SNARE
+    trap_item_id: 10006           # Bird snare — https://oldschool.runescape.wiki/w/Bird_snare
+    catch_rate_low: 0.27
+    catch_rate_high: 0.76
+    check_ticks: 1
+    members: true
+    npc_id: 5075                  # https://oldschool.runescape.wiki/w/Tropical_Wagtail
+    loot:
+      - { item_id: 9978, qty: 1, weight: 1 }   # Raw bird meat — https://oldschool.runescape.wiki/w/Raw_bird_meat
+      - { item_id: 9969, qty: 1, weight: 1 }   # Tropical wagtail (item) — https://oldschool.runescape.wiki/w/Tropical_wagtail
+    wiki: "https://oldschool.runescape.wiki/w/Tropical_Wagtail"
+
+  FERRET:
+    level_required: 27            # https://oldschool.runescape.wiki/w/Ferret_(Hunter)
+    xp: 115.0                     # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BOX_TRAP
+    trap_item_id: 10008           # Box trap — https://oldschool.runescape.wiki/w/Box_trap
+    catch_rate_low: 0.30
+    catch_rate_high: 0.80
+    check_ticks: 1
+    members: true
+    npc_id: 5081                  # https://oldschool.runescape.wiki/w/Ferret_(Hunter)
+    loot:
+      - { item_id: 10092, qty: 1, weight: 1 }  # Ferret (item) — https://oldschool.runescape.wiki/w/Ferret
+    wiki: "https://oldschool.runescape.wiki/w/Ferret_(Hunter)"
+
+  CHINCHOMPA:
+    level_required: 53            # https://oldschool.runescape.wiki/w/Chinchompa_(Hunter)
+    xp: 198.0                     # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BOX_TRAP
+    trap_item_id: 10008           # Box trap — https://oldschool.runescape.wiki/w/Box_trap
+    catch_rate_low: 0.25
+    catch_rate_high: 0.72
+    check_ticks: 1
+    members: true
+    npc_id: 5079                  # https://oldschool.runescape.wiki/w/Chinchompa_(Hunter)
+    loot:
+      - { item_id: 9976, qty: 1, weight: 1 }   # Chinchompa — https://oldschool.runescape.wiki/w/Chinchompa
+    wiki: "https://oldschool.runescape.wiki/w/Chinchompa_(Hunter)"
+
+  RED_CHINCHOMPA:
+    level_required: 63            # https://oldschool.runescape.wiki/w/Red_chinchompa_(Hunter)
+    xp: 265.0                     # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BOX_TRAP
+    trap_item_id: 10008           # Box trap — https://oldschool.runescape.wiki/w/Box_trap
+    catch_rate_low: 0.22
+    catch_rate_high: 0.70
+    check_ticks: 1
+    members: true
+    npc_id: 5080                  # https://oldschool.runescape.wiki/w/Red_chinchompa_(Hunter)
+    loot:
+      - { item_id: 10034, qty: 1, weight: 1 }  # Red chinchompa — https://oldschool.runescape.wiki/w/Red_chinchompa
+    wiki: "https://oldschool.runescape.wiki/w/Red_chinchompa_(Hunter)"
+
+  BLACK_CHINCHOMPA:
+    level_required: 73            # https://oldschool.runescape.wiki/w/Black_chinchompa
+    xp: 315.0                     # https://oldschool.runescape.wiki/w/Hunter#Experience
+    trap_type: BOX_TRAP
+    trap_item_id: 10008           # Box trap — https://oldschool.runescape.wiki/w/Box_trap
+    catch_rate_low: 0.20
+    catch_rate_high: 0.68
+    check_ticks: 1
+    members: true
+    npc_id: 7401                  # https://oldschool.runescape.wiki/w/Black_chinchompa
+    loot:
+      - { item_id: 11959, qty: 1, weight: 1 }  # Black chinchompa — https://oldschool.runescape.wiki/w/Black_chinchompa
+    wiki: "https://oldschool.runescape.wiki/w/Black_chinchompa"
