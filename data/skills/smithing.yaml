@@ -1,0 +1,305 @@
+# data/skills/smithing.yaml — Smithing skill data for Rune-Jit
+#
+# Single source of truth for all Smithing values.
+# SmithingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Smithing has two stages:
+#   1. SMELTING — combine ores into a metal bar at a furnace (`bars` map).
+#   2. SMITHING — hammer a number of bars into an item at an anvil (`smithing` map).
+#
+# Source: https://oldschool.runescape.wiki/w/Smithing
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: SMITHING
+  ticks_per_attempt: 4          # 4 ticks = 2.4s per smelt/smith action
+                                 # https://oldschool.runescape.wiki/w/Smithing#Mechanics
+  hammer_item_id: 2347          # https://oldschool.runescape.wiki/w/Hammer (required at the anvil)
+  # Object IDs for furnace/anvil are populated from cache after /cache-unpack-extract-assets.
+  furnace_object_ids: []        # https://oldschool.runescape.wiki/w/Furnace
+  anvil_object_ids: []          # https://oldschool.runescape.wiki/w/Anvil
+
+# ---------------------------------------------------------------------------
+# Bars (smelting at a furnace)
+# Source: https://oldschool.runescape.wiki/w/Smithing#Smelting
+# XP source: https://oldschool.runescape.wiki/w/Smithing#Experience_2
+# ---------------------------------------------------------------------------
+
+bars:
+  BRONZE:
+    level_required: 1           # https://oldschool.runescape.wiki/w/Bronze_bar
+    smelt_xp: 6.2               # https://oldschool.runescape.wiki/w/Bronze_bar
+    bar_item_id: 2349           # https://oldschool.runescape.wiki/w/Bronze_bar
+    wiki: "https://oldschool.runescape.wiki/w/Bronze_bar"
+    ingredients:
+      - ore_item_id: 436        # Copper ore — https://oldschool.runescape.wiki/w/Copper_ore
+        qty: 1
+      - ore_item_id: 438        # Tin ore — https://oldschool.runescape.wiki/w/Tin_ore
+        qty: 1
+
+  IRON:
+    level_required: 15          # https://oldschool.runescape.wiki/w/Iron_bar
+    smelt_xp: 12.5              # https://oldschool.runescape.wiki/w/Iron_bar
+    bar_item_id: 2351           # https://oldschool.runescape.wiki/w/Iron_bar
+    wiki: "https://oldschool.runescape.wiki/w/Iron_bar"
+    ingredients:
+      - ore_item_id: 440        # Iron ore — https://oldschool.runescape.wiki/w/Iron_ore
+        qty: 1
+
+  SILVER:
+    level_required: 20          # https://oldschool.runescape.wiki/w/Silver_bar
+    smelt_xp: 13.7             # https://oldschool.runescape.wiki/w/Silver_bar
+    bar_item_id: 2355           # https://oldschool.runescape.wiki/w/Silver_bar
+    wiki: "https://oldschool.runescape.wiki/w/Silver_bar"
+    ingredients:
+      - ore_item_id: 442        # Silver ore — https://oldschool.runescape.wiki/w/Silver_ore
+        qty: 1
+
+  STEEL:
+    level_required: 30          # https://oldschool.runescape.wiki/w/Steel_bar
+    smelt_xp: 17.5             # https://oldschool.runescape.wiki/w/Steel_bar
+    bar_item_id: 2353           # https://oldschool.runescape.wiki/w/Steel_bar
+    wiki: "https://oldschool.runescape.wiki/w/Steel_bar"
+    ingredients:
+      - ore_item_id: 440        # Iron ore — https://oldschool.runescape.wiki/w/Iron_ore
+        qty: 1
+      - ore_item_id: 453        # Coal (2) — https://oldschool.runescape.wiki/w/Coal
+        qty: 2
+
+  GOLD:
+    level_required: 40          # https://oldschool.runescape.wiki/w/Gold_bar
+    smelt_xp: 22.5             # https://oldschool.runescape.wiki/w/Gold_bar
+    bar_item_id: 2357           # https://oldschool.runescape.wiki/w/Gold_bar
+    wiki: "https://oldschool.runescape.wiki/w/Gold_bar"
+    ingredients:
+      - ore_item_id: 444        # Gold ore — https://oldschool.runescape.wiki/w/Gold_ore
+        qty: 1
+
+  MITHRIL:
+    level_required: 50          # https://oldschool.runescape.wiki/w/Mithril_bar
+    smelt_xp: 30.0             # https://oldschool.runescape.wiki/w/Mithril_bar
+    bar_item_id: 2359           # https://oldschool.runescape.wiki/w/Mithril_bar
+    wiki: "https://oldschool.runescape.wiki/w/Mithril_bar"
+    ingredients:
+      - ore_item_id: 447        # Mithril ore — https://oldschool.runescape.wiki/w/Mithril_ore
+        qty: 1
+      - ore_item_id: 453        # Coal (4) — https://oldschool.runescape.wiki/w/Coal
+        qty: 4
+
+  ADAMANT:
+    level_required: 70          # https://oldschool.runescape.wiki/w/Adamantite_bar
+    smelt_xp: 37.5             # https://oldschool.runescape.wiki/w/Adamantite_bar
+    bar_item_id: 2361           # https://oldschool.runescape.wiki/w/Adamantite_bar
+    wiki: "https://oldschool.runescape.wiki/w/Adamantite_bar"
+    ingredients:
+      - ore_item_id: 449        # Adamantite ore — https://oldschool.runescape.wiki/w/Adamantite_ore
+        qty: 1
+      - ore_item_id: 453        # Coal (6) — https://oldschool.runescape.wiki/w/Coal
+        qty: 6
+
+  RUNE:
+    level_required: 85          # https://oldschool.runescape.wiki/w/Runite_bar
+    smelt_xp: 50.0             # https://oldschool.runescape.wiki/w/Runite_bar
+    bar_item_id: 2363           # https://oldschool.runescape.wiki/w/Runite_bar
+    wiki: "https://oldschool.runescape.wiki/w/Runite_bar"
+    ingredients:
+      - ore_item_id: 451        # Runite ore — https://oldschool.runescape.wiki/w/Runite_ore
+        qty: 1
+      - ore_item_id: 453        # Coal (8) — https://oldschool.runescape.wiki/w/Coal
+        qty: 8
+
+# ---------------------------------------------------------------------------
+# Smithing items (hammering bars into items at an anvil)
+# Source: https://oldschool.runescape.wiki/w/Smithing#Smithing_2
+# XP rule: each item grants 12.5 XP per bar used, for its metal type.
+#   Source: https://oldschool.runescape.wiki/w/Smithing#Experience
+# Level requirements and bar counts are item-specific (wiki-cited per row).
+# ---------------------------------------------------------------------------
+
+smithing:
+  # --- Bronze ----------------------------------------------------------------
+  BRONZE_SWORD:
+    level_required: 4           # https://oldschool.runescape.wiki/w/Bronze_sword
+    smith_xp: 12.5             # 1 bar × 12.5 — https://oldschool.runescape.wiki/w/Smithing#Experience
+    bar_type: BRONZE
+    bars_required: 1
+    output_item_id: 1277        # https://oldschool.runescape.wiki/w/Bronze_sword
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Bronze_sword"
+
+  BRONZE_SCIMITAR:
+    level_required: 5           # https://oldschool.runescape.wiki/w/Bronze_scimitar
+    smith_xp: 25.0             # 2 bars × 12.5
+    bar_type: BRONZE
+    bars_required: 2
+    output_item_id: 1321        # https://oldschool.runescape.wiki/w/Bronze_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Bronze_scimitar"
+
+  BRONZE_PLATELEGS:
+    level_required: 16          # https://oldschool.runescape.wiki/w/Bronze_platelegs
+    smith_xp: 37.5             # 3 bars × 12.5
+    bar_type: BRONZE
+    bars_required: 3
+    output_item_id: 1075        # https://oldschool.runescape.wiki/w/Bronze_platelegs
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Bronze_platelegs"
+
+  BRONZE_PLATEBODY:
+    level_required: 18          # https://oldschool.runescape.wiki/w/Bronze_platebody
+    smith_xp: 62.5             # 5 bars × 12.5
+    bar_type: BRONZE
+    bars_required: 5
+    output_item_id: 1117        # https://oldschool.runescape.wiki/w/Bronze_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Bronze_platebody"
+
+  # --- Iron ------------------------------------------------------------------
+  IRON_SWORD:
+    level_required: 19          # https://oldschool.runescape.wiki/w/Iron_sword
+    smith_xp: 25.0             # 1 bar × 25 (iron grants 25 XP per bar) — https://oldschool.runescape.wiki/w/Smithing#Experience
+    bar_type: IRON
+    bars_required: 1
+    output_item_id: 1279        # https://oldschool.runescape.wiki/w/Iron_sword
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Iron_sword"
+
+  IRON_SCIMITAR:
+    level_required: 20          # https://oldschool.runescape.wiki/w/Iron_scimitar
+    smith_xp: 50.0             # 2 bars × 25
+    bar_type: IRON
+    bars_required: 2
+    output_item_id: 1323        # https://oldschool.runescape.wiki/w/Iron_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Iron_scimitar"
+
+  IRON_PLATEBODY:
+    level_required: 33          # https://oldschool.runescape.wiki/w/Iron_platebody
+    smith_xp: 125.0            # 5 bars × 25
+    bar_type: IRON
+    bars_required: 5
+    output_item_id: 1115        # https://oldschool.runescape.wiki/w/Iron_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Iron_platebody"
+
+  # --- Steel -----------------------------------------------------------------
+  STEEL_SWORD:
+    level_required: 34          # https://oldschool.runescape.wiki/w/Steel_sword
+    smith_xp: 37.5             # 1 bar × 37.5 (steel grants 37.5 XP per bar)
+    bar_type: STEEL
+    bars_required: 1
+    output_item_id: 1281        # https://oldschool.runescape.wiki/w/Steel_sword
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Steel_sword"
+
+  STEEL_SCIMITAR:
+    level_required: 35          # https://oldschool.runescape.wiki/w/Steel_scimitar
+    smith_xp: 75.0             # 2 bars × 37.5
+    bar_type: STEEL
+    bars_required: 2
+    output_item_id: 1325        # https://oldschool.runescape.wiki/w/Steel_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Steel_scimitar"
+
+  STEEL_PLATELEGS:
+    level_required: 46          # https://oldschool.runescape.wiki/w/Steel_platelegs
+    smith_xp: 112.5            # 3 bars × 37.5
+    bar_type: STEEL
+    bars_required: 3
+    output_item_id: 1069        # https://oldschool.runescape.wiki/w/Steel_platelegs
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Steel_platelegs"
+
+  STEEL_PLATEBODY:
+    level_required: 48          # https://oldschool.runescape.wiki/w/Steel_platebody
+    smith_xp: 187.5            # 5 bars × 37.5
+    bar_type: STEEL
+    bars_required: 5
+    output_item_id: 1119        # https://oldschool.runescape.wiki/w/Steel_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Steel_platebody"
+
+  # --- Mithril ---------------------------------------------------------------
+  MITHRIL_SCIMITAR:
+    level_required: 55          # https://oldschool.runescape.wiki/w/Mithril_scimitar
+    smith_xp: 100.0            # 2 bars × 50 (mithril grants 50 XP per bar)
+    bar_type: MITHRIL
+    bars_required: 2
+    output_item_id: 1329        # https://oldschool.runescape.wiki/w/Mithril_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Mithril_scimitar"
+
+  MITHRIL_PLATELEGS:
+    level_required: 66          # https://oldschool.runescape.wiki/w/Mithril_platelegs
+    smith_xp: 150.0            # 3 bars × 50
+    bar_type: MITHRIL
+    bars_required: 3
+    output_item_id: 1071        # https://oldschool.runescape.wiki/w/Mithril_platelegs
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Mithril_platelegs"
+
+  MITHRIL_PLATEBODY:
+    level_required: 68          # https://oldschool.runescape.wiki/w/Mithril_platebody
+    smith_xp: 250.0            # 5 bars × 50
+    bar_type: MITHRIL
+    bars_required: 5
+    output_item_id: 1121        # https://oldschool.runescape.wiki/w/Mithril_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Mithril_platebody"
+
+  # --- Adamant ---------------------------------------------------------------
+  ADAMANT_SCIMITAR:
+    level_required: 75          # https://oldschool.runescape.wiki/w/Adamant_scimitar
+    smith_xp: 125.0            # 2 bars × 62.5 (adamantite grants 62.5 XP per bar)
+    bar_type: ADAMANT
+    bars_required: 2
+    output_item_id: 1331        # https://oldschool.runescape.wiki/w/Adamant_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Adamant_scimitar"
+
+  ADAMANT_PLATELEGS:
+    level_required: 86          # https://oldschool.runescape.wiki/w/Adamant_platelegs
+    smith_xp: 187.5            # 3 bars × 62.5
+    bar_type: ADAMANT
+    bars_required: 3
+    output_item_id: 1073        # https://oldschool.runescape.wiki/w/Adamant_platelegs
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Adamant_platelegs"
+
+  ADAMANT_PLATEBODY:
+    level_required: 88          # https://oldschool.runescape.wiki/w/Adamant_platebody
+    smith_xp: 312.5            # 5 bars × 62.5
+    bar_type: ADAMANT
+    bars_required: 5
+    output_item_id: 1123        # https://oldschool.runescape.wiki/w/Adamant_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Adamant_platebody"
+
+  # --- Rune ------------------------------------------------------------------
+  RUNE_SCIMITAR:
+    level_required: 90          # https://oldschool.runescape.wiki/w/Rune_scimitar
+    smith_xp: 150.0            # 2 bars × 75 (runite grants 75 XP per bar)
+    bar_type: RUNE
+    bars_required: 2
+    output_item_id: 1333        # https://oldschool.runescape.wiki/w/Rune_scimitar
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Rune_scimitar"
+
+  RUNE_PLATELEGS:
+    level_required: 99          # https://oldschool.runescape.wiki/w/Rune_platelegs
+    smith_xp: 225.0            # 3 bars × 75
+    bar_type: RUNE
+    bars_required: 3
+    output_item_id: 1079        # https://oldschool.runescape.wiki/w/Rune_platelegs
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Rune_platelegs"
+
+  RUNE_PLATEBODY:
+    level_required: 99          # https://oldschool.runescape.wiki/w/Rune_platebody
+    smith_xp: 375.0            # 5 bars × 75
+    bar_type: RUNE
+    bars_required: 5
+    output_item_id: 1127        # https://oldschool.runescape.wiki/w/Rune_platebody
+    output_qty: 1
+    wiki: "https://oldschool.runescape.wiki/w/Rune_platebody"

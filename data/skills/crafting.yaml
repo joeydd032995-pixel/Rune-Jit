@@ -1,0 +1,391 @@
+# data/skills/crafting.yaml — Crafting skill data for Rune-Jit
+#
+# Single source of truth for all Crafting recipe values.
+# CraftingPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Crafting
+# License: CC BY-NC-SA 3.0 (wiki content)
+#
+# Recipe shape:
+#   <CATEGORY>:
+#     <RECIPE_NAME>:
+#       level_required: <int>          # Crafting level required
+#       xp: <number>                   # exact XP per craft (wiki)
+#       inputs: [{item_id, qty}, ...]  # consumed materials
+#       tools: [item_id, ...]          # required (not consumed) tools
+#       output_item_id: <int>
+#       output_qty: <int>
+#       station: <FURNACE|null>        # required nearby station, or null
+#       wiki: "<url>"
+
+meta:
+  skill: CRAFTING
+  ticks_per_attempt: 3        # 3 ticks (1.8s) per craft for most making actions
+                               # https://oldschool.runescape.wiki/w/Crafting
+
+# ---------------------------------------------------------------------------
+# LEATHER — needle + thread on tanned leather. Thread is consumed per craft.
+# Source: https://oldschool.runescape.wiki/w/Crafting#Leather
+# Tools: needle (1733) + thread (1734).
+# ---------------------------------------------------------------------------
+recipes:
+  leather:
+    LEATHER_GLOVES:
+      level_required: 1          # https://oldschool.runescape.wiki/w/Leather_gloves
+      xp: 13.8                   # https://oldschool.runescape.wiki/w/Leather_gloves
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather https://oldschool.runescape.wiki/w/Leather
+      tools: [1733, 1734]             # Needle, Thread https://oldschool.runescape.wiki/w/Needle
+      output_item_id: 1059            # Leather gloves
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_gloves"
+
+    LEATHER_BOOTS:
+      level_required: 7          # https://oldschool.runescape.wiki/w/Leather_boots
+      xp: 16.3                   # https://oldschool.runescape.wiki/w/Leather_boots
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1061            # Leather boots
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_boots"
+
+    LEATHER_COWL:
+      level_required: 9          # https://oldschool.runescape.wiki/w/Leather_cowl
+      xp: 18.5                   # https://oldschool.runescape.wiki/w/Leather_cowl
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1167            # Leather cowl
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_cowl"
+
+    LEATHER_VAMBRACES:
+      level_required: 11         # https://oldschool.runescape.wiki/w/Leather_vambraces
+      xp: 22.0                   # https://oldschool.runescape.wiki/w/Leather_vambraces
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1063            # Leather vambraces
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_vambraces"
+
+    LEATHER_BODY:
+      level_required: 14         # https://oldschool.runescape.wiki/w/Leather_body
+      xp: 25.0                   # https://oldschool.runescape.wiki/w/Leather_body
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1129            # Leather body
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_body"
+
+    LEATHER_CHAPS:
+      level_required: 18         # https://oldschool.runescape.wiki/w/Leather_chaps
+      xp: 27.0                   # https://oldschool.runescape.wiki/w/Leather_chaps
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1095            # Leather chaps
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Leather_chaps"
+
+    COIF:
+      level_required: 38         # https://oldschool.runescape.wiki/w/Coif
+      xp: 37.0                   # https://oldschool.runescape.wiki/w/Coif
+      inputs:
+        - { item_id: 1741, qty: 1 }   # Leather
+      tools: [1733, 1734]
+      output_item_id: 1169            # Coif
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Coif"
+
+    HARDLEATHER_BODY:
+      level_required: 28         # https://oldschool.runescape.wiki/w/Hardleather_body
+      xp: 35.0                   # https://oldschool.runescape.wiki/w/Hardleather_body
+      inputs:
+        - { item_id: 1743, qty: 1 }   # Hard leather https://oldschool.runescape.wiki/w/Hard_leather
+      tools: [1733, 1734]
+      output_item_id: 1131            # Hardleather body
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Hardleather_body"
+
+  # -------------------------------------------------------------------------
+  # GEM CUTTING — chisel on uncut gem → cut gem. Chisel (1755) is a tool (not consumed).
+  # Source: https://oldschool.runescape.wiki/w/Crafting#Cutting_gems
+  # -------------------------------------------------------------------------
+  gems:
+    CUT_OPAL:
+      level_required: 1          # https://oldschool.runescape.wiki/w/Opal
+      xp: 15.0                   # https://oldschool.runescape.wiki/w/Opal
+      inputs:
+        - { item_id: 1625, qty: 1 }   # Uncut opal https://oldschool.runescape.wiki/w/Uncut_opal
+      tools: [1755]                   # Chisel https://oldschool.runescape.wiki/w/Chisel
+      output_item_id: 1609            # Opal
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Opal"
+
+    CUT_JADE:
+      level_required: 13         # https://oldschool.runescape.wiki/w/Jade
+      xp: 20.0                   # https://oldschool.runescape.wiki/w/Jade
+      inputs:
+        - { item_id: 1627, qty: 1 }   # Uncut jade https://oldschool.runescape.wiki/w/Uncut_jade
+      tools: [1755]
+      output_item_id: 1611            # Jade
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Jade"
+
+    CUT_RED_TOPAZ:
+      level_required: 16         # https://oldschool.runescape.wiki/w/Red_topaz
+      xp: 25.0                   # https://oldschool.runescape.wiki/w/Red_topaz
+      inputs:
+        - { item_id: 1629, qty: 1 }   # Uncut red topaz https://oldschool.runescape.wiki/w/Uncut_red_topaz
+      tools: [1755]
+      output_item_id: 1613            # Red topaz
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Red_topaz"
+
+    CUT_SAPPHIRE:
+      level_required: 20         # https://oldschool.runescape.wiki/w/Sapphire
+      xp: 50.0                   # https://oldschool.runescape.wiki/w/Sapphire
+      inputs:
+        - { item_id: 1623, qty: 1 }   # Uncut sapphire https://oldschool.runescape.wiki/w/Uncut_sapphire
+      tools: [1755]
+      output_item_id: 1607            # Sapphire
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Sapphire"
+
+    CUT_EMERALD:
+      level_required: 27         # https://oldschool.runescape.wiki/w/Emerald
+      xp: 67.5                   # https://oldschool.runescape.wiki/w/Emerald
+      inputs:
+        - { item_id: 1621, qty: 1 }   # Uncut emerald https://oldschool.runescape.wiki/w/Uncut_emerald
+      tools: [1755]
+      output_item_id: 1605            # Emerald
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Emerald"
+
+    CUT_RUBY:
+      level_required: 34         # https://oldschool.runescape.wiki/w/Ruby
+      xp: 85.0                   # https://oldschool.runescape.wiki/w/Ruby
+      inputs:
+        - { item_id: 1619, qty: 1 }   # Uncut ruby https://oldschool.runescape.wiki/w/Uncut_ruby
+      tools: [1755]
+      output_item_id: 1603            # Ruby
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Ruby"
+
+    CUT_DIAMOND:
+      level_required: 43         # https://oldschool.runescape.wiki/w/Diamond
+      xp: 107.5                  # https://oldschool.runescape.wiki/w/Diamond
+      inputs:
+        - { item_id: 1617, qty: 1 }   # Uncut diamond https://oldschool.runescape.wiki/w/Uncut_diamond
+      tools: [1755]
+      output_item_id: 1601            # Diamond
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Diamond"
+
+  # -------------------------------------------------------------------------
+  # JEWELLERY — gold bar + gem + mould at a FURNACE.
+  # Source: https://oldschool.runescape.wiki/w/Crafting#Jewellery
+  # Tools: ring/necklace/amulet/bracelet mould (not consumed). Station: FURNACE.
+  # -------------------------------------------------------------------------
+  jewellery:
+    GOLD_RING:
+      level_required: 5          # https://oldschool.runescape.wiki/w/Gold_ring
+      xp: 15.0                   # https://oldschool.runescape.wiki/w/Gold_ring
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar https://oldschool.runescape.wiki/w/Gold_bar
+      tools: [1592]                   # Ring mould https://oldschool.runescape.wiki/w/Ring_mould
+      output_item_id: 1635            # Gold ring
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Gold_ring"
+
+    SAPPHIRE_RING:
+      level_required: 20         # https://oldschool.runescape.wiki/w/Sapphire_ring
+      xp: 40.0                   # https://oldschool.runescape.wiki/w/Sapphire_ring
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1607, qty: 1 }   # Sapphire https://oldschool.runescape.wiki/w/Sapphire
+      tools: [1592]                   # Ring mould
+      output_item_id: 1637            # Sapphire ring
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Sapphire_ring"
+
+    EMERALD_RING:
+      level_required: 27         # https://oldschool.runescape.wiki/w/Emerald_ring
+      xp: 55.0                   # https://oldschool.runescape.wiki/w/Emerald_ring
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1605, qty: 1 }   # Emerald
+      tools: [1592]                   # Ring mould
+      output_item_id: 1639            # Emerald ring
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Emerald_ring"
+
+    RUBY_RING:
+      level_required: 34         # https://oldschool.runescape.wiki/w/Ruby_ring
+      xp: 70.0                   # https://oldschool.runescape.wiki/w/Ruby_ring
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1603, qty: 1 }   # Ruby
+      tools: [1592]                   # Ring mould
+      output_item_id: 1641            # Ruby ring
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Ruby_ring"
+
+    DIAMOND_RING:
+      level_required: 43         # https://oldschool.runescape.wiki/w/Diamond_ring
+      xp: 85.0                   # https://oldschool.runescape.wiki/w/Diamond_ring
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1601, qty: 1 }   # Diamond
+      tools: [1592]                   # Ring mould
+      output_item_id: 1643            # Diamond ring
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Diamond_ring"
+
+    GOLD_NECKLACE:
+      level_required: 6          # https://oldschool.runescape.wiki/w/Gold_necklace
+      xp: 20.0                   # https://oldschool.runescape.wiki/w/Gold_necklace
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+      tools: [1597]                   # Necklace mould https://oldschool.runescape.wiki/w/Necklace_mould
+      output_item_id: 1654            # Gold necklace
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Gold_necklace"
+
+    SAPPHIRE_NECKLACE:
+      level_required: 22         # https://oldschool.runescape.wiki/w/Sapphire_necklace
+      xp: 55.0                   # https://oldschool.runescape.wiki/w/Sapphire_necklace
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1607, qty: 1 }   # Sapphire
+      tools: [1597]                   # Necklace mould
+      output_item_id: 1656            # Sapphire necklace
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Sapphire_necklace"
+
+    GOLD_AMULET_U:
+      level_required: 8          # https://oldschool.runescape.wiki/w/Gold_amulet_(u)
+      xp: 30.0                   # https://oldschool.runescape.wiki/w/Gold_amulet_(u)
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+      tools: [1595]                   # Amulet mould https://oldschool.runescape.wiki/w/Amulet_mould
+      output_item_id: 1673            # Gold amulet (u)
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Gold_amulet_(u)"
+
+    SAPPHIRE_AMULET_U:
+      level_required: 24         # https://oldschool.runescape.wiki/w/Sapphire_amulet_(u)
+      xp: 65.0                   # https://oldschool.runescape.wiki/w/Sapphire_amulet_(u)
+      inputs:
+        - { item_id: 2357, qty: 1 }   # Gold bar
+        - { item_id: 1607, qty: 1 }   # Sapphire
+      tools: [1595]                   # Amulet mould
+      output_item_id: 1675            # Sapphire amulet (u)
+      output_qty: 1
+      station: FURNACE
+      wiki: "https://oldschool.runescape.wiki/w/Sapphire_amulet_(u)"
+
+  # -------------------------------------------------------------------------
+  # GLASSBLOWING — glassblowing pipe (1785) on molten glass (1775).
+  # Source: https://oldschool.runescape.wiki/w/Crafting#Glassblowing
+  # Tools: glassblowing pipe (not consumed). No station.
+  # -------------------------------------------------------------------------
+  glass:
+    BEER_GLASS:
+      level_required: 1          # https://oldschool.runescape.wiki/w/Beer_glass
+      xp: 17.5                   # https://oldschool.runescape.wiki/w/Beer_glass
+      inputs:
+        - { item_id: 1775, qty: 1 }   # Molten glass https://oldschool.runescape.wiki/w/Molten_glass
+      tools: [1785]                   # Glassblowing pipe https://oldschool.runescape.wiki/w/Glassblowing_pipe
+      output_item_id: 1919            # Beer glass
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Beer_glass"
+
+    VIAL:
+      level_required: 33         # https://oldschool.runescape.wiki/w/Vial
+      xp: 35.0                   # https://oldschool.runescape.wiki/w/Vial
+      inputs:
+        - { item_id: 1775, qty: 1 }   # Molten glass
+      tools: [1785]                   # Glassblowing pipe
+      output_item_id: 229             # Vial
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Vial"
+
+    UNPOWERED_ORB:
+      level_required: 46         # https://oldschool.runescape.wiki/w/Unpowered_orb
+      xp: 52.5                   # https://oldschool.runescape.wiki/w/Unpowered_orb
+      inputs:
+        - { item_id: 1775, qty: 1 }   # Molten glass
+      tools: [1785]                   # Glassblowing pipe
+      output_item_id: 567             # Unpowered orb
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Unpowered_orb"
+
+    LANTERN_LENS:
+      level_required: 49         # https://oldschool.runescape.wiki/w/Lantern_lens
+      xp: 55.0                   # https://oldschool.runescape.wiki/w/Lantern_lens
+      inputs:
+        - { item_id: 1775, qty: 1 }   # Molten glass
+      tools: [1785]                   # Glassblowing pipe
+      output_item_id: 4542            # Lantern lens
+      output_qty: 1
+      station: null
+      wiki: "https://oldschool.runescape.wiki/w/Lantern_lens"
+
+  # -------------------------------------------------------------------------
+  # SPINNING — wool/flax on a spinning wheel. Modelled as item-on-item with
+  # SPINNING_WHEEL station; produces ball of wool / bow string.
+  # Source: https://oldschool.runescape.wiki/w/Crafting#Spinning
+  # -------------------------------------------------------------------------
+  spinning:
+    BALL_OF_WOOL:
+      level_required: 1          # https://oldschool.runescape.wiki/w/Ball_of_wool
+      xp: 2.5                    # https://oldschool.runescape.wiki/w/Ball_of_wool
+      inputs:
+        - { item_id: 1737, qty: 1 }   # Wool https://oldschool.runescape.wiki/w/Wool
+      tools: []
+      output_item_id: 1759            # Ball of wool
+      output_qty: 1
+      station: SPINNING_WHEEL
+      wiki: "https://oldschool.runescape.wiki/w/Ball_of_wool"
+
+    BOW_STRING:
+      level_required: 10         # https://oldschool.runescape.wiki/w/Bow_string
+      xp: 15.0                   # https://oldschool.runescape.wiki/w/Bow_string
+      inputs:
+        - { item_id: 1779, qty: 1 }   # Flax https://oldschool.runescape.wiki/w/Flax
+      tools: []
+      output_item_id: 1777            # Bow string
+      output_qty: 1
+      station: SPINNING_WHEEL
+      wiki: "https://oldschool.runescape.wiki/w/Bow_string"

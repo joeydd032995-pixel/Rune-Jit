@@ -1,0 +1,578 @@
+# data/skills/agility.yaml — Agility skill data for Rune-Jit
+#
+# Single source of truth for all Agility values.
+# AgilityPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value below has an inline wiki citation.
+#
+# Source: https://oldschool.runescape.wiki/w/Agility
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: AGILITY
+  default_ticks: 2              # default ticks per obstacle if an obstacle omits `ticks`
+                               # https://oldschool.runescape.wiki/w/Agility
+  mark_of_grace_item_id: 11849 # ItemIds.MARK_OF_GRACE
+                               # https://oldschool.runescape.wiki/w/Mark_of_grace
+
+# ---------------------------------------------------------------------------
+# Mark of Grace
+# ---------------------------------------------------------------------------
+# Marks of Grace spawn at a random obstacle once per (successful) course lap,
+# on a per-course chance. They are rooftop-course-only and used to buy Graceful.
+# Source: https://oldschool.runescape.wiki/w/Mark_of_grace
+#
+# completion_bonus_xp is awarded once, on clearing the FINAL obstacle of a lap
+# (the rooftop courses grant a large lap-completion XP bonus on top of the
+# per-obstacle XP). Source: https://oldschool.runescape.wiki/w/Agility#Rooftop_courses
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Rooftop Agility Courses
+# ---------------------------------------------------------------------------
+# Each course is a sequence of obstacles cleared in order. The final obstacle
+# of the sequence awards completion_bonus_xp and triggers the Mark of Grace roll.
+#
+# obstacle xp / level / completion bonus values:
+#   https://oldschool.runescape.wiki/w/Agility#Rooftop_courses
+# mark_of_grace_chance is the 1-in-N lap chance of a mark spawning (null = none).
+# object_id values are placeholders (0) pending cache extraction
+# (/load-osrs-cache-full); registration is skipped for zero/empty IDs.
+
+courses:
+
+  # -------------------------------------------------------------------------
+  # Gnome Stronghold Agility Course (not a rooftop course; no marks of grace)
+  # Source: https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course
+  # -------------------------------------------------------------------------
+  GNOME_STRONGHOLD:
+    level_required: 1            # https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course
+    completion_bonus_xp: 39.5    # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course
+    mark_of_grace_chance: null   # Gnome course never drops marks of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+    obstacles:
+      - name: LOG_BALANCE
+        xp: 7.5                  # https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course
+        object_id: 0            # TODO: cache extraction (Log balance)
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: OBSTACLE_NET
+        xp: 7.5
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: TREE_BRANCH_UP
+        xp: 5.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: BALANCING_ROPE
+        xp: 7.5
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: TREE_BRANCH_DOWN
+        xp: 5.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: OBSTACLE_NET_DOWN
+        xp: 7.5
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+      - name: OBSTACLE_PIPE
+        xp: 7.5                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Gnome_Stronghold_Agility_Course"
+
+  # -------------------------------------------------------------------------
+  # Draynor Village Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course
+  # -------------------------------------------------------------------------
+  DRAYNOR_ROOFTOP:
+    level_required: 10           # https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course
+    completion_bonus_xp: 79.0    # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course
+    mark_of_grace_chance: 4      # ~1/4 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+    obstacles:
+      - name: ROUGH_WALL
+        xp: 8.0                  # https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+      - name: TIGHTROPE
+        xp: 8.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+      - name: TIGHTROPE_2
+        xp: 8.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+      - name: NARROW_WALL
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+      - name: WALL_GAP
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+      - name: CRATE
+        xp: 8.0                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Draynor_Village_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Al Kharid Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course
+  # -------------------------------------------------------------------------
+  AL_KHARID_ROOFTOP:
+    level_required: 20           # https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course
+    completion_bonus_xp: 180.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course
+    mark_of_grace_chance: 4      # ~1/4 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+    obstacles:
+      - name: ROUGH_WALL
+        xp: 10.0                 # https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: TIGHTROPE
+        xp: 30.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: CABLE
+        xp: 40.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: ZIP_LINE
+        xp: 40.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: TROPICAL_TREE
+        xp: 10.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: ROOF_TOP_BEAMS
+        xp: 7.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: TIGHTROPE_2
+        xp: 40.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: GAP
+        xp: 30.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+      - name: GAP_2
+        xp: 10.0                 # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Al_Kharid_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Varrock Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course
+  # -------------------------------------------------------------------------
+  VARROCK_ROOFTOP:
+    level_required: 30           # https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course
+    completion_bonus_xp: 238.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course
+    mark_of_grace_chance: 4      # ~1/4 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+    obstacles:
+      - name: ROUGH_WALL
+        xp: 25.0                 # https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: CLOTHES_LINE
+        xp: 25.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: GAP
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: WALL
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: GAP_2
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: GAP_3
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: GAP_4
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: LEDGE
+        xp: 25.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+      - name: EDGE
+        xp: 25.0                 # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Varrock_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Canifis Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course
+  # -------------------------------------------------------------------------
+  CANIFIS_ROOFTOP:
+    level_required: 40           # https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course
+    completion_bonus_xp: 175.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course
+    mark_of_grace_chance: 4      # ~1/4 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+    obstacles:
+      - name: TALL_TREE
+        xp: 8.0                  # https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: GAP
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: GAP_2
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: GAP_3
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: POLE_VAULT
+        xp: 8.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: GAP_4
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+      - name: GAP_5
+        xp: 8.0                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Canifis_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Falador Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Falador_Rooftop_Course
+  # -------------------------------------------------------------------------
+  FALADOR_ROOFTOP:
+    level_required: 50           # https://oldschool.runescape.wiki/w/Falador_Rooftop_Course
+    completion_bonus_xp: 440.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Falador_Rooftop_Course
+    mark_of_grace_chance: 5      # ~1/5 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+    obstacles:
+      - name: ROUGH_WALL
+        xp: 8.0                  # https://oldschool.runescape.wiki/w/Falador_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: TIGHTROPE
+        xp: 8.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: HAND_HOLDS
+        xp: 5.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: GAP
+        xp: 5.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: GAP_2
+        xp: 6.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: TIGHTROPE_2
+        xp: 8.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: GAP_3
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: LEDGE
+        xp: 8.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+      - name: EDGE
+        xp: 8.0                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Falador_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Seers' Village Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course
+  # -------------------------------------------------------------------------
+  SEERS_VILLAGE_ROOFTOP:
+    level_required: 60           # https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course
+    completion_bonus_xp: 435.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course
+    mark_of_grace_chance: 5      # ~1/5 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+    obstacles:
+      - name: WALL
+        xp: 45.0                 # https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+      - name: GAP
+        xp: 57.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+      - name: TIGHTROPE
+        xp: 6.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+      - name: GAP_2
+        xp: 6.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+      - name: GAP_3
+        xp: 6.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+      - name: EDGE
+        xp: 6.0                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Seers%27_Village_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Pollnivneach Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course
+  # -------------------------------------------------------------------------
+  POLLNIVNEACH_ROOFTOP:
+    level_required: 70           # https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course
+    completion_bonus_xp: 890.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course
+    mark_of_grace_chance: 5      # ~1/5 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+    obstacles:
+      - name: BASKET
+        xp: 20.0                 # https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: MARKET_STALL
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: BANNER
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: GAP
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: TREE
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: ROUGH_WALL
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: MONKEYBARS
+        xp: 20.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: TREE_2
+        xp: 20.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+      - name: DRYING_LINE
+        xp: 20.0                 # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Pollnivneach_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Rellekka Rooftop Course
+  # Source: https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course
+  # -------------------------------------------------------------------------
+  RELLEKKA_ROOFTOP:
+    level_required: 80           # https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course
+    completion_bonus_xp: 780.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course
+    mark_of_grace_chance: 5      # ~1/5 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+    obstacles:
+      - name: ROUGH_WALL
+        xp: 16.0                 # https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: GAP
+        xp: 18.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: TIGHTROPE
+        xp: 18.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: GAP_2
+        xp: 18.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: GAP_3
+        xp: 18.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: TIGHTROPE_2
+        xp: 18.0
+        object_id: 0
+        ticks: 3
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+      - name: PILE_OF_FISH
+        xp: 18.0                 # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Rellekka_Rooftop_Course"
+
+  # -------------------------------------------------------------------------
+  # Ardougne Rooftop Course (highest-level rooftop course)
+  # Source: https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course
+  # -------------------------------------------------------------------------
+  ARDOUGNE_ROOFTOP:
+    level_required: 90           # https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course
+    completion_bonus_xp: 529.0   # lap completion bonus
+                                 # https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course
+    mark_of_grace_chance: 5      # ~1/5 lap chance for a mark of grace
+                                 # https://oldschool.runescape.wiki/w/Mark_of_grace
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+    obstacles:
+      - name: WOODEN_BEAMS
+        xp: 52.0                 # https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: GAP
+        xp: 57.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: PLANK
+        xp: 7.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: GAP_2
+        xp: 7.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: GAP_3
+        xp: 7.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: STEEP_ROOF
+        xp: 7.0
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+      - name: GAP_4
+        xp: 7.0                  # final obstacle — triggers completion bonus
+        object_id: 0
+        ticks: 2
+        wiki: "https://oldschool.runescape.wiki/w/Ardougne_Rooftop_Course"
+
+# ---------------------------------------------------------------------------
+# Pet — Giant Squirrel
+# ---------------------------------------------------------------------------
+# Source: https://oldschool.runescape.wiki/w/Giant_squirrel
+#
+# NOTE: Exact drop rate formula is not officially confirmed by Jagex.
+# Drop chance per lap varies by course. Implementation deferred to a later
+# content pass; recorded here for completeness.
+
+pet:
+  name: GIANT_SQUIRREL
+  item_id: 20659              # https://oldschool.runescape.wiki/w/Giant_squirrel
+  base_rate: 30000           # placeholder per-lap denominator (community approximation)
+                             # https://oldschool.runescape.wiki/w/Giant_squirrel
+  scales_with_level: false
+  wiki: "https://oldschool.runescape.wiki/w/Giant_squirrel"

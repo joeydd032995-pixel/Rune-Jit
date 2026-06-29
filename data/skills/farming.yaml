@@ -1,0 +1,206 @@
+meta:
+  skill: FARMING
+  default_growth_ticks: 500     # ~5 minutes per stage; actual varies by crop
+                                # https://oldschool.runescape.wiki/w/Farming#Growth
+
+# Growth tick = 1 game tick = 0.6s. OSRS grows on ~5-min real-time intervals (500 ticks).
+# Source: https://oldschool.runescape.wiki/w/Farming#Growth_stages
+
+patches:
+  # Allotment patches
+  POTATO:
+    patch_type: ALLOTMENT
+    level_required: 1           # https://oldschool.runescape.wiki/w/Potato_seed
+    seed_item_id: 5318          # Potato seed https://oldschool.runescape.wiki/w/Potato_seed
+    produce_item_id: 1942       # Potato https://oldschool.runescape.wiki/w/Potato
+    plant_xp: 8.0               # https://oldschool.runescape.wiki/w/Potato_seed
+    harvest_xp: 9.0             # https://oldschool.runescape.wiki/w/Potato_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 3
+    patch_object_id: 0          # pending cache extraction
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Potato_seed"
+
+  ONION:
+    patch_type: ALLOTMENT
+    level_required: 5           # https://oldschool.runescape.wiki/w/Onion_seed
+    seed_item_id: 5319          # Onion seed https://oldschool.runescape.wiki/w/Onion_seed
+    produce_item_id: 1957       # Onion https://oldschool.runescape.wiki/w/Onion
+    plant_xp: 10.5              # https://oldschool.runescape.wiki/w/Onion_seed
+    harvest_xp: 10.5            # https://oldschool.runescape.wiki/w/Onion_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 3
+    patch_object_id: 0          # pending cache extraction
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Onion_seed"
+
+  CABBAGE:
+    patch_type: ALLOTMENT
+    level_required: 7           # https://oldschool.runescape.wiki/w/Cabbage_seed
+    seed_item_id: 5324          # Cabbage seed https://oldschool.runescape.wiki/w/Cabbage_seed
+    produce_item_id: 1965       # Cabbage https://oldschool.runescape.wiki/w/Cabbage
+    plant_xp: 11.5              # https://oldschool.runescape.wiki/w/Cabbage_seed
+    harvest_xp: 12.0            # https://oldschool.runescape.wiki/w/Cabbage_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 3
+    patch_object_id: 0          # pending cache extraction
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Cabbage_seed"
+
+  TOMATO:
+    patch_type: ALLOTMENT
+    level_required: 12          # https://oldschool.runescape.wiki/w/Tomato_seed
+    seed_item_id: 5322          # Tomato seed https://oldschool.runescape.wiki/w/Tomato_seed
+    produce_item_id: 1982       # Tomato https://oldschool.runescape.wiki/w/Tomato
+    plant_xp: 12.5              # https://oldschool.runescape.wiki/w/Tomato_seed
+    harvest_xp: 14.0            # https://oldschool.runescape.wiki/w/Tomato_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 3
+    patch_object_id: 0          # pending cache extraction
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Tomato_seed"
+
+  SWEETCORN:
+    patch_type: ALLOTMENT
+    level_required: 20          # https://oldschool.runescape.wiki/w/Sweetcorn_seed
+    seed_item_id: 5320          # Sweetcorn seed https://oldschool.runescape.wiki/w/Sweetcorn_seed
+    produce_item_id: 5986       # Sweetcorn https://oldschool.runescape.wiki/w/Sweetcorn
+    plant_xp: 17.0              # https://oldschool.runescape.wiki/w/Sweetcorn_seed
+    harvest_xp: 19.5            # https://oldschool.runescape.wiki/w/Sweetcorn_seed
+    growth_stages: 5
+    growth_ticks: 500
+    base_yield: 3
+    patch_object_id: 0          # pending cache extraction
+    members: false
+    wiki: "https://oldschool.runescape.wiki/w/Sweetcorn_seed"
+
+  STRAWBERRY:
+    patch_type: ALLOTMENT
+    level_required: 31          # https://oldschool.runescape.wiki/w/Strawberry_seed
+    seed_item_id: 5323          # Strawberry seed https://oldschool.runescape.wiki/w/Strawberry_seed
+    produce_item_id: 5504       # Strawberry https://oldschool.runescape.wiki/w/Strawberry
+    plant_xp: 26.0              # https://oldschool.runescape.wiki/w/Strawberry_seed
+    harvest_xp: 29.0            # https://oldschool.runescape.wiki/w/Strawberry_seed
+    growth_stages: 5
+    growth_ticks: 500
+    base_yield: 4
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Strawberry_seed"
+
+  WATERMELON:
+    patch_type: ALLOTMENT
+    level_required: 47          # https://oldschool.runescape.wiki/w/Watermelon_seed
+    seed_item_id: 5321          # Watermelon seed https://oldschool.runescape.wiki/w/Watermelon_seed
+    produce_item_id: 5982       # Watermelon https://oldschool.runescape.wiki/w/Watermelon
+    plant_xp: 48.5              # https://oldschool.runescape.wiki/w/Watermelon_seed
+    harvest_xp: 54.4            # https://oldschool.runescape.wiki/w/Watermelon_seed
+    growth_stages: 5
+    growth_ticks: 500
+    base_yield: 4
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Watermelon_seed"
+
+  # Herb patches
+  GUAM:
+    patch_type: HERB
+    level_required: 9           # https://oldschool.runescape.wiki/w/Guam_seed
+    seed_item_id: 5291          # Guam seed https://oldschool.runescape.wiki/w/Guam_seed
+    produce_item_id: 249        # Grimy guam https://oldschool.runescape.wiki/w/Grimy_guam_leaf
+    plant_xp: 11.0              # https://oldschool.runescape.wiki/w/Guam_seed
+    harvest_xp: 12.5            # https://oldschool.runescape.wiki/w/Guam_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Guam_seed"
+
+  MARRENTILL:
+    patch_type: HERB
+    level_required: 14          # https://oldschool.runescape.wiki/w/Marrentill_seed
+    seed_item_id: 5292          # Marrentill seed https://oldschool.runescape.wiki/w/Marrentill_seed
+    produce_item_id: 251        # Grimy marrentill https://oldschool.runescape.wiki/w/Grimy_marrentill
+    plant_xp: 13.5              # https://oldschool.runescape.wiki/w/Marrentill_seed
+    harvest_xp: 15.0            # https://oldschool.runescape.wiki/w/Marrentill_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Marrentill_seed"
+
+  TARROMIN:
+    patch_type: HERB
+    level_required: 19          # https://oldschool.runescape.wiki/w/Tarromin_seed
+    seed_item_id: 5293          # Tarromin seed https://oldschool.runescape.wiki/w/Tarromin_seed
+    produce_item_id: 253        # Grimy tarromin https://oldschool.runescape.wiki/w/Grimy_tarromin
+    plant_xp: 16.0              # https://oldschool.runescape.wiki/w/Tarromin_seed
+    harvest_xp: 18.0            # https://oldschool.runescape.wiki/w/Tarromin_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Tarromin_seed"
+
+  HARRALANDER:
+    patch_type: HERB
+    level_required: 26          # https://oldschool.runescape.wiki/w/Harralander_seed
+    seed_item_id: 5294          # Harralander seed https://oldschool.runescape.wiki/w/Harralander_seed
+    produce_item_id: 255        # Grimy harralander https://oldschool.runescape.wiki/w/Grimy_harralander
+    plant_xp: 21.5              # https://oldschool.runescape.wiki/w/Harralander_seed
+    harvest_xp: 24.0            # https://oldschool.runescape.wiki/w/Harralander_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Harralander_seed"
+
+  RANARR:
+    patch_type: HERB
+    level_required: 32          # https://oldschool.runescape.wiki/w/Ranarr_seed
+    seed_item_id: 5295          # Ranarr seed https://oldschool.runescape.wiki/w/Ranarr_seed
+    produce_item_id: 257        # Grimy ranarr https://oldschool.runescape.wiki/w/Grimy_ranarr_weed
+    plant_xp: 27.0              # https://oldschool.runescape.wiki/w/Ranarr_seed
+    harvest_xp: 30.5            # https://oldschool.runescape.wiki/w/Ranarr_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Ranarr_seed"
+
+  SNAPDRAGON:
+    patch_type: HERB
+    level_required: 62          # https://oldschool.runescape.wiki/w/Snapdragon_seed
+    seed_item_id: 5300          # Snapdragon seed https://oldschool.runescape.wiki/w/Snapdragon_seed
+    produce_item_id: 3000       # Grimy snapdragon https://oldschool.runescape.wiki/w/Grimy_snapdragon
+    plant_xp: 98.5              # https://oldschool.runescape.wiki/w/Snapdragon_seed
+    harvest_xp: 114.3           # https://oldschool.runescape.wiki/w/Snapdragon_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Snapdragon_seed"
+
+  TORSTOL:
+    patch_type: HERB
+    level_required: 85          # https://oldschool.runescape.wiki/w/Torstol_seed
+    seed_item_id: 5304          # Torstol seed https://oldschool.runescape.wiki/w/Torstol_seed
+    produce_item_id: 269        # Grimy torstol https://oldschool.runescape.wiki/w/Grimy_torstol
+    plant_xp: 199.5             # https://oldschool.runescape.wiki/w/Torstol_seed
+    harvest_xp: 224.5           # https://oldschool.runescape.wiki/w/Torstol_seed
+    growth_stages: 4
+    growth_ticks: 500
+    base_yield: 6
+    patch_object_id: 0          # pending cache extraction
+    members: true
+    wiki: "https://oldschool.runescape.wiki/w/Torstol_seed"

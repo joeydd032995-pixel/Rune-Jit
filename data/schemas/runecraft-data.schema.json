@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/joeydd032995-pixel/Rune-Jit/blob/main/data/schemas/runecraft-data.schema.json",
+  "title": "Rune-Jit Runecraft Skill Data",
+  "description": "JSON Schema for data/skills/runecraft.yaml. The Runecraft data shape (altars + per-rune multiple-rune thresholds) diverges from the shared skill-data.schema.json (axes/trees), so it has its own schema. Validate with: python3 -c \"import jsonschema, yaml, json; jsonschema.validate(yaml.safe_load(open('data/skills/runecraft.yaml')), json.load(open('data/schemas/runecraft-data.schema.json')))\"",
+  "type": "object",
+  "required": ["meta", "altars"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Skill-level metadata consumed by the plugin at startup.",
+      "required": ["skill", "ticks_per_attempt", "rune_essence_item_id", "pure_essence_item_id"],
+      "additionalProperties": true,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "description": "OSRS skill enum name (must be RUNECRAFT)"
+        },
+        "ticks_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Game ticks per crafting action (1 tick = 0.6s)"
+        },
+        "rune_essence_item_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Rune essence item ID (used by low-level altars)"
+        },
+        "pure_essence_item_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Pure essence item ID (used by members altars)"
+        }
+      }
+    },
+    "altars": {
+      "type": "object",
+      "description": "All rune altars keyed by constant name (e.g. AIR, NATURE).",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "level_required",
+          "xp_per_essence",
+          "rune_item_id",
+          "essence_item_id",
+          "altar_object_id",
+          "multiple_thresholds",
+          "wiki"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "level_required": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Runecraft level required to craft this rune"
+          },
+          "xp_per_essence": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "XP awarded per essence crafted (exact wiki value)"
+          },
+          "rune_item_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Item ID of the rune produced"
+          },
+          "essence_item_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Item ID of the essence consumed (rune or pure essence)"
+          },
+          "altar_object_id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Object ID of the altar (verify from cache)"
+          },
+          "talisman_item_id": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "description": "Talisman item ID to enter the ruin (null where no ItemIds constant exists)"
+          },
+          "multiple_thresholds": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Ordered level->runes_per_essence breakpoints. The highest entry whose level is <= the player's level applies.",
+            "items": {
+              "type": "object",
+              "required": ["level", "runes_per_essence"],
+              "additionalProperties": false,
+              "properties": {
+                "level": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99,
+                  "description": "Runecraft level at which this multiplier becomes active"
+                },
+                "runes_per_essence": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Runes produced per essence at or above this level"
+                }
+              }
+            }
+          },
+          "wiki": {
+            "type": "string",
+            "pattern": "^https://oldschool\\.runescape\\.wiki/",
+            "description": "OSRS wiki URL for this rune (required citation)"
+          }
+        }
+      }
+    }
+  }
+}
