@@ -1,0 +1,395 @@
+# data/skills/construction.yaml — Construction skill data for Rune-Jit
+#
+# Single source of truth for all Construction values.
+# ConstructionPlugin.kt loads this file at startup — no values are hardcoded in Kotlin.
+# Every value has an inline wiki citation.
+#
+# NOTE: Construction's YAML shape (planks / rooms / furniture / servants) is distinct
+# from the gathering-skill schema (skill-data.schema.json). The schema covers Woodcutting;
+# this file is self-describing and validated via ConstructionParityTest.
+#
+# Source: https://oldschool.runescape.wiki/w/Construction
+# License: CC BY-NC-SA 3.0 (wiki content)
+
+meta:
+  skill: CONSTRUCTION
+  ticks_per_build: 2          # 2 ticks (1.2 s) per furniture build animation
+                               # https://oldschool.runescape.wiki/w/Construction#Building_furniture
+  tool_saw_item_id: 8794       # Saw — required tool (not consumed)
+                               # https://oldschool.runescape.wiki/w/Saw
+  tool_hammer_item_id: 2347    # Hammer — required tool (not consumed)
+                               # https://oldschool.runescape.wiki/w/Hammer
+
+# ---------------------------------------------------------------------------
+# Planks — primary building material
+# Source: https://oldschool.runescape.wiki/w/Plank#Types
+# ---------------------------------------------------------------------------
+planks:
+  PLANK:
+    item_id: 960               # https://oldschool.runescape.wiki/w/Plank
+    xp_per_plank: 29.0         # 29 XP base per regular plank used
+    wiki: "https://oldschool.runescape.wiki/w/Plank"
+
+  OAK_PLANK:
+    item_id: 8778              # https://oldschool.runescape.wiki/w/Oak_plank
+    xp_per_plank: 60.0         # 60 XP per oak plank used
+    wiki: "https://oldschool.runescape.wiki/w/Oak_plank"
+
+  TEAK_PLANK:
+    item_id: 8780              # https://oldschool.runescape.wiki/w/Teak_plank
+    xp_per_plank: 90.0         # 90 XP per teak plank used
+    wiki: "https://oldschool.runescape.wiki/w/Teak_plank"
+
+  MAHOGANY_PLANK:
+    item_id: 8782              # https://oldschool.runescape.wiki/w/Mahogany_plank
+    xp_per_plank: 140.0        # 140 XP per mahogany plank used
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_plank"
+
+# ---------------------------------------------------------------------------
+# Rooms — level requirements and build/removal costs
+# Source: https://oldschool.runescape.wiki/w/Construction#Rooms
+# Removal refund: 50% of build cost returned when a room is removed.
+# Source: https://oldschool.runescape.wiki/w/Construction#Removing_rooms
+# ---------------------------------------------------------------------------
+rooms:
+  GARDEN:
+    name: "Garden"
+    level_required: 1           # https://oldschool.runescape.wiki/w/Garden
+    build_cost: 1000
+    removal_refund: 500         # 50% of 1,000
+    wiki: "https://oldschool.runescape.wiki/w/Garden"
+
+  PARLOUR:
+    name: "Parlour"
+    level_required: 1           # https://oldschool.runescape.wiki/w/Parlour
+    build_cost: 1000
+    removal_refund: 500
+    wiki: "https://oldschool.runescape.wiki/w/Parlour"
+
+  KITCHEN:
+    name: "Kitchen"
+    level_required: 5           # https://oldschool.runescape.wiki/w/Kitchen_(Construction)
+    build_cost: 5000
+    removal_refund: 2500
+    wiki: "https://oldschool.runescape.wiki/w/Kitchen_(Construction)"
+
+  DINING_ROOM:
+    name: "Dining Room"
+    level_required: 10          # https://oldschool.runescape.wiki/w/Dining_Room
+    build_cost: 5000
+    removal_refund: 2500
+    wiki: "https://oldschool.runescape.wiki/w/Dining_Room"
+
+  WORKSHOP:
+    name: "Workshop"
+    level_required: 15          # https://oldschool.runescape.wiki/w/Workshop
+    build_cost: 10000
+    removal_refund: 5000
+    wiki: "https://oldschool.runescape.wiki/w/Workshop"
+
+  BEDROOM:
+    name: "Bedroom"
+    level_required: 20          # https://oldschool.runescape.wiki/w/Bedroom
+    build_cost: 10000
+    removal_refund: 5000
+    wiki: "https://oldschool.runescape.wiki/w/Bedroom"
+
+  SKILL_HALL:
+    name: "Skill Hall"
+    level_required: 25          # https://oldschool.runescape.wiki/w/Skill_Hall
+    build_cost: 15000
+    removal_refund: 7500
+    wiki: "https://oldschool.runescape.wiki/w/Skill_Hall"
+
+  GAMES_ROOM:
+    name: "Games Room"
+    level_required: 30          # https://oldschool.runescape.wiki/w/Games_Room
+    build_cost: 25000
+    removal_refund: 12500
+    wiki: "https://oldschool.runescape.wiki/w/Games_Room"
+
+  QUEST_HALL:
+    name: "Quest Hall"
+    level_required: 35          # https://oldschool.runescape.wiki/w/Quest_Hall
+    build_cost: 25000
+    removal_refund: 12500
+    wiki: "https://oldschool.runescape.wiki/w/Quest_Hall"
+
+  STUDY:
+    name: "Study"
+    level_required: 40          # https://oldschool.runescape.wiki/w/Study
+    build_cost: 50000
+    removal_refund: 25000
+    wiki: "https://oldschool.runescape.wiki/w/Study"
+
+  CHAPEL:
+    name: "Chapel"
+    level_required: 45          # https://oldschool.runescape.wiki/w/Chapel
+    build_cost: 50000
+    removal_refund: 25000
+    wiki: "https://oldschool.runescape.wiki/w/Chapel"
+
+  PORTAL_CHAMBER:
+    name: "Portal Chamber"
+    level_required: 50          # https://oldschool.runescape.wiki/w/Portal_Chamber
+    build_cost: 100000
+    removal_refund: 50000
+    wiki: "https://oldschool.runescape.wiki/w/Portal_Chamber"
+
+  THRONE_ROOM:
+    name: "Throne Room"
+    level_required: 60          # https://oldschool.runescape.wiki/w/Throne_Room
+    build_cost: 150000
+    removal_refund: 75000
+    wiki: "https://oldschool.runescape.wiki/w/Throne_Room"
+
+  DUNGEON_CORRIDOR:
+    name: "Dungeon Corridor"
+    level_required: 70          # https://oldschool.runescape.wiki/w/Dungeon_Corridor
+    build_cost: 7500
+    removal_refund: 3750
+    wiki: "https://oldschool.runescape.wiki/w/Dungeon_Corridor"
+
+  ACHIEVEMENT_GALLERY:
+    name: "Achievement Gallery"
+    level_required: 80          # https://oldschool.runescape.wiki/w/Achievement_Gallery
+    build_cost: 250000
+    removal_refund: 125000
+    wiki: "https://oldschool.runescape.wiki/w/Achievement_Gallery"
+
+# ---------------------------------------------------------------------------
+# Furniture — hotspot definitions with level, XP, and materials
+# Source: https://oldschool.runescape.wiki/w/Construction#Furniture_tables
+#
+# hotspot_object_id: 0 until /cache-unpack-extract-assets is run.
+# The plugin skips registration when this is 0 (FishingPlugin guard pattern).
+#
+# Item IDs:
+#   960  = Plank          https://oldschool.runescape.wiki/w/Plank
+#   8778 = Oak plank      https://oldschool.runescape.wiki/w/Oak_plank
+#   8780 = Teak plank     https://oldschool.runescape.wiki/w/Teak_plank
+#   8782 = Mahogany plank https://oldschool.runescape.wiki/w/Mahogany_plank
+#   8790 = Bolt of cloth  https://oldschool.runescape.wiki/w/Bolt_of_cloth
+# ---------------------------------------------------------------------------
+furniture:
+
+  # --- Parlour chairs ---
+  # Source: https://oldschool.runescape.wiki/w/Parlour#Furniture
+
+  CRUDE_WOODEN_CHAIR:
+    name: "Crude wooden chair"
+    level_required: 1           # https://oldschool.runescape.wiki/w/Crude_wooden_chair
+    xp: 58.0                    # 2 × 29 XP/plank = 58 XP
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0        # pending cache extraction
+    materials:
+      - { item_id: 960, quantity: 2 }    # 2 planks
+    wiki: "https://oldschool.runescape.wiki/w/Crude_wooden_chair"
+
+  WOODEN_CHAIR:
+    name: "Wooden chair"
+    level_required: 8           # https://oldschool.runescape.wiki/w/Wooden_chair
+    xp: 87.5                    # https://oldschool.runescape.wiki/w/Wooden_chair
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 960, quantity: 3 }    # 3 planks
+    wiki: "https://oldschool.runescape.wiki/w/Wooden_chair"
+
+  ROCKING_CHAIR:
+    name: "Rocking chair"
+    level_required: 14          # https://oldschool.runescape.wiki/w/Rocking_chair
+    xp: 87.5                    # https://oldschool.runescape.wiki/w/Rocking_chair
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 960, quantity: 3 }    # 3 planks
+    wiki: "https://oldschool.runescape.wiki/w/Rocking_chair"
+
+  OAK_CHAIR:
+    name: "Oak chair"
+    level_required: 19          # https://oldschool.runescape.wiki/w/Oak_chair
+    xp: 120.0                   # 2 × 60 XP/oak plank = 120 XP
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8778, quantity: 2 }   # 2 oak planks
+    wiki: "https://oldschool.runescape.wiki/w/Oak_chair"
+
+  TEAK_ARMCHAIR:
+    name: "Teak armchair"
+    level_required: 35          # https://oldschool.runescape.wiki/w/Teak_armchair
+    xp: 180.0                   # 2 × 90 XP/teak plank = 180 XP
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8780, quantity: 2 }   # 2 teak planks
+    wiki: "https://oldschool.runescape.wiki/w/Teak_armchair"
+
+  MAHOGANY_ARMCHAIR:
+    name: "Mahogany armchair"
+    level_required: 47          # https://oldschool.runescape.wiki/w/Mahogany_armchair
+    xp: 280.0                   # 2 × 140 XP/mahogany plank = 280 XP
+    room: PARLOUR
+    hotspot: CHAIR_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8782, quantity: 2 }   # 2 mahogany planks
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_armchair"
+
+  # --- Dining Room tables ---
+  # Source: https://oldschool.runescape.wiki/w/Dining_Room#Furniture
+
+  OAK_DINING_TABLE:
+    name: "Oak dining table"
+    level_required: 22          # https://oldschool.runescape.wiki/w/Oak_dining_table
+    xp: 240.0                   # 4 × 60 XP/oak plank = 240 XP
+    room: DINING_ROOM
+    hotspot: TABLE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8778, quantity: 4 }   # 4 oak planks
+    wiki: "https://oldschool.runescape.wiki/w/Oak_dining_table"
+
+  TEAK_DINING_TABLE:
+    name: "Teak dining table"
+    level_required: 38          # https://oldschool.runescape.wiki/w/Teak_dining_table
+    xp: 360.0                   # 4 × 90 XP/teak plank = 360 XP
+    room: DINING_ROOM
+    hotspot: TABLE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8780, quantity: 4 }   # 4 teak planks
+    wiki: "https://oldschool.runescape.wiki/w/Teak_dining_table"
+
+  MAHOGANY_DINING_TABLE:
+    name: "Mahogany dining table"
+    level_required: 52          # https://oldschool.runescape.wiki/w/Mahogany_dining_table
+    xp: 840.0                   # 6 × 140 XP/mahogany plank = 840 XP
+    room: DINING_ROOM
+    hotspot: TABLE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8782, quantity: 6 }   # 6 mahogany planks
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_dining_table"
+
+  # --- Study bookcases ---
+  # Source: https://oldschool.runescape.wiki/w/Study#Furniture
+
+  WOODEN_BOOKCASE:
+    name: "Wooden bookcase"
+    level_required: 4           # https://oldschool.runescape.wiki/w/Wooden_bookcase
+    xp: 115.0                   # https://oldschool.runescape.wiki/w/Wooden_bookcase
+    room: STUDY
+    hotspot: BOOKCASE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 960, quantity: 4 }    # 4 planks
+    wiki: "https://oldschool.runescape.wiki/w/Wooden_bookcase"
+
+  OAK_BOOKCASE:
+    name: "Oak bookcase"
+    level_required: 40          # https://oldschool.runescape.wiki/w/Oak_bookcase
+    xp: 180.0                   # 3 × 60 XP/oak plank = 180 XP
+    room: STUDY
+    hotspot: BOOKCASE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8778, quantity: 3 }   # 3 oak planks
+    wiki: "https://oldschool.runescape.wiki/w/Oak_bookcase"
+
+  MAHOGANY_BOOKCASE:
+    name: "Mahogany bookcase"
+    level_required: 80          # https://oldschool.runescape.wiki/w/Mahogany_bookcase
+    xp: 420.0                   # 3 × 140 XP/mahogany plank = 420 XP
+    room: STUDY
+    hotspot: BOOKCASE_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8782, quantity: 3 }   # 3 mahogany planks
+    wiki: "https://oldschool.runescape.wiki/w/Mahogany_bookcase"
+
+  # --- Workshop workbenches ---
+  # Source: https://oldschool.runescape.wiki/w/Workshop#Furniture
+
+  WOODEN_WORKBENCH:
+    name: "Wooden workbench"
+    level_required: 1           # https://oldschool.runescape.wiki/w/Wooden_workbench
+    xp: 87.5                    # https://oldschool.runescape.wiki/w/Wooden_workbench
+    room: WORKSHOP
+    hotspot: WORKBENCH_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 960, quantity: 3 }    # 3 planks
+    wiki: "https://oldschool.runescape.wiki/w/Wooden_workbench"
+
+  OAK_WORKBENCH:
+    name: "Oak workbench"
+    level_required: 33          # https://oldschool.runescape.wiki/w/Oak_workbench
+    xp: 240.0                   # 4 × 60 XP/oak plank = 240 XP
+    room: WORKSHOP
+    hotspot: WORKBENCH_HOTSPOT
+    hotspot_object_id: 0
+    materials:
+      - { item_id: 8778, quantity: 4 }   # 4 oak planks
+    wiki: "https://oldschool.runescape.wiki/w/Oak_workbench"
+
+# ---------------------------------------------------------------------------
+# Servants — hired via bedroom moneybag
+# Source: https://oldschool.runescape.wiki/w/Servant
+#
+# npc_id: 0 until cache extraction is run.
+# travelTicks: round trip to bank and back (data: 8 ticks for demon butler confirmed)
+# Source: https://oldschool.runescape.wiki/w/Servant#Servants
+# ---------------------------------------------------------------------------
+servants:
+  SERVANT:
+    name: "Servant"
+    level_required: 20          # https://oldschool.runescape.wiki/w/Servant#Servants
+    npc_id: 0                   # pending cache extraction
+    wage_per_5_trips: 500       # coins paid every 5 uses
+    max_carry: 6                # items retrieved per bank trip
+    travel_ticks: 16            # round-trip ticks (approximate; faster servants below)
+    wiki: "https://oldschool.runescape.wiki/w/Servant"
+
+  COOK:
+    name: "Cook"
+    level_required: 30          # https://oldschool.runescape.wiki/w/Servant#Servants
+    npc_id: 0
+    wage_per_5_trips: 1000
+    max_carry: 6
+    travel_ticks: 14
+    wiki: "https://oldschool.runescape.wiki/w/Servant"
+
+  GARDENER:
+    name: "Gardener"
+    level_required: 50          # https://oldschool.runescape.wiki/w/Servant#Servants
+    npc_id: 0
+    wage_per_5_trips: 3000
+    max_carry: 8
+    travel_ticks: 12
+    wiki: "https://oldschool.runescape.wiki/w/Servant"
+
+  BUTLER:
+    name: "Butler"
+    level_required: 50          # https://oldschool.runescape.wiki/w/Servant#Servants
+    npc_id: 0
+    wage_per_5_trips: 5000
+    max_carry: 10
+    travel_ticks: 10
+    wiki: "https://oldschool.runescape.wiki/w/Servant"
+
+  DEMON_BUTLER:
+    name: "Demon butler"
+    level_required: 58          # https://oldschool.runescape.wiki/w/Servant#Servants
+    npc_id: 0
+    wage_per_5_trips: 10000
+    max_carry: 10
+    travel_ticks: 8             # 8 ticks — fastest servant
+                                # https://oldschool.runescape.wiki/w/Servant#Servants
+    wiki: "https://oldschool.runescape.wiki/w/Servant"
