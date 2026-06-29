@@ -49,8 +49,9 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Claude Code logs (runtime only)
+# Claude Code logs and agent worktrees (runtime only)
 .claude/logs/
+.claude/worktrees/
 
 # OS
 *.swp
@@ -62,3 +63,6 @@ __pycache__/
 *.dat2
 *.idx
 src/server/data/
+
+# Git worktrees created by background agents (never commit)
+.claude/worktrees/
