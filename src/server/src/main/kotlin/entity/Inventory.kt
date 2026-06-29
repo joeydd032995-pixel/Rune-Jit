@@ -8,6 +8,11 @@ class Inventory {
 
     fun contains(itemId: Int): Boolean = slots.any { it?.itemId == itemId }
 
+    fun contains(itemId: Int, quantity: Int): Boolean {
+        val slot = slots.firstOrNull { it?.itemId == itemId } ?: return false
+        return slot.quantity >= quantity
+    }
+
     fun addItem(itemId: Int, quantity: Int = 1): Boolean {
         val existing = slots.firstOrNull { it?.itemId == itemId }
         if (existing != null) {
